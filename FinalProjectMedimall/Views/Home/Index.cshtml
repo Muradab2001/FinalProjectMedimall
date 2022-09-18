@@ -1,0 +1,896 @@
+﻿@model HomeVM
+
+<!-- slider start -->
+<section class="container responsevslider d-flexjustic">
+    <div class="col-lg-6 col-12 d-flex mainslider">
+       @foreach (Slider slider in Model.Sliders)
+        {
+            @if (slider.Order == 1)
+            {
+                <div class="leftslider d-flex">
+                    <div class="slidertext">
+                    <h1>SURGICAL MASK</h1>
+                    <p>3 Layer Protection</p>
+                    <div class="imagebutton">
+                        <button class="learn-more">
+                            <span class="circle" aria-hidden="true">
+                                <span class="icon arrow"></span>
+                            </span>
+                            <span class="button-text">SHOP NOW</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="img-fluid">
+                    <img src="assets/image/@slider.Image" alt="">
+                </div>
+            </div>
+            }
+      }
+         
+     </div>
+     <div class="col-lg-5 col-12 rightslider">
+        <div class="topslider d-flex">
+        @foreach (Slider slider1 in Model.Sliders)
+        {
+             @if(slider1.Order==2){
+                    <div class="topslidertext">
+                        <h3>EKTA NEBULIZER</h3>
+                        <p>COMPRESSOR</p>
+                        <div class="imagebutton">
+                            <button href="@slider1.ButtonUrl" class="learn-more">
+                                <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">SHOP NOW</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="assets/image/@slider1.Image" alt="">
+                    </div>
+             }
+        }
+
+        </div>
+        <div class="bottomslider d-flex">
+               @foreach (Slider slider2 in Model.Sliders){
+                @if(slider2.Order==3){
+                    <div>
+                        <img src="assets/image/@slider2.Image" alt="">
+                    </div>
+                    <div class="bottomslidertext">
+                        <h3>@slider2.Desc</h3>
+                        <p>@slider2.Title</p>
+                        <div class="imagebutton">
+                            <button href="@slider2.ButtonUrl" class="learn-more">
+                                <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">SHOP NOW</span>
+                            </button>
+                        </div>
+                    </div>
+                }
+               }
+
+
+        </div>
+    </div>
+</section>
+<!-- slider end -->
+<!-- category start -->
+<section>
+    <div class="categorys col-lg-12 d-flexjustic container">
+       @foreach (Category category in Model.Categories)
+      {
+            <div class="categorybox col-lg-1 col-5">
+                <div class="topcategory">
+                    <img src="assets/image/@category.Image" alt="">
+                </div>
+                <div class="bottomcategory">
+                    <a href="">@category.Name</a>
+                </div>
+            </div>
+        }
+
+    </div>
+</section>
+<!-- category end -->
+<!-- Product start -->
+<section class="container mt-5">
+    <div class="latestproduct">
+        <h2>Our Latest Products</h2>
+    </div>
+    <div class="products gap-5">
+        <div class="col-lg-2 col-10 productbox">
+            <div class="productimg">
+                <div class="imgicon">
+                    <a href="">
+                        <i class="fa-solid fa-heart-circle-xmark"></i>
+                    </a>
+                </div>
+                <img src="assets/image/product_2-360x300.png" alt="">
+            </div>
+            <div class="productinfo">
+                <a href="">Equipment Product</a>
+                <div class="starrating">
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <span>(1)</span>
+                </div>
+                <div class="productprice">
+                    <h5>
+                        $18.00
+                    </h5>
+                </div>
+                <div class="basketicon">
+                    <a href="">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-10 productbox">
+            <div class="productimg">
+                <div class="imgicon">
+                    <a href="">
+                        <i class="fa-solid fa-heart-circle-xmark"></i>
+                    </a>
+                </div>
+                <img src="assets/image/product_10.png" alt="">
+            </div>
+            <div class="productinfo">
+                <a href="">Equipment Product</a>
+                <div class="starrating">
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <span>(1)</span>
+                </div>
+                <div class="productprice">
+                    <h5>
+                        $22.00
+                    </h5>
+                </div>
+                <div class="basketicon">
+                    <a href="">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-10 productbox">
+            <div class="productimg">
+                <div class="imgicon">
+                    <a href="">
+                        <i class="fa-solid fa-heart-circle-xmark"></i>
+                    </a>
+                </div>
+                <img src="assets/image/product_5-300x225.png" alt="">
+            </div>
+            <div class="productinfo">
+                <a href="">Equipment Product</a>
+                <div class="starrating">
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <span>(1)</span>
+                </div>
+                <div class="productprice">
+                    <h5>
+                        $35.00
+                    </h5>
+                </div>
+                <div class="basketicon">
+                    <a href="">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-10 productbox">
+            <div class="productimg">
+                <div class="imgicon">
+                    <a href="">
+                        <i class="fa-solid fa-heart-circle-xmark"></i>
+                    </a>
+                </div>
+                <img src="assets/image/product_3-300x225.png" alt="">
+            </div>
+            <div class="productinfo">
+                <a href="">Equipment Product</a>
+                <div class="starrating">
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <span>(1)</span>
+                </div>
+                <div class="productprice">
+                    <h5>
+                        $10.00
+                    </h5>
+                </div>
+                <div class="basketicon">
+                    <a href="">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-10 productbox">
+            <div class="productimg">
+                <div class="imgicon">
+                    <a href="">
+                        <i class="fa-solid fa-heart-circle-xmark"></i>
+                    </a>
+                </div>
+                <img src="assets/image/product_6-300x225.png" alt="">
+            </div>
+            <div class="productinfo">
+                <a href="">Equipment Product</a>
+                <div class="starrating">
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <span>(1)</span>
+                </div>
+                <div class="productprice">
+                    <h5>
+                        $25.00
+                    </h5>
+                </div>
+                <div class="basketicon">
+                    <a href="">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-10 productbox">
+            <div class="productimg">
+                <div class="imgicon">
+                    <a href="">
+                        <i class="fa-solid fa-heart-circle-xmark"></i>
+                    </a>
+                </div>
+                <img src="assets/image/product_6-300x225.png" alt="">
+            </div>
+            <div class="productinfo">
+                <a href="">Equipment Product</a>
+                <div class="starrating">
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <span>(1)</span>
+                </div>
+                <div class="productprice">
+                    <h5>
+                        $25.00
+                    </h5>
+                </div>
+                <div class="basketicon">
+                    <a href="">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-10 productbox">
+            <div class="productimg">
+                <div class="imgicon">
+                    <a href="">
+                        <i class="fa-solid fa-heart-circle-xmark"></i>
+                    </a>
+                </div>
+                <img src="assets/image/product_6-300x225.png" alt="">
+            </div>
+            <div class="productinfo">
+                <a href="">Equipment Product</a>
+                <div class="starrating">
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <span>(1)</span>
+                </div>
+                <div class="productprice">
+                    <h5>
+                        $25.00
+                    </h5>
+                </div>
+                <div class="basketicon">
+                    <a href="">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-10 productbox">
+            <div class="productimg">
+                <div class="imgicon">
+                    <a href="">
+                        <i class="fa-solid fa-heart-circle-xmark"></i>
+                    </a>
+                </div>
+                <img src="assets/image/product_6-300x225.png" alt="">
+            </div>
+            <div class="productinfo">
+                <a href="">Equipment Product</a>
+                <div class="starrating">
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <span>(1)</span>
+                </div>
+                <div class="productprice">
+                    <h5>
+                        $25.00
+                    </h5>
+                </div>
+                <div class="basketicon">
+                    <a href="">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-10 productbox">
+            <div class="productimg">
+                <div class="imgicon">
+                    <a href="">
+                        <i class="fa-solid fa-heart-circle-xmark"></i>
+                    </a>
+                </div>
+                <img src="assets/image/product_6-300x225.png" alt="">
+            </div>
+            <div class="productinfo">
+                <a href="">Equipment Product</a>
+                <div class="starrating">
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <span>(1)</span>
+                </div>
+                <div class="productprice">
+                    <h5>
+                        $25.00
+                    </h5>
+                </div>
+                <div class="basketicon">
+                    <a href="">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-10 productbox">
+            <div class="productimg">
+                <div class="imgicon">
+                    <a href="">
+                        <i class="fa-solid fa-heart-circle-xmark"></i>
+                    </a>
+                </div>
+                <img src="assets/image/product_6-300x225.png" alt="">
+            </div>
+            <div class="productinfo">
+                <a href="">Equipment Product</a>
+                <div class="starrating">
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <i class="fa-solid fa-star staron"></i>
+                    <span>(1)</span>
+                </div>
+                <div class="productprice">
+                    <h5>
+                        $25.00
+                    </h5>
+                </div>
+                <div class="basketicon">
+                    <a href="">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Product end -->
+<!--minisilder start-->
+<section class="container">
+    <div class="silders">
+        <div class="minislider col-12 d-flex rounded-3">
+            <div class="minislidertext">
+                <h4>100% Pure <br>Hand Sanitizer</h4>
+                <div class="imagebutton">
+                    <button class="learn-more">
+                        <span class="circle" aria-hidden="true">
+                            <span class="icon arrow"></span>
+                        </span>
+                        <span class="button-text">SHOP NOW</span>
+                    </button>
+                </div>
+            </div>
+            <div class="rounded">
+                <img src="assets/image/product_27.png" alt="">
+            </div>
+
+        </div>
+        <div class="minislider d-flex rounded-3">
+            <div class="minislidertext">
+                <h4>100% Pure <br>Hand Sanitizer</h4>
+                <div class="imagebutton">
+                    <button class="learn-more">
+                        <span class="circle" aria-hidden="true">
+                            <span class="icon arrow"></span>
+                        </span>
+                        <span class="button-text">SHOP NOW</span>
+                    </button>
+                </div>
+            </div>
+            <div class="rounded">
+                <img src="assets/image/product_27.png" alt="">
+            </div>
+
+        </div>
+        <div class="minislider  d-flex rounded-3">
+            <div class="minislidertext">
+                <h4>100% Pure <br>Hand Sanitizer</h4>
+                <div class="imagebutton">
+                    <button class="learn-more">
+                        <span class="circle" aria-hidden="true">
+                            <span class="icon arrow"></span>
+                        </span>
+                        <span class="button-text">SHOP NOW</span>
+                    </button>
+                </div>
+            </div>
+            <div class="rounded">
+                <img src="assets/image/product_27.png" alt="">
+            </div>
+
+        </div>
+    </div>
+</section>
+<!--minisilder end-->
+<!--product slider start-->
+<section class="discount">
+    <div class="discounttext container">
+        <span>Discounts up to 70%</span>
+        <h2>Attention! Deal Zone Here Modern Shop Sale!</h2>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="slider">
+                <div class="productbox">
+                    <div class="productimg">
+                        <div class="imgicon">
+                            <a href="">
+                                <i class="fa-solid fa-heart-circle-xmark"></i>
+                            </a>
+                        </div>
+                        <img src="assets/image/product_2-360x300.png" alt="">
+                    </div>
+                    <div class="productinfo">
+                        <a href="">Equipment Product</a>
+                        <div class="starrating">
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span>(1)</span>
+                        </div>
+                        <div class="productprice">
+                            <h5>
+                                $18.00
+                            </h5>
+                        </div>
+                        <div class="basketicon">
+                            <a href="">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="productbox">
+                    <div class="productimg">
+                        <div class="imgicon">
+                            <a href="">
+                                <i class="fa-solid fa-heart-circle-xmark"></i>
+                            </a>
+                        </div>
+                        <img src="assets/image/product_10.png" alt="">
+                    </div>
+                    <div class="productinfo">
+                        <a href="">Equipment Product</a>
+                        <div class="starrating">
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span>(1)</span>
+                        </div>
+                        <div class="productprice">
+                            <h5>
+                                $22.00
+                            </h5>
+                        </div>
+                        <div class="basketicon">
+                            <a href="">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="productbox">
+                    <div class="productimg">
+                        <div class="imgicon">
+                            <a href="">
+                                <i class="fa-solid fa-heart-circle-xmark"></i>
+                            </a>
+                        </div>
+                        <img src="assets/image/product_5-300x225.png" alt="">
+                    </div>
+                    <div class="productinfo">
+                        <a href="">Equipment Product</a>
+                        <div class="starrating">
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span>(1)</span>
+                        </div>
+                        <div class="productprice">
+                            <h5>
+                                $35.00
+                            </h5>
+                        </div>
+                        <div class="basketicon">
+                            <a href="">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="productbox">
+                    <div class="productimg">
+                        <div class="imgicon">
+                            <a href="">
+                                <i class="fa-solid fa-heart-circle-xmark"></i>
+                            </a>
+                        </div>
+                        <img src="assets/image/product_3-300x225.png" alt="">
+                    </div>
+                    <div class="productinfo">
+                        <a href="">Equipment Product</a>
+                        <div class="starrating">
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <span>(1)</span>
+                        </div>
+                        <div class="productprice">
+                            <h5>
+                                $10.00
+                            </h5>
+                        </div>
+                        <div class="basketicon">
+                            <a href="">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="productbox">
+                    <div class="productimg">
+                        <div class="imgicon">
+                            <a href="">
+                                <i class="fa-solid fa-heart-circle-xmark"></i>
+                            </a>
+                        </div>
+                        <img src="assets/image/product_6-300x225.png" alt="">
+                    </div>
+                    <div class="productinfo">
+                        <a href="">Equipment Product</a>
+                        <div class="starrating">
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <span>(1)</span>
+                        </div>
+                        <div class="productprice">
+                            <h5>
+                                $25.00
+                            </h5>
+                        </div>
+                        <div class="basketicon">
+                            <a href="">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="productbox">
+                    <div class="productimg">
+                        <div class="imgicon">
+                            <a href="">
+                                <i class="fa-solid fa-heart-circle-xmark"></i>
+                            </a>
+                        </div>
+                        <img src="assets/image/product_6-300x225.png" alt="">
+                    </div>
+                    <div class="productinfo">
+                        <a href="">Equipment Product</a>
+                        <div class="starrating">
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <span>(1)</span>
+                        </div>
+                        <div class="productprice">
+                            <h5>
+                                $25.00
+                            </h5>
+                        </div>
+                        <div class="basketicon">
+                            <a href="">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="productbox">
+                    <div class="productimg">
+                        <div class="imgicon">
+                            <a href="">
+                                <i class="fa-solid fa-heart-circle-xmark"></i>
+                            </a>
+                        </div>
+                        <img src="assets/image/product_6-300x225.png" alt="">
+                    </div>
+                    <div class="productinfo">
+                        <a href="">Equipment Product</a>
+                        <div class="starrating">
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <span>(1)</span>
+                        </div>
+                        <div class="productprice">
+                            <h5>
+                                $25.00
+                            </h5>
+                        </div>
+                        <div class="basketicon">
+                            <a href="">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--product slider end-->
+<!--top product start-->
+<section class="top-product">
+    <div class="container">
+        <div class="d-flexjustic discountproduct">
+            <div class="col-lg-6 col-12">
+                <div class="latestproduct">
+                    <h2>Top Selling Products</h2>
+                </div>
+                <div class="d-flexjustic flex-wrap">
+                    <div class="col-lg-5 d-flex productbox">
+                        <div class="productimg col-lg-6">
+                            <img src="assets/image/product_2-360x300.png" alt="">
+                        </div>
+                        <div class="productinfo col-lg-6">
+                            <a href="">New Liquid Soap</a>
+                            <div class="starrating">
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <span>(1)</span>
+                            </div>
+                            <div class="productprice">
+                                <h5>
+                                    $18.00
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 d-flex productbox">
+                        <div class="productimg col-lg-6">
+                            <img src="assets/image/product_2-360x300.png" alt="">
+                        </div>
+                        <div class="productinfo col-lg-6">
+                            <a href="">New Liquid Soap</a>
+                            <div class="starrating">
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <span>(1)</span>
+                            </div>
+                            <div class="productprice">
+                                <h5>
+                                    $18.00
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 d-flex productbox">
+                        <div class="productimg col-lg-6">
+                            <img src="assets/image/product_2-360x300.png" alt="">
+                        </div>
+                        <div class="productinfo col-lg-6">
+                            <a href="">New Liquid Soap</a>
+                            <div class="starrating">
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <span>(1)</span>
+                            </div>
+                            <div class="productprice">
+                                <h5>
+                                    $18.00
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 d-flex productbox">
+                        <div class="productimg col-lg-6">
+                            <img src="assets/image/product_2-360x300.png" alt="">
+                        </div>
+                        <div class="productinfo col-lg-6">
+                            <a href="">New Liquid Soap</a>
+                            <div class="starrating">
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <span>(1)</span>
+                            </div>
+                            <div class="productprice">
+                                <h5>
+                                    $18.00
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 d-flex productbox">
+                        <div class="productimg col-lg-6">
+                            <img src="assets/image/product_2-360x300.png" alt="">
+                        </div>
+                        <div class="productinfo col-lg-6">
+                            <a href="">New Liquid Soap</a>
+                            <div class="starrating">
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <span>(1)</span>
+                            </div>
+                            <div class="productprice">
+                                <h5>
+                                    $18.00
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 d-flex productbox">
+                        <div class="productimg col-lg-6">
+                            <img src="assets/image/product_2-360x300.png" alt="">
+                        </div>
+                        <div class="productinfo col-lg-6">
+                            <a href="">New Liquid Soap</a>
+                            <div class="starrating">
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <span>(1)</span>
+                            </div>
+                            <div class="productprice">
+                                <h5>
+                                    $18.00
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-12">
+                <div class="latestproduct">
+                    <h2>Top Products</h2>
+                </div>
+                <div class="d-flexjustic flex-wrap">
+                    <div class="d-flex col-lg-10 productbox">
+                        <div class="productimg col-lg-6">
+                            <img src="assets/image/product_2-360x300.png" alt="">
+                        </div>
+                        <div class="productinfo col-lg-6">
+                            <a href="">New Liquid Soap</a>
+                            <div class="starrating">
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <span>(1)</span>
+                            </div>
+                            <div class="productprice">
+                                <h5>
+                                    $18.00
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex col-lg-10 productbox">
+                        <div class="productimg col-lg-6">
+                            <img src="assets/image/product_2-360x300.png" alt="">
+                        </div>
+                        <div class="productinfo col-lg-6">
+                            <a href="">New Liquid Soap</a>
+                            <div class="starrating">
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star staron"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <span>(1)</span>
+                            </div>
+                            <div class="productprice">
+                                <h5>
+                                    $18.00
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<!--top product end-->

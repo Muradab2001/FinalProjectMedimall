@@ -1,0 +1,375 @@
+﻿@inject FinalProjectMedimall.Services.LayoutService layoutservice
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medimal</title>
+    <link rel="icon" href="~/assets./image/icon.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="~/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/assets/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="~/assets/slick/slick-theme.css"/>
+</head>
+<body>
+    <!-- header start -->
+    <header>
+        <div id="mySidenav" class="sidenav">
+            <div style="align-items: baseline;" class="d-flexjustic cart">
+                <div>
+                    <h3>CART</h3>
+                </div>
+                <div>
+                    <a style="cursor:pointer" class="closebtn" onclick="closeNav()">&times;</a>
+                </div>
+            </div>
+            <div class="minicart">
+                <div class="cartitem">
+                    <div class="cartimg">
+                        <a href="~/assets">
+                            <span>x</span>
+                        </a>
+
+                        <img src="~/assets./image/product_2-360x300.png" alt="">
+                    </div>
+                    <div class="cartinfo">
+                        <h4>Equipment Product</h4>
+                        <span>1x</span>
+                        <span>$20.00</span>
+                    </div>
+                </div>
+                <div class="cartitem">
+                    <div class="cartimg">
+                        <a href="~/assets">
+                            <span>x</span>
+                        </a>
+                        <img src="~/assets./image/product_2-360x300.png" alt="">
+                    </div>
+                    <div class="cartinfo">
+                        <h4>Equipment Product</h4>
+                        <span>1x</span>
+                        <span>$20.00</span>
+                    </div>
+                </div>
+                <div class="cartitem">
+                    <div class="cartimg">
+                        <a href="~/assets">
+                            <span>x</span>
+                        </a>
+                        <img src="~/assets./image/product_2-360x300.png" alt="">
+                    </div>
+                    <div class="cartinfo">
+                        <h4>Equipment Product</h4>
+                        <span>1x</span>
+                        <span>$20.00</span>
+                    </div>
+                </div>
+                <div class="cartitem">
+                    <div class="cartimg">
+                        <a href="~/assets">
+                            <span>x</span>
+                        </a>
+                        <img src="~/assets./image/product_2-360x300.png" alt="">
+                    </div>
+                    <div class="cartinfo">
+                        <h4>Equipment Product</h4>
+                        <span>1x</span>
+                        <span>$20.00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="Subtotal container">
+                <div class="Subtotalprice d-flexjustic">
+                    <h3>Subtotal:</h3>
+                    <h4>$0.00</h4>
+                </div>
+                <div class="subtotalbuttons">
+                    <a href="~/assets./cart.html">View cart</a>
+                    <a href="~/assets">Checkout</a>
+                </div>
+            </div>
+        </div>
+        <section class="headermain container">
+            <div class="col-lg-2 img-fluid logo">
+                <a href="~/assets./index.html">
+                    <img src="~/assets/image/@layoutservice.GetSettings().FirstOrDefault(x=>x.Key.Trim().ToLower()=="logo")?.Value" alt="">
+                </a>
+            </div>
+            <div class="col-lg-6 inputsearch d-flex">
+                <div class="category">
+                    <div class="dropdown_list">
+                        <button class="dropdown_button">
+                            <span style="color: #064acb;
+            background-color: #fff ; border-radius: 100%;margin-right: 10px; ">
+                                <i style="margin-left: 5px;" class="fas fa-angle-down"></i>
+                            </span>
+                            <span>Categories</span>
+                        </button>
+
+                        <div id="courses_id" class="courses">
+                            <li><a href="~/assets"><i class="fa-solid fa-chevron-right"></i> Machine learning</a></li>
+                            <li><a href="~/assets"><i class="fa-solid fa-chevron-right"></i> Data science</a></li>
+                            <li><a href="~/assets"><i class="fa-solid fa-chevron-right"></i> Data analysis</a></li>
+                            <li><a href="~/assets"><i class="fa-solid fa-chevron-right"></i> Data mining</a></li>
+                            <li><a href="~/assets"><i class="fa-solid fa-chevron-right"></i> Data warehousing</a></li>
+                        </div>
+                    </div>
+                </div>
+                <div class="search">
+                    <input type="text" placeholder="Search For Products ...">
+                </div>
+                <button class="searchicon">
+                    <span><i class="fas fa-search"></i></span>
+                </button>
+            </div>
+            <div class="col-lg-2 headericons">
+                <a href="~/assets">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+                <a href="~/assets./wishlist.html">
+                    <i class="fas fa-heart">
+                        <span>0</span>
+                    </i>
+                </a>
+                <a style="cursor: pointer;">
+                    <i onclick="openNav()" class="fas fa-cart-plus">
+                        <span>0</span>
+                    </i>
+                </a>
+                <span>$0.00</span>
+
+
+
+            </div>
+        </section>
+        <section class="navbar">
+            <div class="container">
+                <div class="col-lg-8 d-flex list">
+                    <ul><a href="~/assets">HOME</a></ul>
+                    <ul><a href="~/assets">SHOP</a></ul>
+                    <ul><a href="~/assets">CONTACT</a></ul>
+                    <ul><a href="~/assets">ABOUT</a></ul>
+                </div>
+                <div class="col-lg-2 d-flex phone">
+                    <div class="navicon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="contactbox">
+                        <span>Need any help?</span>
+                        <div class="contactnumber">
+                            <a href=tel:"@layoutservice.GetSettings().FirstOrDefault(x=>x.Key.Trim().ToLower()=="number")?.Value">@layoutservice.GetSettings().FirstOrDefault(x=>x.Key.Trim().ToLower()=="number")?.Value</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="nav-2" class="header2">
+            <div style="align-items: center;" class="d-flexjustic container">
+                <div class="col-lg-4 img-fluid logo">
+                    <a href="~/assets./index.html">
+                        <img src="@layoutservice.GetSettings().FirstOrDefault(x=>x.Key.Trim().ToLower()=="logofooter")?.Value" alt="">
+                    </a>
+                </div>
+                <div class="col-lg-4 navbar">
+                    <div class="col-lg-8 d-flex list">
+                        <ul><a href="~/assets">HOME</a></ul>
+                        <ul><a href="~/assets">SHOP</a></ul>
+                        <ul><a href="~/assets">CONTACT</a></ul>
+                        <ul><a href="~/assets">ABOUT</a></ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 headericons">
+                    <a href="~/assets">
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+                    <a href="~/assets./wishlist.html">
+                        <i class="fas fa-heart">
+                            <span>0</span>
+                        </i>
+                    </a>
+                    <a style="cursor: pointer;">
+                        <i onclick="openNav()" class="fas fa-cart-plus">
+                            <span>0</span>
+                        </i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </header>
+    <section class="responsnav">
+        <div id="resmySidenav" class="sidenav col-12">
+            <div style="align-items: baseline;" class="d-flexjustic cart">
+                <div>
+                    <h3>CART</h3>
+                </div>
+                <div>
+                    <a href="~/assetsjavascript:void(0)" class="closebtn" onclick="closeNav2()">&times;</a>
+                </div>
+            </div>
+            <div class="minicart">
+                <div class="cartitem">
+                    <div class="cartimg">
+                        <a href="~/assets">
+                            <span>x</span>
+                        </a>
+
+                        <img src="~/assets./image/product_2-360x300.png" alt="">
+                    </div>
+                    <div class="cartinfo">
+                        <h4>Equipment Product</h4>
+                        <span>1x</span>
+                        <span>$20.00</span>
+                    </div>
+                </div>
+                <div class="cartitem">
+                    <div class="cartimg">
+                        <a href="~/assets">
+                            <span>x</span>
+                        </a>
+                        <img src="~/assets./image/product_2-360x300.png" alt="">
+                    </div>
+                    <div class="cartinfo">
+                        <h4>Equipment Product</h4>
+                        <span>1x</span>
+                        <span>$20.00</span>
+                    </div>
+                </div>
+                <div class="cartitem">
+                    <div class="cartimg">
+                        <a href="~/assets">
+                            <span>x</span>
+                        </a>
+                        <img src="~/assets./image/product_2-360x300.png" alt="">
+                    </div>
+                    <div class="cartinfo">
+                        <h4>Equipment Product</h4>
+                        <span>1x</span>
+                        <span>$20.00</span>
+                    </div>
+                </div>
+                <div class="cartitem">
+                    <div class="cartimg">
+                        <a href="~/assets">
+                            <span>x</span>
+                        </a>
+                        <img src="~/assets./image/product_2-360x300.png" alt="">
+                    </div>
+                    <div class="cartinfo">
+                        <h4>Equipment Product</h4>
+                        <span>1x</span>
+                        <span>$20.00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="Subtotal container">
+                <div class="Subtotalprice d-flexjustic">
+                    <h3>Subtotal:</h3>
+                    <h4>$0.00</h4>
+                </div>
+                <div class="subtotalbuttons">
+                    <a href="~/assets./cart.html">View cart</a>
+                    <a href="~/assets">Checkout</a>
+                </div>
+            </div>
+        </div>
+        <div style="align-items: center;" class="container d-flexjustic">
+            <div class="col-5 img-fluid logo">
+                <a href="~/assets./index.html">
+                    <img src="~/assets./image/logo.png" alt="">
+                </a>
+            </div>
+            <div class="col-4 headericons d-flexjustic">
+                <a href="~/assets">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+                <a href="~/assets./wishlist.html">
+                    <i class="fas fa-heart">
+                        <span>0</span>
+                    </i>
+                </a>
+                <a style="cursor: pointer;">
+                    <i onclick="openNav2()" class="fas fa-cart-plus">
+                        <span>0</span>
+                    </i>
+                </a>
+            </div>
+            <div class="col-1 barmenu">
+                <a class="btnnav"><i class="fa-solid fa-bars"></i></a>
+            </div>
+            <div class="nav-content">
+                <ul>
+                    <li><a href="~/assets">Home</a></li>
+                    <li><a href="~/assets">About</a></li>
+                    <li><a href="~/assets">Contact</a></li>
+                    <li><a href="~/assets">Shop</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+    <!-- header end -->
+        @RenderBody()
+    <!-- footer start -->
+    <footer>
+        <div class="d-flexjustic footer-response">
+            <div class="col-lg-5 col-12 footerleft">
+                <div class="container">
+                    <img src="~/assets/image/@layoutservice.GetSettings().FirstOrDefault(x=>x.Key.Trim().ToLower()=="logofooter")?.Value" alt="">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil ut odit provident voluptas recusandae quod fugit non inventore molestiae repellendus.</p>
+                    <p>Our Help Line:</p>
+                    <a type="tel:0516447585">0020 500 -98- 000</a>
+                    <h6>Monday - Friday: 9:00 - 20:00</h6>
+                    <h6>Saturday: 11:00 - 15:00</h6>
+                </div>
+            </div>
+            <div class="col-lg-7 col-12 footerright">
+                <div class="container d-flexjustic footer-response">
+                    <div class="navmenu col-lg-3">
+                        <h3>Information</h3>
+                        <ul>
+                            <li>About</li>
+                            <li>Delivery</li>
+                            <li>Contact</li>
+                            <li>Shop</li>
+                        </ul>
+                    </div>
+                    <div class="navmenu col-lg-4">
+                        <h3>Custom Links</h3>
+                        <ul>
+                            <li>About</li>
+                            <li>Delivery</li>
+                            <li>Contact</li>
+                            <li>Shop</li>
+                        </ul>
+                    </div>
+                    <div class="navmenu col-lg-5">
+                        <h3>Newsletter</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, non.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+
+
+
+    <!-- footer end -->
+    <div class="back-top">
+        <a id="button">
+            <i class="fas fa-angle-double-up"></i>
+        </a>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="~/assets/slick/slick.js"></script>
+<script src="~/assets/js/app.js"></script>
+
+</html>

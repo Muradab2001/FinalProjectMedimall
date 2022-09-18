@@ -1,0 +1,37 @@
+.login{
+    h2{
+        margin-bottom: 2rem;
+    }
+    form{
+        border: 1px solid #d3ced2;
+        padding: 20px;
+        input{
+            padding: 12px 15px;
+            border: none;
+            color: #444;
+            background-color: #f2f2f2;
+            border-radius: 4px;
+            outline: none;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        .btn {
+            padding: 15px 45px;
+            cursor: pointer;
+            border-width: 1px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 400;
+            color: #fff;
+            background-color: #064acb;
+            margin-bottom: 20px;
+            transition: 0.4s;
+            display: block;
+            font-weight: 700;
+            &:hover{
+                color: white;
+                background-color: #032668;
+            }
+        }
+    }
+}

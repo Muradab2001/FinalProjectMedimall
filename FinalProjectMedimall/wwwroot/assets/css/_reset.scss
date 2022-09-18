@@ -1,0 +1,35 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none !important;
+}
+#button {
+    font-size: 1rem;
+    color: #fff;
+    background: #064acb;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 5px;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    transition: 0.4s;
+    z-index: 999;
+opacity: 0;
+    &:hover{
+        cursor: pointer;
+        background-color: #333;
+    }
+    &:active{
+        background-color: #555;
+    }
+    &.show{
+        opacity: 1;
+        visibility: visible;
+    }
+  }

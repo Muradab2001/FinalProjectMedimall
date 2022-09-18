@@ -1,0 +1,54 @@
+﻿@model List<Slider>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="main-panel">
+    <div class="text-center btn-dark">
+        <a class="btn btn-primary text-center " asp-area="Medimalladmin" asp-controller="slider" asp-action="create">
+            Create New Slider
+        </a>
+    </div>
+    <div class="table-responsive pt-0">
+        <table class="table table-bordered">
+            <thead>
+                <tr class="table-primary text-center">
+                    <th> Image </th>
+                    <th> Title </th>
+                    <th> Desc </th>
+                    <th> Setting </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Slider slider in Model)
+                {
+                    <tr class="table-secondary text-center">
+                        <td>
+                            <img style="width:110px; height:110px" src="~/assets/image/@slider.Image" />
+                        </td>
+                        <td>
+                            @slider.Title
+                        </td>
+                        <td>
+                            @slider.Desc
+                        </td>
+                        <td class="d-flex text-center" style="height:155px; gap: 5px;align-items: center; justify-content: center;">
+                            <div>
+                                <a style="border-radius: 5px;" asp-area="Medimalladmin" asp-controller="Slider" asp-action="Edit" asp-route-id="@slider.Id"
+                               class="btn btn-success"><i class="mdi mdi-border-color"></i></a>
+                            </div>
+                            <div>
+                                <a style="border-radius: 5px" asp-area="Medimalladmin" asp-controller="Slider" asp-action="Delete" asp-route-id="@slider.Id"
+                               class="btn btn-danger"><i class="mdi mdi-delete"></i></a>
+                            </div>
+                            <div>
+                                <a style="border-radius: 5px" asp-area="Medimalladmin" asp-controller="Slider" asp-action="Detail" asp-route-id="@slider.Id"
+                               class="btn btn-warning"><i class="mdi mdi-information"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

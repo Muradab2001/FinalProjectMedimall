@@ -1,0 +1,58 @@
+﻿@model List<Setting>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<main class="main-panel " style="background-color: #666; display: flex; border-spacing">
+    @foreach (var setting in Model)
+    {
+        if (setting.Key.ToLower().Trim() == "logo")
+        {
+            <div style="display: flex;
+    border-bottom: 1px solid;
+    color: black;
+    justify-content: space-between;
+    padding: 0 1rem;">
+                <div>
+                    <img style="width: 20rem" src="~/assets/image/@setting.Value" />
+                </div>
+                <div>
+                    <a style="border-radius: 5px;margin: 1rem 0;" asp-area="Medimalladmin" asp-controller="setting" asp-action="Edit" asp-route-id="@setting.Id"
+               class="btn btn-light mt-3"><i class="mdi mdi-border-color"></i></a>
+                </div>
+         </div>
+        }
+        if (setting.Key.ToLower().Trim() == "number")
+        {
+            <div style="display: flex;
+    border-bottom: 1px solid;
+    color: black;
+    justify-content: space-between;
+    padding: 0 1rem;">
+                <div>
+                   <h1 style="color:white">@setting.Value</h1>
+                </div>
+                <div>
+                    <a style="border-radius: 5px;margin: 1rem 0;" asp-area="Medimalladmin" asp-controller="setting" asp-action="Edit" asp-route-id="@setting.Id"
+               class="btn btn-light mt-3"><i class="mdi mdi-border-color"></i></a>
+                </div>
+            </div>
+        }
+        if (setting.Key.ToLower().Trim() == "logofooter")
+        {
+            <div style="display: flex;
+    border-bottom: 1px solid;
+    color: black;
+    justify-content: space-between;
+    padding: 0 1rem;">
+                <div>
+                    <img style="width: 20rem" src="~/assets/image/@setting.Value" />
+                </div>
+                <div>
+                    <a style="border-radius: 5px; margin: 1rem 0;" asp-area="Medimalladmin" asp-controller="setting" asp-action="Edit" asp-route-id="@setting.Id"
+               class="btn btn-light mt-3"><i class="mdi mdi-border-color"></i></a>
+                </div>
+            </div>
+        }
+    }
+</main>
