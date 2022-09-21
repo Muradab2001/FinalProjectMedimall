@@ -19,8 +19,15 @@ using FinalProjectMedimall.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\Areas\Medimalladmin\_ViewImports.cshtml"
+using FinalProjectMedimall.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"3de79ed01110d7129d42f8868a4d740f38829a4a", @"/Areas/Medimalladmin/Views/Category/Detail.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ca1cb8aa92237f696e99c26ce0d3aca82b9f1912", @"/Areas/Medimalladmin/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5890871ce9f60842a2fc1a046bc1c319554e51ac", @"/Areas/Medimalladmin/_ViewImports.cshtml")]
     #nullable restore
     public class Areas_Medimalladmin_Views_Category_Detail : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Category>
     #nullable disable
@@ -73,7 +80,7 @@ using FinalProjectMedimall.Models;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n        </dt>\r\n        <dd class=\"col-sm-10\">\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "3de79ed01110d7129d42f8868a4d740f38829a4a5179", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "3de79ed01110d7129d42f8868a4d740f38829a4a5409", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -121,7 +128,7 @@ AddHtmlAttributeValue("", 411, Model.Image, 411, 12, false);
 #line hidden
 #nullable disable
             WriteLiteral("\r\n        </dd>\r\n    </dl>\r\n</div>\r\n<div>\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3de79ed01110d7129d42f8868a4d740f38829a4a7847", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3de79ed01110d7129d42f8868a4d740f38829a4a8077", async() => {
                 WriteLiteral("Edit");
             }
             );
@@ -152,7 +159,7 @@ AddHtmlAttributeValue("", 411, Model.Image, 411, 12, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral(" |\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3de79ed01110d7129d42f8868a4d740f38829a4a10028", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3de79ed01110d7129d42f8868a4d740f38829a4a10258", async() => {
                 WriteLiteral("Back to List");
             }
             );

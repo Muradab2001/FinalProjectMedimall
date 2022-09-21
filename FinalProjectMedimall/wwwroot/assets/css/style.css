@@ -1352,10 +1352,12 @@ a {
     display: block !important;
   }
 }
-
+footer{
+    margin-top:5rem;
+}
 footer .footerleft {
-  padding: 2rem;
-  background-color: #064ACB;
+    padding: 2rem;
+    background-color: #064ACB;
 }
 
 footer .footerleft h6 {
@@ -2056,7 +2058,7 @@ table tbody .cartitem .quantity .qty-input {
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center;
+          align-items: baseline;
   margin-top: 2rem;
 }
 

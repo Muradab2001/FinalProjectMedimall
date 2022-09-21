@@ -19,8 +19,15 @@ using FinalProjectMedimall.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\Areas\Medimalladmin\_ViewImports.cshtml"
+using FinalProjectMedimall.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7091c65830b0329e613be026ede8a57552863778", @"/Areas/Medimalladmin/_ViewStart.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ca1cb8aa92237f696e99c26ce0d3aca82b9f1912", @"/Areas/Medimalladmin/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5890871ce9f60842a2fc1a046bc1c319554e51ac", @"/Areas/Medimalladmin/_ViewImports.cshtml")]
     #nullable restore
     public class Areas_Medimalladmin__ViewStart : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     #nullable disable

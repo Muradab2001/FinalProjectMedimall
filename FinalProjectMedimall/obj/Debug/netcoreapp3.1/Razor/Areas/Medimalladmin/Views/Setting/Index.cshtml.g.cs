@@ -19,8 +19,15 @@ using FinalProjectMedimall.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\Areas\Medimalladmin\_ViewImports.cshtml"
+using FinalProjectMedimall.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c77f371d8f03b1f36a7aa11465b94a3b095f1c9a", @"/Areas/Medimalladmin/Views/Setting/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ca1cb8aa92237f696e99c26ce0d3aca82b9f1912", @"/Areas/Medimalladmin/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5890871ce9f60842a2fc1a046bc1c319554e51ac", @"/Areas/Medimalladmin/_ViewImports.cshtml")]
     #nullable restore
     public class Areas_Medimalladmin_Views_Setting_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<Setting>>
     #nullable disable
@@ -77,7 +84,7 @@ using FinalProjectMedimall.Models;
 #line hidden
 #nullable disable
             WriteLiteral("            <div style=\"display: flex;\r\n    border-bottom: 1px solid;\r\n    color: black;\r\n    justify-content: space-between;\r\n    padding: 0 1rem;\">\r\n                <div>\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "c77f371d8f03b1f36a7aa11465b94a3b095f1c9a6522", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "c77f371d8f03b1f36a7aa11465b94a3b095f1c9a6752", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -101,7 +108,7 @@ AddHtmlAttributeValue("", 503, setting.Value, 503, 14, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                </div>\r\n                <div>\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c77f371d8f03b1f36a7aa11465b94a3b095f1c9a8198", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c77f371d8f03b1f36a7aa11465b94a3b095f1c9a8428", async() => {
                 WriteLiteral("<i class=\"mdi mdi-border-color\"></i>");
             }
             );
@@ -156,7 +163,7 @@ AddHtmlAttributeValue("", 503, setting.Value, 503, 14, false);
 #line hidden
 #nullable disable
             WriteLiteral("</h1>\r\n                </div>\r\n                <div>\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c77f371d8f03b1f36a7aa11465b94a3b095f1c9a12042", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c77f371d8f03b1f36a7aa11465b94a3b095f1c9a12272", async() => {
                 WriteLiteral("<i class=\"mdi mdi-border-color\"></i>");
             }
             );
@@ -203,7 +210,7 @@ AddHtmlAttributeValue("", 503, setting.Value, 503, 14, false);
 #line hidden
 #nullable disable
             WriteLiteral("            <div style=\"display: flex;\r\n    border-bottom: 1px solid;\r\n    color: black;\r\n    justify-content: space-between;\r\n    padding: 0 1rem;\">\r\n                <div>\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "c77f371d8f03b1f36a7aa11465b94a3b095f1c9a15499", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "c77f371d8f03b1f36a7aa11465b94a3b095f1c9a15729", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -227,7 +234,7 @@ AddHtmlAttributeValue("", 1830, setting.Value, 1830, 14, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                </div>\r\n                <div>\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c77f371d8f03b1f36a7aa11465b94a3b095f1c9a17180", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c77f371d8f03b1f36a7aa11465b94a3b095f1c9a17410", async() => {
                 WriteLiteral("<i class=\"mdi mdi-border-color\"></i>");
             }
             );

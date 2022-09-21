@@ -1,0 +1,225 @@
+﻿@model Medicine
+
+
+@{
+    string productcategory="";
+}
+
+@foreach (Category category in ViewBag.category)
+{
+    if (Model.CategoryId == category.Id)
+    {
+        productcategory=category.Name;
+    }
+}
+
+    <div class="headertext">
+        <div class="container pt-4">
+            <h1>Shop</h1>
+            <span><a href="./index.html">Home</a></span>
+            <span>></span>
+        <span><a href="./index.html">@productcategory</a></span>
+            <span>></span>
+            <a href="./cart.html">@Model.Name</a>
+        </div>
+    </div>
+    <div class="product-details">
+        <div class="container">
+            <div class="row">
+                <div class="product-details">
+                    <div class="container">
+                        <div class="row">
+                            <div class="product-details-wrapper">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <div class="product-wrapper-img mb-5">
+                                            <img src="~/assets/image/@Model.Image" style="width: 480px;" alt="">
+                                        </div>
+                                        <div class="product-mini-img d-flex">
+                                        <div class="mini-img">
+                                            <img src="~/assets/image/@Model.Image" style="width: 110px;" alt="">
+                                        </div>
+                                      @foreach (var item in Model.MedicineImages.Where(m=>m.IsMain==false).Take(4))
+                                     {
+         
+                                            <div class="mini-img">
+                                                <img src="~/assets/image/@item.Name" style="width: 110px;" alt="">
+                                            </div>
+                                        }
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7 col-12">
+                                        <div class="product-details-desc">
+                                            <h3>@Model.Name</h3>
+                                            <div class="review mb-3">
+                                                <div class="starrating">
+                                                    <i class="fa-solid fa-star staron"></i>
+                                                    <i class="fa-solid fa-star staron"></i>
+                                                    <i class="fa-solid fa-star staron"></i>
+                                                    <i class="fa-solid fa-star staron"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <span>(1)</span>
+                                                </div>
+                                            </div>
+                                            <div class="price mb-3">
+                                                <span>$@Model.Price</span>
+                                            </div>
+                                            <p>
+                                             @Model.Article
+                                            </p>
+                                            <div class="quantity mb-2 d-flex">
+                                                <div class="qty-input col-3">
+                                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
+                                                    <input class="product-qty" type="number" name="product-qty" min="1" max="50" value="1">
+                                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                                                </div>
+                                                <a class="col-3" href="cart.html">Add To Cart</a>
+                                                <div class="imgicon col-3">
+                                                    <a href="">
+                                                        <i class="fa-solid fa-heart-circle-xmark"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="stock mb-3 d-flex">
+                                                <h5>SKU:</h5>
+                                                <span>@Model.SKU</span>
+                                            </div>
+                                            <div class="stock mb-3 d-flex">
+                                                <h5>Category:</h5>
+                                                <span>
+                                                @productcategory
+                                                </span>
+                                            </div>
+                                            <div class="stock mb-3 d-flex">
+                                                <h5>Availability:</h5>
+                                                @{
+                                                if (Model.Stock == true)
+                                                {
+                                                                <span>In Stock</span>
+                                                }
+                                                else
+                                                {
+                                                                <span style="color:red">No Stock</span>
+                                                }
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section>
+        <div class="product-details-information">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product-review-info">
+                            <ul class="nav-desc">
+                                <li>
+                                    <button id="1" class="btnclick active" href="#">Description</button>
+                                </li>
+                                <li>
+                                    <button id="2" class="btnclick" data-toggle="tab" href="#">Information</button>
+                                </li>
+                                <li>
+                                    <button id="3" class="btnclick" data-toggle="tab" href="#">Reviews</button>
+                                </li>
+                            </ul>
+                            <div class="productinformation">
+                                <div id="1" class="description tabcontent">
+                                  @Model.Desc
+                                </div>
+                                <div id="2" class="info tabcontent">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <th>
+                                                    weight
+                                                <td>@Model.Weight kg</td>
+                                                </th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="3" class="review tabcontent">
+                                    <div class="tab-pane" id="tab-pane-3">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h4 class="mb-4">1 review for Equipment Product</h4>
+                                                <div class="media d-flexjustic mb-4">
+                                                    <div class="avatar">
+                                                        <img src="./image/cat_4.png" alt="">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
+                                                        <div class="starrating">
+                                                            <i class="fa-solid fa-star staron"></i>
+                                                            <i class="fa-solid fa-star staron"></i>
+                                                            <i class="fa-solid fa-star staron"></i>
+                                                            <i class="fa-solid fa-star staron"></i>
+                                                            <i class="fa-solid fa-star"></i>
+                                                        </div>
+                                                        <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 custom">
+                                        <h4 class="mb-4">Leave a review</h4>
+                                        <small>Your email address will not be published. Required fields are marked *</small>
+                                        <div class="d-flex my-3">
+                                            <p class="mb-0 mr-2">Your Rating * :</p>
+                                            <div class='rating-stars text-center'>
+                                                <ul id='stars'>
+                                                    <li class='star' title='Poor' data-value='1'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class='star' title='Fair' data-value='2'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class='star' title='Good' data-value='3'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class='star' title='Excellent' data-value='4'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class='star' title='WOW!!!' data-value='5'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="message">Your Review *</label>
+                                                <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="name">Your Name *</label>
+                                                <input type="text" class="form-control" id="name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">Your Email *</label>
+                                                <input type="email" class="form-control" id="email">
+                                            </div>
+                                            <div class="form-group mb-0">
+                                                <button type="submit" class="gelir">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+

@@ -1,0 +1,35 @@
+﻿@model RegisterVM
+
+<div class="headertext">
+    <div class="container pt-4">
+        <h1>REGISTER</h1>
+        <span><a href="./index.html">Home</a></span>
+        <span>></span>
+        <a href="./register.html">Register</a>
+    </div>
+</div>
+<section class="login container">
+    <h2>Register</h2>
+    <div class="alert alert-danger" asp-validation-summary="ModelOnly">
+
+    </div>
+    <form action="" method="post">
+        <label>FirstName</label>
+         <input asp-for="FirstName" type="text">
+        <label for="">LastName</label>
+        <input asp-for="LastName" type="text">
+        <label for="">Email</label>
+        <input asp-for="Email" type="text">
+        <label for="">Username</label>
+        <input asp-for="UserName" type="text">
+        <label for="">Your Password</label>
+        <input asp-for="Password" type="password">
+        <label for="">Confrim Password</label>
+        <input asp-for="ConfirmPassword" type="password">
+        <input asp-for="Terms" />
+        <label>Terms</label> <br />
+        <span class="text text-danger" asp-validation-for="Terms"></span>
+        <button class="btn" type="submit">REGISTER</button>
+    </form>
+   
+</section>

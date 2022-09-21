@@ -143,8 +143,6 @@
                 </a>
                 <span>$0.00</span>
 
-
-
             </div>
         </section>
         <section class="navbar">
@@ -173,7 +171,7 @@
             <div style="align-items: center;" class="d-flexjustic container">
                 <div class="col-lg-4 img-fluid logo">
                     <a href="~/assets./index.html">
-                        <img src="@layoutservice.GetSettings().FirstOrDefault(x=>x.Key.Trim().ToLower()=="logofooter")?.Value" alt="">
+                        <img src="~/assets/image/@layoutservice.GetSettings().FirstOrDefault(x=>x.Key.Trim().ToLower()=="logofooter")?.Value" alt="">
                     </a>
                 </div>
                 <div class="col-lg-4 navbar">
@@ -371,5 +369,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="~/assets/slick/slick.js"></script>
 <script src="~/assets/js/app.js"></script>
-
+<script src="~/assets/js/product.js"></script>
+<script src="~/assets/js/cart.js"></script>
 </html>

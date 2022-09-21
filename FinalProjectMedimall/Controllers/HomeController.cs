@@ -20,11 +20,18 @@ namespace FinalProjectMedimall.Controllers
         {
             HomeVM homeVM = new HomeVM
             {
-                Sliders=_context.Sliders.ToList(),
-                Categories=_context.Categories.Include(c=>c.Medicines).ToList()
-
+                Sliders = _context.Sliders.ToList(),
+                Categories = _context.Categories.Include(c => c.Medicines).ToList(),
+                Medicines = _context.Medicines.ToList()
             };
             return View(homeVM);
+        }
+
+        [HttpGet]
+        public IActionResult Test(int id)
+        {
+            Medicine medicine = _context.Medicines.Include(m=>m.MedicineImages).Include(m=>m.Category).FirstOrDefault(m=>m.Id==id);
+            return Json(medicine);
         }
     }
 }

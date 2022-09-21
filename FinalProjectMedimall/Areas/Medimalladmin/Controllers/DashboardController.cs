@@ -1,7 +1,9 @@
 ﻿using FinalProjectMedimall.DAL;
 using FinalProjectMedimall.Models;
+using FinalProjectMedimall.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,8 +23,13 @@ namespace FinalProjectMedimall.Areas.Medimalladmin.Controllers
         }
         public IActionResult Index()
         {
-            List<Category> model = _context.Categories.ToList();
-            return View(model);
+            HomeVM homeVM = new HomeVM
+            {
+                Sliders = _context.Sliders.ToList(),
+                Categories = _context.Categories.Include(c => c.Medicines).ToList(),
+                Medicines= _context.Medicines.Include(c=>c.MedicineImages).Include(r=>r.Rates).ToList(),
+            };
+            return View(homeVM);
         }
     }
 }

@@ -7,10 +7,13 @@ using System;
 using FinalProjectMedimall.DAL;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace FinalProjectMedimall.Areas.Medimalladmin.Controllers
 {
     [Area("Medimalladmin")]
+    [Authorize(Roles = "Admin")]
     public class SettingController : Controller
     {
     

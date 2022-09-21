@@ -81,7 +81,7 @@
 <!-- category start -->
 <section>
     <div class="categorys col-lg-12 d-flexjustic container">
-       @foreach (Category category in Model.Categories)
+       @foreach (Category category in Model.Categories.Take(8))
       {
             <div class="categorybox col-lg-1 col-5">
                 <div class="topcategory">
@@ -102,316 +102,42 @@
         <h2>Our Latest Products</h2>
     </div>
     <div class="products gap-5">
-        <div class="col-lg-2 col-10 productbox">
-            <div class="productimg">
-                <div class="imgicon">
-                    <a href="">
-                        <i class="fa-solid fa-heart-circle-xmark"></i>
-                    </a>
+        @foreach (Medicine medicine in Model.Medicines.Take(10))
+       {
+            <div class="col-lg-2 col-10 productbox">
+                <div class="productimg">
+                    <div class="imgicon">
+                        <a href="">
+                            <i class="fa-solid fa-heart-circle-xmark"></i>
+                        </a>
+                    </div>
+                    <img src="assets/image/@medicine.Image" alt="">
                 </div>
-                <img src="assets/image/product_2-360x300.png" alt="">
-            </div>
-            <div class="productinfo">
-                <a href="">Equipment Product</a>
-                <div class="starrating">
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <span>(1)</span>
-                </div>
-                <div class="productprice">
-                    <h5>
-                        $18.00
-                    </h5>
-                </div>
-                <div class="basketicon">
-                    <a href="">
-                        <i class="fa-solid fa-basket-shopping"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-2 col-10 productbox">
-            <div class="productimg">
-                <div class="imgicon">
-                    <a href="">
-                        <i class="fa-solid fa-heart-circle-xmark"></i>
-                    </a>
-                </div>
-                <img src="assets/image/product_10.png" alt="">
-            </div>
-            <div class="productinfo">
-                <a href="">Equipment Product</a>
-                <div class="starrating">
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <span>(1)</span>
-                </div>
-                <div class="productprice">
-                    <h5>
-                        $22.00
-                    </h5>
-                </div>
-                <div class="basketicon">
-                    <a href="">
-                        <i class="fa-solid fa-basket-shopping"></i>
-                    </a>
+                <div class="productinfo">
+                    <a asp-controller="Medicine" asp-action="Detail" asp-route-id="@medicine.Id">@medicine.Name</a>
+                    <div class="starrating">
+                        <i class="fa-solid fa-star staron"></i>
+                        <i class="fa-solid fa-star staron"></i>
+                        <i class="fa-solid fa-star staron"></i>
+                        <i class="fa-solid fa-star staron"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <span>(1)</span>
+                    </div>
+                    <div class="productprice">
+                        <h5>
+                        @medicine.Price
+                        </h5>
+                    </div>
+                    <div class="basketicon">
+                        <a id ="test" asp-controller="home" asp-action="Test" asp-route-id="@medicine.Id">
+                           
+                            <i class="fa-solid fa-basket-shopping"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-2 col-10 productbox">
-            <div class="productimg">
-                <div class="imgicon">
-                    <a href="">
-                        <i class="fa-solid fa-heart-circle-xmark"></i>
-                    </a>
-                </div>
-                <img src="assets/image/product_5-300x225.png" alt="">
-            </div>
-            <div class="productinfo">
-                <a href="">Equipment Product</a>
-                <div class="starrating">
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <span>(1)</span>
-                </div>
-                <div class="productprice">
-                    <h5>
-                        $35.00
-                    </h5>
-                </div>
-                <div class="basketicon">
-                    <a href="">
-                        <i class="fa-solid fa-basket-shopping"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-2 col-10 productbox">
-            <div class="productimg">
-                <div class="imgicon">
-                    <a href="">
-                        <i class="fa-solid fa-heart-circle-xmark"></i>
-                    </a>
-                </div>
-                <img src="assets/image/product_3-300x225.png" alt="">
-            </div>
-            <div class="productinfo">
-                <a href="">Equipment Product</a>
-                <div class="starrating">
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <span>(1)</span>
-                </div>
-                <div class="productprice">
-                    <h5>
-                        $10.00
-                    </h5>
-                </div>
-                <div class="basketicon">
-                    <a href="">
-                        <i class="fa-solid fa-basket-shopping"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-2 col-10 productbox">
-            <div class="productimg">
-                <div class="imgicon">
-                    <a href="">
-                        <i class="fa-solid fa-heart-circle-xmark"></i>
-                    </a>
-                </div>
-                <img src="assets/image/product_6-300x225.png" alt="">
-            </div>
-            <div class="productinfo">
-                <a href="">Equipment Product</a>
-                <div class="starrating">
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <span>(1)</span>
-                </div>
-                <div class="productprice">
-                    <h5>
-                        $25.00
-                    </h5>
-                </div>
-                <div class="basketicon">
-                    <a href="">
-                        <i class="fa-solid fa-basket-shopping"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-2 col-10 productbox">
-            <div class="productimg">
-                <div class="imgicon">
-                    <a href="">
-                        <i class="fa-solid fa-heart-circle-xmark"></i>
-                    </a>
-                </div>
-                <img src="assets/image/product_6-300x225.png" alt="">
-            </div>
-            <div class="productinfo">
-                <a href="">Equipment Product</a>
-                <div class="starrating">
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <span>(1)</span>
-                </div>
-                <div class="productprice">
-                    <h5>
-                        $25.00
-                    </h5>
-                </div>
-                <div class="basketicon">
-                    <a href="">
-                        <i class="fa-solid fa-basket-shopping"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-2 col-10 productbox">
-            <div class="productimg">
-                <div class="imgicon">
-                    <a href="">
-                        <i class="fa-solid fa-heart-circle-xmark"></i>
-                    </a>
-                </div>
-                <img src="assets/image/product_6-300x225.png" alt="">
-            </div>
-            <div class="productinfo">
-                <a href="">Equipment Product</a>
-                <div class="starrating">
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <span>(1)</span>
-                </div>
-                <div class="productprice">
-                    <h5>
-                        $25.00
-                    </h5>
-                </div>
-                <div class="basketicon">
-                    <a href="">
-                        <i class="fa-solid fa-basket-shopping"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-2 col-10 productbox">
-            <div class="productimg">
-                <div class="imgicon">
-                    <a href="">
-                        <i class="fa-solid fa-heart-circle-xmark"></i>
-                    </a>
-                </div>
-                <img src="assets/image/product_6-300x225.png" alt="">
-            </div>
-            <div class="productinfo">
-                <a href="">Equipment Product</a>
-                <div class="starrating">
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <span>(1)</span>
-                </div>
-                <div class="productprice">
-                    <h5>
-                        $25.00
-                    </h5>
-                </div>
-                <div class="basketicon">
-                    <a href="">
-                        <i class="fa-solid fa-basket-shopping"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-2 col-10 productbox">
-            <div class="productimg">
-                <div class="imgicon">
-                    <a href="">
-                        <i class="fa-solid fa-heart-circle-xmark"></i>
-                    </a>
-                </div>
-                <img src="assets/image/product_6-300x225.png" alt="">
-            </div>
-            <div class="productinfo">
-                <a href="">Equipment Product</a>
-                <div class="starrating">
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <span>(1)</span>
-                </div>
-                <div class="productprice">
-                    <h5>
-                        $25.00
-                    </h5>
-                </div>
-                <div class="basketicon">
-                    <a href="">
-                        <i class="fa-solid fa-basket-shopping"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-2 col-10 productbox">
-            <div class="productimg">
-                <div class="imgicon">
-                    <a href="">
-                        <i class="fa-solid fa-heart-circle-xmark"></i>
-                    </a>
-                </div>
-                <img src="assets/image/product_6-300x225.png" alt="">
-            </div>
-            <div class="productinfo">
-                <a href="">Equipment Product</a>
-                <div class="starrating">
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <i class="fa-solid fa-star staron"></i>
-                    <span>(1)</span>
-                </div>
-                <div class="productprice">
-                    <h5>
-                        $25.00
-                    </h5>
-                </div>
-                <div class="basketicon">
-                    <a href="">
-                        <i class="fa-solid fa-basket-shopping"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
+        }
+
     </div>
 </section>
 <!-- Product end -->
@@ -892,5 +618,31 @@
         </div>
     </div>
 
+
+
+    <h1 id="text">
+
+    </h1>
 </section>
+
+<script>
+    let testtag = document.getElementById("test")
+    let url = testtag.getAttribute("href")
+    let text=document.getElementById("text")
+    console.log(text)
+    fetch(url)
+        .then(res => res.json())
+        .then(con => test(con))
+
+    //testtag.addEventListener('click', function (value) {
+    //    alert("")
+    //    text.innerHTML = value.desc
+    //}
+    test=(value)=>{
+        console.log(value)
+        text.innerHTML = value.desc
+
+    }
+    
+</script>
 <!--top product end-->

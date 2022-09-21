@@ -1,0 +1,22 @@
+﻿@model LoginVM
+<div class="headertext">
+    <div class="container pt-4">
+        <h1>Login</h1>
+        <span><a href="./index.html">Home</a></span>
+        <span>></span>
+        <a href="./login.html">Login</a>
+    </div>
+</div>
+ <div class="alert alert-danger" asp-validation-summary="ModelOnly"> </div>
+<section class="login container">
+    <h2>Login</h2>
+    <form action="" method="post">
+        <label>Username</label>
+        <input asp-for="UserName" type="text">
+        <label>Password</label>
+        <input asp-for="Password" type="password">
+        <span>Remember me</span>
+            <input asp-for="Remember" style="width: 1%;" type="checkbox">
+        <button class="btn" type="submit">LOGIN</button>
+    </form>
+</section>

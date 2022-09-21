@@ -1,0 +1,65 @@
+﻿@model Medicine
+@{
+    ViewData["Title"] = "Create";
+}
+
+<main class="main-panel">
+    <h1 style="text-align:center; background-color:chartreuse">Create Furniture</h1>
+    <form method="post" class="mt-2" enctype="multipart/form-data">
+        <div>
+            <label>Main:</label><br />
+            <input asp-for="MainPhoto" class="form-control" /><br />
+            <span classs="text-danger" asp-validation-for="MainPhoto"></span>
+        </div>
+        <div>
+            <label>Images:</label><br />
+            <input asp-for="Photos" class="form-control" /><br />
+            <span classs="text-danger" asp-validation-for="Photos"></span>
+        </div>
+        <div>
+            <label>Name:</label><br />
+            <input asp-for="Name" type="text" class="form-control" /><br />
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+        <div>
+            <label>Description:</label><br />
+            <input asp-for="Desc" type="text" class="form-control" /><br />
+            <span class="text-danger" asp-validation-for="Desc"></span>
+        </div>
+        <div>
+            <label>Weight:</label><br />
+            <input asp-for="Weight" type="text" class="form-control" /><br />
+            <span class="text-danger" asp-validation-for="Weight"></span>
+        </div>
+        <div>
+            <label>Price:</label><br />
+            <input asp-for="Price" type="text" class="form-control" /><br />
+            <span class="text-danger" asp-validation-for="Price"></span>
+        </div>
+        <div>
+            <label>SKU:</label><br />
+            <input asp-for="SKU" type="text" class="form-control" /><br />
+            <span class="text-danger" asp-validation-for="SKU"></span>
+        </div>
+        <div>
+            <label>In Stock:</label><br />
+            <input style="width:1srem;" asp-for="Stock" type="checkbox" class="" /><br />
+            <span class="text-danger" asp-validation-for="Stock"></span>
+        </div>
+        <div>
+            <label>Article:</label><br />
+            <input asp-for="Article" type="text" class="form-control" /><br />
+            <span class="text-danger" asp-validation-for="Article"></span>
+        </div>
+        <div enctype="multipart/form-data">
+            <label>Medicine Category:</label><br />
+            <select class="form-control" asp-for="CategoryId"  asp-items="@(new SelectList(ViewBag.Categories,"Id","Name"))"></select>
+        </div>
+        <div class="mt-2">
+            <button class="btn btn-success" type="submit">
+                Create
+            </button>
+        </div>
+    </form>
+</main>
+

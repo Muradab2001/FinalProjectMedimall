@@ -1,0 +1,109 @@
+﻿@model Medicine
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<main class="main-panel">
+    <h1 style="text-align:center; background-color: #4d83ff;">Edit Medicine</h1>
+    @if (TempData["Filname"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Filename"]</div>
+    }
+    <div class="alert alert-danger" asp-validation-summary="ModelOnly"></div>
+    <form method="post" class="mt-2" enctype="multipart/form-data">
+        <div>
+            <label>Main Photo:</label><br />
+            <input asp-for="MainPhoto" class="form-control" /><br />
+            <span classs="text-danger" asp-validation-for="MainPhoto"></span>
+        </div>
+        <div>
+            <label>Images:</label><br />
+            <input asp-for="Photos" class="form-control" /><br />
+            <span classs="text-danger" asp-validation-for="Photos"></span>
+        </div>
+        <div class="images">
+            <div class="images">
+                <h3>Main</h3>
+                <img src="~/assets/image/@Model.MedicineImages.FirstOrDefault(p=>p.IsMain == true)?.Name">
+            </div>
+            <h3>Other images</h3>
+            <div class="image d-flex">
+
+                @foreach (MedicineImage image in Model.MedicineImages.Where(p => p.IsMain == false))
+                {
+                    <div style="position:relative;" class="col-sm-3">
+                        <img src="~/assets/image/@image.Name" style="width:100%;height:200px;object-fit:contain">
+                        <input type="hidden" name="ImagesId" value="@image.Id">
+                        <button style="position:absolute; right:5px;" type="button" class="btn btn-primary remove">X</button>
+                    </div>
+                }
+            </div>
+        </div>
+        <div>
+            <label>Name:</label><br />
+            <input asp-for="Name" type="text" class="form-control" /><br />
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+        <div>
+            <label>SKU:</label><br />
+            <input asp-for="SKU" type="text" class="form-control" /><br />
+            <span class="text-danger" asp-validation-for="SKU"></span>
+        </div>
+        <div>
+            <label>Description:</label><br />
+            <input asp-for="Desc" type="text" class="form-control" /><br />
+            <span class="text-danger" asp-validation-for="Desc"></span>
+        </div>
+        <div>
+            <label>Article:</label><br />
+            <input asp-for="Article" type="text" class="form-control" /><br />
+            <span class="text-danger" asp-validation-for="Article"></span>
+        </div>
+        <div>
+            <label>Price:</label><br />
+            <input asp-for="Price" type="text" class="form-control" /><br />
+            <span class="text-danger" asp-validation-for="Price"></span>
+        </div>
+        <div>
+            <label>Weight:</label><br />
+            <input asp-for="Weight" type="text" class="form-control" /><br />
+            <span class="text-danger" asp-validation-for="Weight"></span>
+        </div>
+        <div>
+            <label>In Stock:</label><br />
+            <input style="width:1srem;" asp-for="Stock" type="checkbox" class="" /><br />
+            <span class="text-danger" asp-validation-for="Stock"></span>
+        </div>
+        <label>Medicine Category:</label><br />
+        <select class="form-control" asp-for="CategoryId">
+        
+            @foreach (Category category in ViewBag.Category)
+            {
+                if (Model.CategoryId == category.Id)
+                {
+                    <option  selected value="@category.Id">@category.Name</option>
+                }
+                else
+                {
+
+                    <option value="@category.Id">@category.Name</option>
+                }
+            }
+        </select>
+        <div class="mt-5">
+            <button class="btn btn-primary" type="submit"> Update </button>
+        </div>
+    
+    </form>
+</main>
+@section Scripts{
+    <script>
+        let btns = document.querySelectorAll(".remove")
+
+        btns.forEach(b => {
+            b.addEventListener("click", function () {
+                b.parentElement.remove();
+            })
+        })
+    </script>
+}

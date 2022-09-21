@@ -1,8 +1,10 @@
 using FinalProjectMedimall.DAL;
+using FinalProjectMedimall.Models;
 using FinalProjectMedimall.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,19 +25,34 @@ namespace FinalProjectMedimall
             _config = config;
         }
    
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+           services.AddControllers().AddNewtonsoftJson(options =>
+           options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
             services.AddRazorPages();
             services.AddDbContext<ApplicationDbContext>(option =>
             {
                 option.UseSqlServer(_config.GetConnectionString("Default"));
             });
             services.AddScoped<LayoutService>();
-        }
+            services.AddIdentity<AppUser, IdentityRole>(opt =>
+            {
+                opt.User.RequireUniqueEmail = true;
+                opt.User.AllowedUserNameCharacters = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm0123456789";
+                opt.Password.RequiredUniqueChars = 3;
+                opt.Password.RequiredLength = 8;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequireDigit = true;
+                opt.Password.RequireLowercase = false;
+                opt.Password.RequireUppercase = false;
+                opt.Lockout.MaxFailedAccessAttempts = 5;
+                opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(100);
+                opt.Lockout.AllowedForNewUsers = true;
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            }).AddDefaultTokenProviders().AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddHttpContextAccessor();
+        }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -48,7 +65,7 @@ namespace FinalProjectMedimall
               
                 app.UseHsts();
             }
-
+            app.UseHttpsRedirection();
             app.UseRouting();
             app.UseStaticFiles();
             app.UseAuthentication();

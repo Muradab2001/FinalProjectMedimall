@@ -1,10 +1,11 @@
 ﻿using FinalProjectMedimall.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace FinalProjectMedimall.DAL
 {
-    public class ApplicationDbContext:DbContext
+    public class ApplicationDbContext: IdentityDbContext<AppUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> option) : base(option)
         {
@@ -18,6 +19,9 @@ namespace FinalProjectMedimall.DAL
         public DbSet<Category> Categories { get; set; }
         public DbSet<MedicineImage> MedicineImages { get; set; }
         public DbSet<Rate> Rates { get; set; }
+        public DbSet<BasketItem> BasketItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
+
 
 
 
@@ -33,6 +37,9 @@ namespace FinalProjectMedimall.DAL
             modelBuilder.Entity<Setting>()
                         .HasIndex(s => s.Key)
                         .IsUnique();
+            modelBuilder.Entity<Category>()
+           .HasIndex(c => c.Name)
+           .IsUnique();
             base.OnModelCreating(modelBuilder);
         }
     }
