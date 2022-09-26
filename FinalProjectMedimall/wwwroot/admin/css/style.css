@@ -22957,15 +22957,16 @@ dl li {
   vertical-align: middle;
 }
 
-.navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .count-indicator .count {
-  position: absolute;
-  left: 59%;
-  width: 8px;
-  height: 8px;
-  border-radius: 100%;
-  background: #ff4747;
-  top: 9px;
-}
+    .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .count-indicator .count {
+        position: absolute;
+        left: 76%;
+        width: 25px;
+        height: 25px;
+        border-radius: 100%;
+        background: #ff4747;
+        top: -5px;
+        color:white;
+    }
 
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .count-indicator:after {
   display: none;

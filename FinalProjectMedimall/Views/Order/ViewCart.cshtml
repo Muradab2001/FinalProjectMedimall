@@ -1,0 +1,203 @@
+﻿@model OrderVM
+
+@{
+    decimal totalprice = 0;
+}
+<div class="headertext">
+    <div class="container col-12 pt-4">
+        <h1>Cart</h1>
+        <span><a href="./index.html">Home</a></span>
+        <span>></span>
+        <a href="./cart.html">Cart</a>
+    </div>
+</div>
+<div class="container col-12">
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.BasketItems)
+            {
+                <span style="display:none">@(totalprice += item.Price*item.Quantity)</span>
+                <tr class="cartitem">
+                    <th class="removeitem remove">
+                        <a asp-controller="Medicine" asp-action="removecartitem" asp-route-id="@item.Medicine.Id" class="cart-remove-btn">
+                            <span>X</span>
+                        </a>
+                    </th>
+                    <th class="itemname">
+                        <a href=""><img src="~/assets/image/@item.Medicine.Image" alt=""></a>
+                        <span>
+                            @item.Medicine.Name
+
+                        </span>
+                    </th>
+                    <th class="itemprice">
+                        <h5>$@item.Price</h5>
+                    </th>
+                    <th class="quantity">
+                        <div class="inp-num">
+                            <a data-id="@item.Medicine.Id" class="down" id="downbtn"><i class="fas fa-chevron-left"></i></a>
+                            <span class="inp-value">@item.Quantity</span>
+                            <a data-id="@item.Medicine.Id" class="up" id="upbtn"><i class="fas fa-chevron-right"></i></a>
+                        </div>
+
+                    </th>
+                    <th class="itemprice totalPrice">
+                        <span style="font-size: 1.25rem;
+    font-weight: 500;">
+                            $
+                            <span style="font-size: 1.25rem;
+    font-weight: 500;"> <span data-id="@item.Medicine.Id" class="money-t"> @((item.Quantity * item.Price).ToString("f0"))</span></span>
+                        </span>
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <table class="table col-12">
+        <tbody>
+            <tr>
+                <td>
+                    <div class="removeitem">
+                        <a href="">
+                            <span>X</span>
+                        </a>
+                    </div>
+                </td>
+                <td data-title="Product">
+                    Digital Thermometer - Green
+                </td>
+                <td data-title="Price">
+                    120$
+                </td>
+                <td data-title="Quantity">
+                    <div class="quantity">
+                        <div class="qty-input">
+                            <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
+                            <input class="product-qty" type="number" name="product-qty" min="1" max="50" value="1">
+                            <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                        </div>
+                    </div>
+                </td>
+                <td data-title="Subtotal">62$</td>
+
+            </tr>
+        </tbody>
+    </table>
+    <div class="totalprice col-12">
+        <h2>Cart Totals</h2>
+        <div class="pricebottom d-flex">
+            <h4>Total</h4>
+            <span style="font-size:2rem;">
+                $
+                <span style="font-size:2rem;" class="total_price"> <span>@totalprice.ToString("f0")</span></span>
+            </span>
+          
+        </div>
+        <a class="checkout">Proceed to checkout</a>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+
+        $(document).on("click", ".down", function (e) {
+            e.preventDefault();
+            var id = $(this).attr("data-id")
+            var total = document.querySelector(".total_price")
+            var money = document.querySelectorAll(".money-t")
+            var quantity = document.querySelector(".inp-value")
+     
+            $.ajax({
+                url: "/Medicine/decrease",
+                data: {
+                    id: id
+                },
+                type: "post",
+                datatype: "json",
+                success: function (data) {
+                    money.forEach(mon => {
+                        if (id == mon.getAttribute("data-id")) {
+                            mon.innerHTML = data.price
+                        }
+                    })
+                    total.innerHTML = `${data.totalPrice}`
+                    quantity.innerHTML = `${data.Quantity}`
+
+                }
+            })
+
+        })
+
+
+        $(document).on("click", ".up", function (e) {
+            e.preventDefault();
+            var id = $(this).attr("data-id")
+
+            var total = document.querySelector(".total_price")
+            var money = document.querySelectorAll(".money-t")
+            console.log(id)
+            $.ajax({
+                url: "/Medicine/increase",
+                data: {
+                    id: id
+                },
+                type: "post",
+                datatype: "json",
+                success: function (data) {
+                    money.forEach(mon => {
+                        if (id == mon.getAttribute("data-id")) {
+                            mon.innerHTML = data.price
+                        }
+                    })
+                    total.innerHTML = `${data.totalPrice}`
+
+                }
+            })
+
+        })
+
+
+    })
+
+</script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(".cart-remove-btn").click(function (e) {
+        e.preventDefault()
+        console.log($(this).attr("href"))
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var link = $(this).attr("href");
+                fetch(link).then(response => response.json()).then(data => {
+                    if (data.status == 200) {
+                        location.reload(true)
+                    } else {
+                        Swal.fire(
+                            'Not found!',
+                            'Your file can not be deleted.',
+                            'Failed'
+                        )
+                    }
+                });
+            }
+        })
+    })
+</script>

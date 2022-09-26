@@ -68,7 +68,7 @@ namespace FinalProjectMedimall.Controllers
             };
             if (!register.Terms)
             {
-                ModelState.AddModelError("Terms", "Sozlesmeni qebul edin");
+                ModelState.AddModelError("Terms", "");
                 return View();
             }
             IdentityResult result = await _userManager.CreateAsync(user, register.Password);
@@ -126,9 +126,9 @@ namespace FinalProjectMedimall.Controllers
         {
             if (!ModelState.IsValid) return View();
 
-
             AppUser user = await _userManager.FindByNameAsync(login.UserName);
 
+          
             if (user == null)
             {
                 ModelState.AddModelError("", "Username or password is incorrect");

@@ -13,6 +13,26 @@
     <Compile Remove="Migrations\20220920095659_test.Designer.cs" />
     <Compile Remove="Migrations\20220920100333_CreateBasketitemandOrders.cs" />
     <Compile Remove="Migrations\20220920100333_CreateBasketitemandOrders.Designer.cs" />
+    <Compile Remove="Migrations\20220921113920_test.cs" />
+    <Compile Remove="Migrations\20220921113920_test.Designer.cs" />
+    <Compile Remove="Migrations\20220921123212_CreateContactTable.cs" />
+    <Compile Remove="Migrations\20220921123212_CreateContactTable.Designer.cs" />
+    <Compile Remove="Migrations\20220922154035_CreateOrderItemsTable.cs" />
+    <Compile Remove="Migrations\20220922154035_CreateOrderItemsTable.Designer.cs" />
+    <Compile Remove="Migrations\20220923190822_CreateWishListitemTable.cs" />
+    <Compile Remove="Migrations\20220923190822_CreateWishListitemTable.Designer.cs" />
+    <Compile Remove="Migrations\20220923190928_CreateWishListitemTable.cs" />
+    <Compile Remove="Migrations\20220923190928_CreateWishListitemTable.Designer.cs" />
+    <Compile Remove="Migrations\20220925143441_CreateDiscountTable.cs" />
+    <Compile Remove="Migrations\20220925143441_CreateDiscountTable.Designer.cs" />
+    <Compile Remove="Migrations\20220925143614_CreateDiscountTable.cs" />
+    <Compile Remove="Migrations\20220925143614_CreateDiscountTable.Designer.cs" />
+    <Compile Remove="Migrations\20220925143952_CreateDiscountTable.cs" />
+    <Compile Remove="Migrations\20220925143952_CreateDiscountTable.Designer.cs" />
+    <Compile Remove="Migrations\20220925144247_CreateDiscountTable.cs" />
+    <Compile Remove="Migrations\20220925144247_CreateDiscountTable.Designer.cs" />
+    <Compile Remove="Migrations\20220925171705_CreateDisco.cs" />
+    <Compile Remove="Migrations\20220925171705_CreateDisco.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

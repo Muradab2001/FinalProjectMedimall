@@ -6,6 +6,9 @@ namespace FinalProjectMedimall.Models
     {
         public byte Point { get; set; }
         public Medicine Medicine { get; set; }
+        public string AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
+
         public int MedicineId { get; set; }
     }
 }

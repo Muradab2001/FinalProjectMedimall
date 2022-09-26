@@ -18,6 +18,10 @@ namespace FinalProjectMedimall.Models
         public string Article { get; set; }
         public string Desc { get; set; }
         public bool Stock { get; set; }
+        public int DiscountId { get; set; }
+        public Discount Discount { get; set; }
+
+        public List<Comment> Comments { get; set; }
         public List<Rate> Rates { get; set; }
 
         public int CategoryId { get; set; }

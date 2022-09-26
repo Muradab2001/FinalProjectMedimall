@@ -90,6 +90,23 @@
                 }
             }
         </select>
+
+        <label>Medicine Discount:</label><br />
+        <select class="form-control" asp-for="DiscountId">
+
+            @foreach (Discount discount in ViewBag.discounts)
+            {
+                if (Model.CategoryId == discount.Id)
+                {
+                    <option selected value="@discount.Id">@discount.Percentage</option>
+                }
+                else
+                {
+
+                    <option value="@discount.Id">@discount.Percentage</option>
+                }
+            }
+        </select>
         <div class="mt-5">
             <button class="btn btn-primary" type="submit"> Update </button>
         </div>

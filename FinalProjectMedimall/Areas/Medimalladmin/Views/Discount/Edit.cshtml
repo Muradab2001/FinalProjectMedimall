@@ -1,0 +1,33 @@
+﻿@model Discount
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<main style="background-color: #666;" class="main-panel">
+    <h1 style="text-align:center; text-align: center;    background-color: #4d83ff">Discount Edit</h1>
+    <div class="my-2">
+      
+        </di>
+        <form method="post" class="mt-2" enctype="multipart/form-data">
+            <div>
+                <label>Title:</label><br />
+                <input asp-for="Title" class="form-control" /><br />
+                <span classs="text-danger" asp-validation-for="Title"></span>
+            </div>
+            <div>
+                <label>Percentage:</label><br />
+                <input asp-for="Percentage" class="form-control" /><br />
+                <span classs="text-danger" asp-validation-for="Percentage"></span>
+            </div>
+            <div>
+                <label>DateTime:</label><br />
+                <input asp-for="DateTime" class="form-control" /><br />
+                <span classs="text-danger" asp-validation-for="DateTime"></span>
+            </div>
+            <div class="mt-2" style="text-align:center">
+                <button style="width: 10rem;" class="btn btn-primary" type="submit">
+                    Update
+                </button>
+            </div>
+        </form>
+</main>

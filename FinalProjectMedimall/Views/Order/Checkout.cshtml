@@ -1,0 +1,130 @@
+﻿@model OrderVM
+@{
+    ViewData["Title"] = "Checkout";
+    decimal total = 0;
+}
+<main>
+    <div class="headertext">
+        <div class="container col-12 pt-4">
+            <h1>Cart</h1>
+            <span><a href="./index.html">Home</a></span>
+            <span>></span>
+            <a href="./cart.html">Cart</a>
+        </div>
+
+    </div>
+    <section class="order">
+        <div class="container">
+            <div>
+                <div style="align-items: baseline;justify-content: space-between;" class="row">
+                    <div class="col-lg-6">
+                        <div class="billing-details">
+                            <h3>Billing details</h3>
+                            <form method="post" enctype="multipart/form-data">
+                                <div class="bill-wrapper">
+                                    <p class="form-row form-row-wide address-field update_totals_on_change validate-required"
+                                       id="billing_country_field" data-priority="40">
+                                        <label for="billing_country" class="">
+                                            Country / Region
+                                            <abbr class="required" title="required">*</abbr>
+                                        </label>
+                                        <span class="input-wrapper">
+                                            <input asp-for="Country" type="text" class="input-text">
+                                        </span>
+                                    </p>
+                                    <p class="form-row address-field validate-required form-row-wide" id="billing_city_field"
+                                       data-priority="70"
+                                       data-o_class="form-row form-row-wide address-field validate-required">
+                                        <label for="billing_city" class="">
+                                            Town / City
+                                            <abbr class="required" title="required">*</abbr>
+                                        </label>
+                                        <span class="input-wrapper">
+                                            <input asp-for="City" type="text" class="input-text">
+                                        </span>
+                                    </p>
+                                    <p class="form-row address-field validate-required form-row-wide" id="billing_city_field"
+                                       data-priority="70"
+                                       data-o_class="form-row form-row-wide address-field validate-required">
+                                        <label for="billing_city" class="">
+                                            Adress
+                                            <abbr class="required" title="required">*</abbr>
+                                        </label>
+                                        <span class="input-wrapper">
+                                            <input asp-for="Address" type="text" class="input-text">
+                                        </span>
+                                    </p>
+                                    <p class="form-row form-row-wide validate-required validate-phone" id="billing_phone_field"
+                                       data-priority="100">
+                                        <label for="billing_phone" class="">
+                                            Phone
+                                            <abbr class="required" title="required">*</abbr>
+                                        </label>
+                                        <span class="input-wrapper">
+                                            <input asp-for="Phone" type="text" class="input-text">
+                                        </span>
+                                    </p>
+                                    <p class="form-row form-row-wide validate-required validate-email" id="billing_email_field"
+                                       data-priority="110">
+                                 
+                                    </p>
+                                </div>
+                                <button class="btn btn-success" type="submit">
+                                    Create
+                                </button>
+                            </form>
+
+                        </div>
+                    </div>
+                 
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="checkout-form">
+                        <h3 id="order_review_heading">Your order</h3>
+                        <div id="order_review" class="checkout-review-order">
+                            <table class="shop_table checkout-review-order-table table"
+                                   style="position: static; zoom: 1;">
+                                <thead>
+                                    <tr>
+                                        <th class="product-name">Product</th>
+                                        <th class="product-total">Subtotal</th>
+                                    </tr>
+                                </thead>
+                            
+                                   @foreach (var item in Model.BasketItems)
+                                    {
+                                    <span style="display:none">@(total += item.Medicine.Price * item.Quantity)</span>
+                                    <tbody>
+                                         <tr class="cart_item">
+                                        <td class="product-name">
+                                            @item.Medicine.Name
+                                            <strong class="product-quantity">×&nbsp;@item.Quantity<strong>
+                                        </td>
+                                        <td class="product-total">
+                                            <span class="amount">
+                                             @(item.Price*item.Quantity)
+                                                <span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            
+                                    }
+                                <tfoot>
+                                    <tr class="order-total">
+                                        <th>Total</th>
+                                        <td>
+                                            <span class="amount">
+                                                @total
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

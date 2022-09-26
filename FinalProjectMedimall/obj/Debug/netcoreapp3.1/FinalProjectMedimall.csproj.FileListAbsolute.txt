@@ -172,3 +172,17 @@ C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\bin\Debug\
 C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
 C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_basketPartial.cshtml.g.cs
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Views\Contact\index.cshtml.g.cs
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Areas\Medimalladmin\Views\Contact\Index.cshtml.g.cs
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Views\Order\ViewCart.cshtml.g.cs
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Views\WishList\Index.cshtml.g.cs
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_WishlistPartialView.cshtml.g.cs
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Views\Order\Checkout.cshtml.g.cs
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Views\Shop\Index.cshtml.g.cs
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Areas\Medimalladmin\Views\Order\Index.cshtml.g.cs
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Views\Shop\Detail.cshtml.g.cs
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Areas\Medimalladmin\Views\Order\Detail.cshtml.g.cs
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Areas\Medimalladmin\Views\Discount\Index.cshtml.g.cs
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Areas\Medimalladmin\Views\Discount\GetMedicine.cshtml.g.cs
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Areas\Medimalladmin\Views\Discount\Edit.cshtml.g.cs

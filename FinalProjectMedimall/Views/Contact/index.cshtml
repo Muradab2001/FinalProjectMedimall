@@ -1,0 +1,120 @@
+﻿@model Contact
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Product-detail</title>
+	<link rel="icon" href="./image/icon.png">
+	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./css/bootstrap.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="slick/slick.css" />
+	<link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
+</head>
+<body>
+	<div class="headertext">
+		<div class="container pt-4">
+			<h1>Contact</h1>
+			<span><a href="./index.html">Home</a></span>
+			<span>></span>
+			<a href="./Contact.html">Contact</a>
+		</div>
+	</div>
+	<section class="contactmap">
+		<div class="container">
+			<div class="d-flexjustic map">
+				<div class="col-lg-6 col-12">
+					<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12150.65088450467!2d49.832856!3d40.416322!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf96bb16804c9ec16!2zNDDCsDI0JzU4LjgiTiA0OcKwNDknNTguMyJF!5e0!3m2!1sen!2s!4v1652706718658!5m2!1sen!2s" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+				</div>
+				<div class="col-lg-5 col-12">
+					<h2>Contact information</h2>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex illo assumenda iste unde, numquam itaque.
+					<div class="contactbox">
+						<h3>New York City</h3>
+						<div class="contact-text d-flexjustic">
+							<span>One Chase Manhattan Plaza New York, NY 10005, USA</span>
+							<div class="number">
+								<a class="d-block" href="mailto:info@example.com">info@example.com</a>
+								<a class="d-block" href="tel:+12463450695">+1 246-345-0695</a>
+							</div>
+						</div>
+					</div>
+					<div class="contactbox">
+						<h3>New York City</h3>
+						<div class="contact-text d-flexjustic">
+							<span>One Chase Manhattan Plaza New York, NY 10005, USA</span>
+							<div class="number">
+								<a class="d-block" href="mailto:info@example.com">info@example.com</a>
+								<a class="d-block" href="tel:+12463450695">+1 246-345-0695</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+		</div>
+	</section>
+	<section class="contactform">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-12">
+					<div class="wrapper">
+						<div class="row no-gutters mb-5">
+							<div class="col-lg-12 p-3 d-flexjustic">
+								<div class="contact-wrap col-lg-6">
+									<h3 class="mb-4">Contact Us</h3>
+									<div id="form-message-warning" class="mb-4"></div>
+									<div id="form-message-success" class="mb-4">
+										Your message was sent, thank you!
+									</div>
+									<form asp-controller="Contact" asp-action="Message" method="post" name="contactForm" class="contactForm">
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<input asp-for="Name" type="text" class="form-control"  placeholder="Full Name">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<input asp-for="Email" type="text" class="form-control" id="email" placeholder="Email">
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<input asp-for="Subject" type="text" class="form-control" id="subject" placeholder="Subject">
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<textarea asp-for="Subject" type="text" class="form-control" id="message" cols="30" rows="4" placeholder="Message"></textarea>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<button class="btn" type="submit">SUBMIT NOW</button>
+													<div class="submitting"></div>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+								<div class="contactimg col-lg-5">
+									<img src="~/assets/image/contact-img_1.png" alt="">
+									<img style="z-index: 5;" src="./image/element_29.png" alt="">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

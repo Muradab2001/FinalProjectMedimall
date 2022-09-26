@@ -1,0 +1,65 @@
+﻿@inject FinalProjectMedimall.Services.LayoutService layoutService
+@{
+    BasketVM basket = await layoutService.ShowBasket();
+
+}
+    <p id="total_count" style="display:none">@layoutService.ShowBasket().Result.Count</p>
+@if (layoutService.ShowBasket().Result.BasketItems.Count == 0)
+{
+    <div style="align-items: baseline;" class="d-flexjustic cart">
+        <div>
+            <h3>CART</h3>
+        </div>
+        <div>
+            <a href="javascript:void(0)" class="closebtn"  onclick="closeNav()">&times;</a>
+        </div>
+    </div>
+    <h6>No products in the cart.</h6>
+}
+else{
+    <div style="align-items: baseline;" class="d-flexjustic cart">
+        <div>
+            <h3>CART</h3>
+        </div>
+        <div>
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        </div>
+    </div>
+    <div class="minicart">
+        @foreach (var item in layoutService.ShowBasket().Result.BasketItems)
+        {
+            <div class="cartitem">
+                <div class="cartimg">
+                    <a asp-controller="Medicine" asp-action="deletebasketitem" asp-route-id="@item.Medicine.Id" class="remove">
+                        <span>x</span>
+                    </a>
+
+                    <img src="~/assets/image/@item.Medicine.Image" alt="">
+                </div>
+                <div class="cartinfo">
+                    <h4>@item.Medicine.Name</h4>
+                    <span>@item.Quantity x</span>
+                    <span>$@item.Price.ToString("f0")</span>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="Subtotal container">
+        <div class="Subtotalprice d-flexjustic">
+            <h3>Subtotal:</h3>
+            <h4>$@basket.TotalPrice.ToString("f2")</h4>
+        </div>
+        <div class="subtotalbuttons">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a class="view" asp-controller="order" asp-action="viewcart">View Cart</a>
+                <a class="check" asp-controller="order" asp-action="checkout">Checkout</a>
+            }
+            else
+            {
+                <a class="view" asp-controller="account" asp-action="login">View Cart</a>
+                <a class="check">Checkout</a>
+            }
+        </div>
+    </div>
+}

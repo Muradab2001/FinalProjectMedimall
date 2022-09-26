@@ -68,17 +68,14 @@
                                              @Model.Article
                                             </p>
                                             <div class="quantity mb-2 d-flex">
-                                                <div class="qty-input col-3">
-                                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                                                    <input class="product-qty" type="number" name="product-qty" min="1" max="50" value="1">
-                                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
-                                                </div>
-                                                <a class="col-3" href="cart.html">Add To Cart</a>
-                                                <div class="imgicon col-3">
-                                                    <a href="">
-                                                        <i class="fa-solid fa-heart-circle-xmark"></i>
-                                                    </a>
-                                                </div>
+                                  
+                                             @if (Model.Stock==true)
+                                            {
+                                                <a class="col-3 addToCart" asp-controller="Medicine" asp-action="Addbasket" asp-route-id="@Model.Id">Add To Cart</a>
+                                            }
+                                            <a asp-controller="Medicine" asp-action="AddWishlist" class="wishlistFetch" asp-route-id="@Model.Id">
+                                                <i class="fa-solid fa-heart-circle-xmark"></i>
+                                            </a>
                                             </div>
                                             <div class="stock mb-3 d-flex">
                                                 <h5>SKU:</h5>
@@ -95,11 +92,11 @@
                                                 @{
                                                 if (Model.Stock == true)
                                                 {
-                                                                <span>In Stock</span>
+                                                                        <span>In Stock</span>
                                                 }
                                                 else
                                                 {
-                                                                <span style="color:red">No Stock</span>
+                                                                        <span style="color:red">No Stock</span>
                                                 }
                                                 }
                                             </div>
@@ -223,3 +220,69 @@
         </div>
     </section>
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $(document).on("click", ".down", function (e) {
+            e.preventDefault();
+            var id = $(this).attr("data-id")
+            var total = document.querySelector(".total_price")
+            var money = document.querySelectorAll(".money-t")
+            console.log(id)
+            $.ajax({
+                url: "/Medicine/decrease",
+                data: {
+                    id: id
+                },
+                type: "post",
+                datatype: "json",
+                success: function (data) {
+                    money.forEach(mon => {
+                        if (id == mon.getAttribute("data-id")) {
+                            mon.innerHTML = data.price
+                            console.log(data.price)
+                        }
+                    })
+                    total.innerHTML = `${data.totalPrice}`
+
+                }
+            })
+
+        })
+
+
+        $(document).on("click", ".up", function (e) {
+            e.preventDefault();
+            var id = $(this).attr("data-id")
+
+            var total = document.querySelector(".total_price")
+            var money = document.querySelectorAll(".money-t")
+            console.log(id)
+            $.ajax({
+                url: "/Medicine/increase",
+                data: {
+                    id: id
+                },
+                type: "post",
+                datatype: "json",
+                success: function (data) {
+                    money.forEach(mon => {
+                        if (id == mon.getAttribute("data-id")) {
+                            mon.innerHTML = data.price
+                            console.log(data.price)
+                        }
+                    })
+                    total.innerHTML = `${data.totalPrice}`
+
+                }
+            })
+
+        })
+
+
+    })
+
+
+</script>

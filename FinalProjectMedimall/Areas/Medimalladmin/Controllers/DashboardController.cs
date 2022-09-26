@@ -28,6 +28,7 @@ namespace FinalProjectMedimall.Areas.Medimalladmin.Controllers
                 Sliders = _context.Sliders.ToList(),
                 Categories = _context.Categories.Include(c => c.Medicines).ToList(),
                 Medicines= _context.Medicines.Include(c=>c.MedicineImages).Include(r=>r.Rates).ToList(),
+                Orders=_context.Orders.ToList()
             };
             return View(homeVM);
         }

@@ -103,9 +103,6 @@ namespace FinalProjectMedimall.Migrations
                     b.Property<int>("MedicineId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(6,2)");
 
@@ -117,8 +114,6 @@ namespace FinalProjectMedimall.Migrations
                     b.HasIndex("AppUserId");
 
                     b.HasIndex("MedicineId");
-
-                    b.HasIndex("OrderId");
 
                     b.ToTable("BasketItems");
                 });
@@ -145,6 +140,51 @@ namespace FinalProjectMedimall.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("FinalProjectMedimall.Models.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contacts");
+                });
+
+            modelBuilder.Entity("FinalProjectMedimall.Models.Discount", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Percentage")
+                        .HasColumnType("decimal(6,2)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Discounts");
+                });
+
             modelBuilder.Entity("FinalProjectMedimall.Models.Medicine", b =>
                 {
                     b.Property<int>("Id")
@@ -160,6 +200,9 @@ namespace FinalProjectMedimall.Migrations
 
                     b.Property<string>("Desc")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DiscountId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
@@ -184,6 +227,8 @@ namespace FinalProjectMedimall.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("DiscountId");
 
                     b.ToTable("Medicines");
                 });
@@ -239,8 +284,8 @@ namespace FinalProjectMedimall.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(6,2)");
+                    b.Property<bool?>("Status")
+                        .HasColumnType("bit");
 
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(6,2)");
@@ -250,6 +295,42 @@ namespace FinalProjectMedimall.Migrations
                     b.HasIndex("AppUserId");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("FinalProjectMedimall.Models.OrderItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("MedicineId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(6,2)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("MedicineId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("FinalProjectMedimall.Models.Rate", b =>
@@ -322,6 +403,31 @@ namespace FinalProjectMedimall.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Sliders");
+                });
+
+            modelBuilder.Entity("FinalProjectMedimall.Models.WishListItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MedicineId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("MedicineId");
+
+                    b.ToTable("WishListItems");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -466,10 +572,6 @@ namespace FinalProjectMedimall.Migrations
                         .HasForeignKey("MedicineId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("FinalProjectMedimall.Models.Order", null)
-                        .WithMany("BasketItems")
-                        .HasForeignKey("OrderId");
                 });
 
             modelBuilder.Entity("FinalProjectMedimall.Models.Medicine", b =>
@@ -477,6 +579,12 @@ namespace FinalProjectMedimall.Migrations
                     b.HasOne("FinalProjectMedimall.Models.Category", "Category")
                         .WithMany("Medicines")
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FinalProjectMedimall.Models.Discount", "Discount")
+                        .WithMany("Medicines")
+                        .HasForeignKey("DiscountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -497,10 +605,40 @@ namespace FinalProjectMedimall.Migrations
                         .HasForeignKey("AppUserId");
                 });
 
+            modelBuilder.Entity("FinalProjectMedimall.Models.OrderItem", b =>
+                {
+                    b.HasOne("FinalProjectMedimall.Models.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId");
+
+                    b.HasOne("FinalProjectMedimall.Models.Medicine", "Medicine")
+                        .WithMany()
+                        .HasForeignKey("MedicineId");
+
+                    b.HasOne("FinalProjectMedimall.Models.Order", "Order")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("FinalProjectMedimall.Models.Rate", b =>
                 {
                     b.HasOne("FinalProjectMedimall.Models.Medicine", "Medicine")
                         .WithMany("Rates")
+                        .HasForeignKey("MedicineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FinalProjectMedimall.Models.WishListItem", b =>
+                {
+                    b.HasOne("FinalProjectMedimall.Models.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId");
+
+                    b.HasOne("FinalProjectMedimall.Models.Medicine", "Medicine")
+                        .WithMany()
                         .HasForeignKey("MedicineId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

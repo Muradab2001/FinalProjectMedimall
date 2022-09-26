@@ -1,0 +1,51 @@
+﻿@inject FinalProjectMedimall.Services.LayoutService layoutService
+@{
+    WishListVM wishlist = await layoutService.GetWishlist();
+}
+<p id="totalcountWishlist" style="display:none">@layoutService.GetWishlist().Result.WishListItemVMs.Count</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Product Name</th>
+                <th>Unit Price</th>
+                <th>Stock status</th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var item in wishlist.WishListItemVMs)
+    {
+        <tbody>
+            <tr class="cartitem">
+                <th class="removeitem">
+                    <a asp-controller="Medicine" asp-action="deletewishlistitem" asp-route-id="@item.Medicine.Id" class="removeWishlistItem"><span>X</span></a>
+                </th>
+                <th class="itemname">
+                    <a href=""><img src="~/assets/image/@item.Medicine.Image" alt=""></a>
+                    <span>@item.Medicine.Name</span>
+                </th>
+                <th class="itemprice">
+                    <span>$@item.Price.ToString("f0")</span>
+                </th>
+               @if (item.Medicine.Stock==true)
+                {
+                    <th>
+                        <h5>In stock</h5>
+                    </th>
+                    <th>
+                        <a class="addToCart" asp-controller="Medicine" asp-action="addbasket" asp-route-id="@item.Medicine.Id" style="text-decoration:none;"><span>Add to cart</span> </a>
+
+                        </th>
+                }
+                else{
+                    <th>
+                        <h5 style="color:red">No stock</h5>
+                    </th>
+                }
+            
+            </tr>
+        </tbody>
+    }
+    </table>
+

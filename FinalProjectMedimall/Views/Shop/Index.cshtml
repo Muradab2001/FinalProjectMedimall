@@ -1,0 +1,193 @@
+﻿@model HomeVM
+<div class="headertext">
+    <div class="container pt-4">
+        <h1>Shop</h1>
+        <span><a href="./index.html">Home</a></span>
+        <span>></span>
+        <a href="./Shop.html">Shop</a>
+    </div>
+</div>
+<section class="shop-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="wrapper">
+                    <div class="single-main">
+                        <div class="single-title">
+                            <h3>Categories</h3>
+                        </div>
+                        <div class="single-body">
+                           @foreach (var item in Model.Categories)
+                            {
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            @item.Name <span>></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            }
+                        </div>
+                    </div>
+                    <div class="single-main">
+                        <div class="single-title">
+                            <h3>filter by price</h3>
+                        </div>
+                        <div class="single-body">
+                            <div class="d-flex">
+                                <div class="wrapper">
+                                    <div class="price-input">
+                                        <div class="field">
+                                            <span>Min</span>
+                                            <input type="number" class="input-min" value="2500">
+                                        </div>
+                                        <div class="separator">-</div>
+                                        <div class="field">
+                                            <span>Max</span>
+                                            <input type="number" class="input-max" value="7500">
+                                        </div>
+                                    </div>
+                                    <div class="slider">
+                                        <div class="progress" style="left: 25%; right: 35%; background:none"></div>
+                                    </div>
+                                    <div class="range-input">
+                                        <input type="range" class="range-min" min="0" max="10000" value="2500" step="100">
+                                        <input type="range" class="range-max" min="0" max="10000" value="7500" step="100">
+                                    </div>
+                                    <button>FILTER</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single-main">
+                        <div class="single-title">
+                            <h3>By rating</h3>
+                        </div>
+                        <div class="single-body">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <div class="starrating">
+                                            <i class="fa-solid fa-star staron"></i>
+                                            <i class="fa-solid fa-star staron"></i>
+                                            <i class="fa-solid fa-star staron"></i>
+                                            <i class="fa-solid fa-star staron"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <span>(1)</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="starrating">
+                                            <i class="fa-solid fa-star staron"></i>
+                                            <i class="fa-solid fa-star staron"></i>
+                                            <i class="fa-solid fa-star staron"></i>
+                                            <i class="fa-solid fa-star staron"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <span>(1)</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="starrating">
+                                            <i class="fa-solid fa-star staron"></i>
+                                            <i class="fa-solid fa-star staron"></i>
+                                            <i class="fa-solid fa-star "></i>
+                                            <i class="fa-solid fa-star "></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <span>(1)</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="starrating">
+                                            <i class="fa-solid fa-star staron"></i>
+                                            <i class="fa-solid fa-star staron"></i>
+                                            <i class="fa-solid fa-star staron"></i>
+                                            <i class="fa-solid fa-star staron"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <span>(1)</span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="shop-bar">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="bar-left">
+                                <a class="active" href="#">
+                                    <i class="fa-solid fa-table-cells"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa-solid fa-list"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="bar-right">
+                                <div class="short-title">
+                                    <p>Sort By : </p>
+                                    <select name="sort">
+                                        <option>Relevance</option>
+                                        <option>Name (A - Z)</option>
+                                        <option>Name (Z - A)</option>
+                                        <option>Name (A - Z)</option>
+                                        <option>Name (Z - A)</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row products d-flexjustic">
+                           @foreach (var item in Model.Medicines)
+                            {
+                                <div class="col-lg-5">
+                                    <div class="productbox">
+                                        <div class="productimg">
+                                            <div class="imgicon">
+                                                <a asp-controller="Medicine" asp-action="AddWishlist" class="wishlistFetch" asp-route-id="@item.Id">
+                                                    <i class="fa-solid fa-heart-circle-xmark"></i>
+                                                </a>
+                                            </div>
+                                            <img style="object-fit: contain;" src="~/assets/image/@item.Image" alt="">
+                                        </div>
+                                        <div class="productinfo">
+                                            <a asp-controller="Medicine" asp-action="Detail" asp-route-id="@item.Id">@item.Name</a>
+                                            <div class="starrating">
+                                                <i class="fa-solid fa-star staron"></i>
+                                                <i class="fa-solid fa-star staron"></i>
+                                                <i class="fa-solid fa-star staron"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <span>(1)</span>
+                                            </div>
+                                            <div class="productprice">
+                                                <h5>
+                                                @item.Price
+                                                </h5>
+                                            </div>
+                                            <div class="basketicon">
+                                                <a href="">
+                                                    <i class="fa-solid fa-basket-shopping"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="~/assets/js/shop.js"></script>
+<script src="~/assets/slick/slick.js"></script>

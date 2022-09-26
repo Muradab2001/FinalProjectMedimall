@@ -21,6 +21,13 @@ namespace FinalProjectMedimall.DAL
         public DbSet<Rate> Rates { get; set; }
         public DbSet<BasketItem> BasketItems { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<WishListItem> WishListItems { get; set; }
+
+        public DbSet<Discount> Discounts { get; set; }
+
 
 
 

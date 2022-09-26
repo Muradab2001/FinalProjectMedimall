@@ -1,5 +1,8 @@
 ﻿@model HomeVM
 
+@{
+    Discount discount = Model.Discount;
+}
 <!-- slider start -->
 <section class="container responsevslider d-flexjustic">
     <div class="col-lg-6 col-12 d-flex mainslider">
@@ -104,38 +107,41 @@
     <div class="products gap-5">
         @foreach (Medicine medicine in Model.Medicines.Take(10))
        {
-            <div class="col-lg-2 col-10 productbox">
-                <div class="productimg">
-                    <div class="imgicon">
-                        <a href="">
-                            <i class="fa-solid fa-heart-circle-xmark"></i>
-                        </a>
+           if (medicine.DiscountId==3)
+           {
+                <div class="col-lg-2 col-10 productbox">
+                    <div class="productimg">
+                        <div class="imgicon">
+                            <a asp-controller="Medicine" asp-action="AddWishlist" class="wishlistFetch" asp-route-id="@medicine.Id">
+                                <i class="fa-solid fa-heart-circle-xmark"></i>
+                            </a>
+                        </div>
+                        <img src="assets/image/@medicine.Image" alt="">
                     </div>
-                    <img src="assets/image/@medicine.Image" alt="">
+                    <div class="productinfo">
+                        <a asp-controller="Medicine" asp-action="Detail" asp-route-id="@medicine.Id">@medicine.Name</a>
+                        <div class="starrating">
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star staron"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span>(1)</span>
+                        </div>
+                        <div class="productprice">
+                            <h5>
+                                @medicine.Price
+                            </h5>
+                        </div>
+                        <div class="basketicon">
+                            <a class="addToCart" asp-controller="Medicine" asp-action="Addbasket" asp-route-id="@medicine.Id">
+
+                                <i class="fa-solid fa-basket-shopping"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="productinfo">
-                    <a asp-controller="Medicine" asp-action="Detail" asp-route-id="@medicine.Id">@medicine.Name</a>
-                    <div class="starrating">
-                        <i class="fa-solid fa-star staron"></i>
-                        <i class="fa-solid fa-star staron"></i>
-                        <i class="fa-solid fa-star staron"></i>
-                        <i class="fa-solid fa-star staron"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <span>(1)</span>
-                    </div>
-                    <div class="productprice">
-                        <h5>
-                        @medicine.Price
-                        </h5>
-                    </div>
-                    <div class="basketicon">
-                        <a id ="test" asp-controller="home" asp-action="Test" asp-route-id="@medicine.Id">
-                           
-                            <i class="fa-solid fa-basket-shopping"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            }
         }
 
     </div>
@@ -199,235 +205,75 @@
 </section>
 <!--minisilder end-->
 <!--product slider start-->
+@if (discount.DateTime>DateTime.Now)
+{
 <section class="discount">
-    <div class="discounttext container">
-        <span>Discounts up to 70%</span>
-        <h2>Attention! Deal Zone Here Modern Shop Sale!</h2>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="slider">
-                <div class="productbox">
-                    <div class="productimg">
-                        <div class="imgicon">
-                            <a href="">
-                                <i class="fa-solid fa-heart-circle-xmark"></i>
-                            </a>
-                        </div>
-                        <img src="assets/image/product_2-360x300.png" alt="">
-                    </div>
-                    <div class="productinfo">
-                        <a href="">Equipment Product</a>
-                        <div class="starrating">
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <span>(1)</span>
-                        </div>
-                        <div class="productprice">
-                            <h5>
-                                $18.00
-                            </h5>
-                        </div>
-                        <div class="basketicon">
-                            <a href="">
-                                <i class="fa-solid fa-basket-shopping"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="productbox">
-                    <div class="productimg">
-                        <div class="imgicon">
-                            <a href="">
-                                <i class="fa-solid fa-heart-circle-xmark"></i>
-                            </a>
-                        </div>
-                        <img src="assets/image/product_10.png" alt="">
-                    </div>
-                    <div class="productinfo">
-                        <a href="">Equipment Product</a>
-                        <div class="starrating">
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <span>(1)</span>
-                        </div>
-                        <div class="productprice">
-                            <h5>
-                                $22.00
-                            </h5>
-                        </div>
-                        <div class="basketicon">
-                            <a href="">
-                                <i class="fa-solid fa-basket-shopping"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="productbox">
-                    <div class="productimg">
-                        <div class="imgicon">
-                            <a href="">
-                                <i class="fa-solid fa-heart-circle-xmark"></i>
-                            </a>
-                        </div>
-                        <img src="assets/image/product_5-300x225.png" alt="">
-                    </div>
-                    <div class="productinfo">
-                        <a href="">Equipment Product</a>
-                        <div class="starrating">
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <span>(1)</span>
-                        </div>
-                        <div class="productprice">
-                            <h5>
-                                $35.00
-                            </h5>
-                        </div>
-                        <div class="basketicon">
-                            <a href="">
-                                <i class="fa-solid fa-basket-shopping"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="productbox">
-                    <div class="productimg">
-                        <div class="imgicon">
-                            <a href="">
-                                <i class="fa-solid fa-heart-circle-xmark"></i>
-                            </a>
-                        </div>
-                        <img src="assets/image/product_3-300x225.png" alt="">
-                    </div>
-                    <div class="productinfo">
-                        <a href="">Equipment Product</a>
-                        <div class="starrating">
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <span>(1)</span>
-                        </div>
-                        <div class="productprice">
-                            <h5>
-                                $10.00
-                            </h5>
-                        </div>
-                        <div class="basketicon">
-                            <a href="">
-                                <i class="fa-solid fa-basket-shopping"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="productbox">
-                    <div class="productimg">
-                        <div class="imgicon">
-                            <a href="">
-                                <i class="fa-solid fa-heart-circle-xmark"></i>
-                            </a>
-                        </div>
-                        <img src="assets/image/product_6-300x225.png" alt="">
-                    </div>
-                    <div class="productinfo">
-                        <a href="">Equipment Product</a>
-                        <div class="starrating">
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <span>(1)</span>
-                        </div>
-                        <div class="productprice">
-                            <h5>
-                                $25.00
-                            </h5>
-                        </div>
-                        <div class="basketicon">
-                            <a href="">
-                                <i class="fa-solid fa-basket-shopping"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="productbox">
-                    <div class="productimg">
-                        <div class="imgicon">
-                            <a href="">
-                                <i class="fa-solid fa-heart-circle-xmark"></i>
-                            </a>
-                        </div>
-                        <img src="assets/image/product_6-300x225.png" alt="">
-                    </div>
-                    <div class="productinfo">
-                        <a href="">Equipment Product</a>
-                        <div class="starrating">
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <span>(1)</span>
-                        </div>
-                        <div class="productprice">
-                            <h5>
-                                $25.00
-                            </h5>
-                        </div>
-                        <div class="basketicon">
-                            <a href="">
-                                <i class="fa-solid fa-basket-shopping"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="productbox">
-                    <div class="productimg">
-                        <div class="imgicon">
-                            <a href="">
-                                <i class="fa-solid fa-heart-circle-xmark"></i>
-                            </a>
-                        </div>
-                        <img src="assets/image/product_6-300x225.png" alt="">
-                    </div>
-                    <div class="productinfo">
-                        <a href="">Equipment Product</a>
-                        <div class="starrating">
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <span>(1)</span>
-                        </div>
-                        <div class="productprice">
-                            <h5>
-                                $25.00
-                            </h5>
-                        </div>
-                        <div class="basketicon">
-                            <a href="">
-                                <i class="fa-solid fa-basket-shopping"></i>
-                            </a>
-                        </div>
-                    </div>
+        <div class="discounttext container d-flexjustic">
+            <div class="col-lg-8">
+                <span>Discounts up to @discount.Percentage %</span>
+                <h2 style="max-width: 60%;">@discount.Title</h2>
+            </div>
+            <div style="padding: 12px 30px;
+    border-radius: 30px;
+    min-height: 60px;
+    line-height: 1;
+height:2rem;
+    background-color: #ff2e2e;" class="col-lg-2">
+                <h4 id="" style="color:white;text-align:center"><span style="font-size:1.1rem;">End in:</span> @discount.DateTime.ToString("yyyy.MM.dd")</h4>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="slider">
+                    @foreach (Medicine medicine in Model.Medicines.Take(10))
+                    {
+                        if (medicine.DiscountId == 2)
+                        {
+                            <div class="col-lg-2 col-10 productbox">
+                                <div class="productimg">
+                                    <div class="imgicon">
+                                        <a asp-controller="Medicine" asp-action="AddWishlist" class="wishlistFetch" asp-route-id="@medicine.Id">
+                                            <i class="fa-solid fa-heart-circle-xmark"></i>
+                                        </a>
+                                    </div>
+                                    <img src="assets/image/@medicine.Image" alt="">
+                                </div>
+                                <div class="productinfo">
+                                    <a asp-controller="Medicine" asp-action="Detail" asp-route-id="@medicine.Id">@medicine.Name</a>
+                                    <div class="starrating">
+                                        <i class="fa-solid fa-star staron"></i>
+                                        <i class="fa-solid fa-star staron"></i>
+                                        <i class="fa-solid fa-star staron"></i>
+                                        <i class="fa-solid fa-star staron"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <span>(1)</span>
+                                    </div>
+                                    <div class="productprice">
+                                        <span>
+                                            <del> $ @medicine.Price</del>
+                                        </span>
+                                        <h5>
+                                            @{
+                                                decimal price = (medicine.Price * discount.Percentage) / 100;
+                                            }
+                                            $ @price.ToString("f0")
+                                        </h5>
+                                    </div>
+                                    <div class="basketicon">
+                                        <a class="addToCart" asp-controller="Medicine" asp-action="Addbasket" asp-route-id="@medicine.Id">
+
+                                            <i class="fa-solid fa-basket-shopping"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
                 </div>
             </div>
         </div>
-    </div>
 </section>
+    }
 <!--product slider end-->
 <!--top product start-->
 <section class="top-product">
@@ -619,30 +465,36 @@
     </div>
 
 
-
-    <h1 id="text">
-
-    </h1>
 </section>
+@*<script>
+    // Set the date we're counting down to
+    var countDownDate = document.getElementById("time").getAttribute("value")
 
-<script>
-    let testtag = document.getElementById("test")
-    let url = testtag.getAttribute("href")
-    let text=document.getElementById("text")
-    console.log(text)
-    fetch(url)
-        .then(res => res.json())
-        .then(con => test(con))
+    console.log(document.getElementById("time").getAttribute("value"))
+    // Update the count down every 1 second
+    var x = setInterval(function () {
 
-    //testtag.addEventListener('click', function (value) {
-    //    alert("")
-    //    text.innerHTML = value.desc
-    //}
-    test=(value)=>{
-        console.log(value)
-        text.innerHTML = value.desc
+        // Get today's date and time
+        var now = new Date().getTime();
+        console.log(now)
 
-    }
-    
-</script>
-<!--top product end-->
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Output the result in an element with id="demo"
+        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+
+        // If the count down is over, write some text
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "EXPIRED";
+        }
+    }, 1000);
+</script>*@

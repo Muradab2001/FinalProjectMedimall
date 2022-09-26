@@ -3,12 +3,20 @@
 @{
     int categorycount = 0;
     int productcount = 0;
+    decimal Ordercount = 0;
 
     foreach (Category item in Model.Categories)
         categorycount++;
 
     foreach (Medicine item in Model.Medicines)
         productcount++;
+    foreach (var item in Model.Orders)
+    {
+        if (item.Status==true)
+        {
+            Ordercount+=item.TotalPrice;
+        }
+    }
 }
 
 <!-- partial -->
@@ -56,24 +64,24 @@
                                         </div>
                                     </div>
                                     <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                        <i class="mdi mdi-currency-usd me-3 icon-lg text-danger"></i>
+                                        <img style="width: 3rem;margin-right:10px;" src="~/admin/images/best-price.png" />
                                         <div class="d-flex flex-column justify-content-around">
                                             <small class="mb-1 text-muted">Revenue</small>
-                                            <h5 class="me-2 mb-0">$577545</h5>
+                                            <h5 class="me-2 mb-0">$@Ordercount.ToString("f0")</h5>
                                         </div>
                                     </div>
                                     <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                        <img style="width: 3rem;" src="~/assets/image/app.png" />
+                                        <img style="width: 3rem;margin-right:10px;" src="~/assets/image/app.png" />
                                         <div class="d-flex flex-column justify-content-around">
                                             <small class="mb-1 text-muted">Total Category</small>
-                                            <h5 style="text-align:center;" class="me-2 mb-0">@categorycount</h5>
+                                            <h5 style="" class="me-2 mb-0">@categorycount</h5>
                                         </div>
                                     </div>
                                     <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                        <img style="width: 3rem;" src="~/assets/image/box.png" />
+                                        <img style="width: 3rem;margin-right:10px;" src="~/assets/image/box.png" />
                                         <div class="d-flex flex-column justify-content-around">
                                             <small class="mb-1 text-muted">Total Product</small>
-                                            <h5 style="text-align:center;" class="me-2 mb-0">@productcount</h5>
+                                            <h5 style="" class="me-2 mb-0">@productcount</h5>
                                         </div>
                                     </div>
                                     <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">

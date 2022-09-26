@@ -1,0 +1,48 @@
+﻿@inject FinalProjectMedimall.Services.LayoutService layoutService
+@{
+    ViewData["Title"] = "Index";
+
+    WishListVM wishlist = await layoutService.GetWishlist();
+
+}
+<div class="headertext">
+    <div class="container pt-4">
+        <h1>Wishlist</h1>
+        <span><a href="./index.html">Home</a></span>
+        <span>></span>
+        <a href="./wishlist.html">wishlist</a>
+    </div>
+</div>
+<div class="container wish-lists">
+    <div class="textwishlist wishContainer"><h1>My Whislist</h1>
+        <div class="row wishinROw">
+            @await Html.PartialAsync("_WishlistPartialView",layoutService)
+        </div>
+    
+    
+    
+    </div>
+    <table class="table col-12">
+        <tbody>
+            <tr>
+                <td>
+                    <div class="removeitem">
+                        <a href="">
+                            <span>X</span>
+                        </a>
+                    </div>
+                </td>
+                <td data-title="Product">
+                    Digital Thermometer - Green
+                </td>
+                <td data-title="Price">
+                    120$
+                </td>
+                <td data-title="Subtotal">62$</td>
+                <td>
+                    <a href="">Add Cart</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>   

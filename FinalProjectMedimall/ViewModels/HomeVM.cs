@@ -9,5 +9,7 @@ namespace FinalProjectMedimall.ViewModels
         public List<Category> Categories { get; set; }
 
         public List<Medicine> Medicines { get; set; }
+        public List<Order> Orders { get; set; }
+        public Discount Discount { get; set; }
     }
 }

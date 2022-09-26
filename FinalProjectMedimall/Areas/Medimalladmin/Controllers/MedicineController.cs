@@ -36,15 +36,17 @@ namespace FinalProjectMedimall.Areas.Medimalladmin.Controllers
             public IActionResult Create()
             {
                 ViewBag.Categories = _context.Categories.ToList();
-                return View();
+                ViewBag.discounts = _context.Discounts.ToList();
+            return View();
             }
 
             [HttpPost]
             [AutoValidateAntiforgeryToken]
             public async Task<IActionResult> Create(Medicine medicine)
             {
-                ViewBag.Categories = _context.Categories.ToList();
-                if (!ModelState.IsValid) return View();
+            ViewBag.Categories = _context.Categories.ToList();
+            ViewBag.discounts = _context.Discounts.ToList();
+            if (!ModelState.IsValid) return View();
                 if (medicine.MainPhoto == null || medicine.Photos == null)
                 {
                     ModelState.AddModelError(string.Empty, "must choose 1 main photo");
@@ -95,6 +97,7 @@ namespace FinalProjectMedimall.Areas.Medimalladmin.Controllers
             {
             ViewBag.Category = _context.Categories.ToList();
             ViewBag.images = _context.MedicineImages.ToList();
+            ViewBag.discounts = _context.Discounts.ToList();
             if (id == 0 || id == null) return NotFound();
                 if (!ModelState.IsValid) return View();
                 Medicine medicine = await _context.Medicines
@@ -109,6 +112,7 @@ namespace FinalProjectMedimall.Areas.Medimalladmin.Controllers
         public async Task<IActionResult> Edit(int? id, Medicine medicine)
         {
             ViewBag.Category = _context.Categories.ToList();
+            ViewBag.discounts = _context.Discounts.ToList();
             ViewBag.images = _context.MedicineImages.ToList();
             Medicine existed = _context.Medicines.Include(m => m.MedicineImages).Include(m => m.Category).FirstOrDefault(m => m.Id == id);
             if (existed == null) return NotFound();
@@ -235,8 +239,11 @@ namespace FinalProjectMedimall.Areas.Medimalladmin.Controllers
             {
                 if (id == null || id == 0) return NotFound();
                 Medicine medicine = await _context.Medicines.FindAsync(id);
-                 if (medicine == null) return NotFound();
-            List<MedicineImage> medicineImages = await _context.MedicineImages.ToListAsync();
+            if (medicine == null) return NotFound();
+            OrderItem order = await _context.OrderItems.FirstAsync(o => o.MedicineId == medicine.Id);
+            if (order == null)
+            {
+                List<MedicineImage> medicineImages = await _context.MedicineImages.ToListAsync();
                 foreach (MedicineImage item in medicineImages)
                 {
                     if (medicine.Id == item.MedicineId)
@@ -245,7 +252,24 @@ namespace FinalProjectMedimall.Areas.Medimalladmin.Controllers
                         System.IO.File.Delete(alternativpath);
                     }
                 }
-                _context.Medicines.Remove(medicine);
+            }
+            else
+            {
+                _context.OrderItems.Remove(order);
+                List<MedicineImage> medicineImages = await _context.MedicineImages.ToListAsync();
+                foreach (MedicineImage item in medicineImages)
+                {
+                    if (medicine.Id == item.MedicineId)
+                    {
+                        var alternativpath = Path.Combine(_env.WebRootPath, "assets/image", item.Name);
+                        System.IO.File.Delete(alternativpath);
+                    }
+                }
+            }
+
+
+       
+            _context.Medicines.Remove(medicine);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
