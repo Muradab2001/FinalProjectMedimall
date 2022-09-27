@@ -131,7 +131,7 @@
                         }
                     })
                     total.innerHTML = `${data.totalPrice}`
-                    quantity.innerHTML = `${data.Quantity}`
+                    quantity.innerHTML = `${data.quantity}`
 
                 }
             })
@@ -144,6 +144,7 @@
             var id = $(this).attr("data-id")
 
             var total = document.querySelector(".total_price")
+            var quantity = document.querySelector(".inp-value")
             var money = document.querySelectorAll(".money-t")
             console.log(id)
             $.ajax({
@@ -160,6 +161,7 @@
                         }
                     })
                     total.innerHTML = `${data.totalPrice}`
+                    quantity.innerHTML = `${data.quantity}`
 
                 }
             })

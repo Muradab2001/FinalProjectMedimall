@@ -340,13 +340,21 @@ namespace FinalProjectMedimall.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("MedicineId")
                         .HasColumnType("int");
 
-                    b.Property<byte>("Point")
-                        .HasColumnType("tinyint");
+                    b.Property<int>("Point")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
 
                     b.HasIndex("MedicineId");
 
@@ -624,6 +632,10 @@ namespace FinalProjectMedimall.Migrations
 
             modelBuilder.Entity("FinalProjectMedimall.Models.Rate", b =>
                 {
+                    b.HasOne("FinalProjectMedimall.Models.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId");
+
                     b.HasOne("FinalProjectMedimall.Models.Medicine", "Medicine")
                         .WithMany("Rates")
                         .HasForeignKey("MedicineId")

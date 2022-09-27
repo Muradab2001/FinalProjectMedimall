@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace FinalProjectMedimall.Controllers
         public IActionResult Detail(int? id)
         {
             ViewBag.Category = _context.Categories.ToList();
-            Medicine medicine = _context.Medicines.Include(m => m.Category).Include(m => m.MedicineImages).SingleOrDefault(m => m.Id == id);
+            Medicine medicine = _context.Medicines.Include(m => m.Category).Include(m => m.MedicineImages).Include(x=>x.Rates).ThenInclude(x=>x.AppUser).FirstOrDefault(m => m.Id == id);
             return View(medicine);
         }
         public async Task<IActionResult> DeleteBasketitem(int id)
@@ -90,6 +91,8 @@ namespace FinalProjectMedimall.Controllers
                 basket.Quantity--;
             }
             _context.SaveChanges();
+            int quantity = 0;
+            quantity=basket.Quantity;
             decimal TotalPrice = 0;
             decimal Price = basket.Quantity * basket.Medicine.DiscountId == 2 ? (basket.Price * basket.Medicine.Discount.Percentage) / 100 : basket.Price;
             List<BasketItem> basketItems = _context.BasketItems.Include(m => m.AppUser).Include(m=> m.Medicine).Where(b => b.AppUserId == user.Id).ToList();
@@ -103,12 +106,11 @@ namespace FinalProjectMedimall.Controllers
                     Quantity = item.Quantity
                 };
                 basketItemVM.Price = medicine.DiscountId == 2 ? (medicine.Price * medicine.Discount.Percentage) / 100 : medicine.Price;
-
                 TotalPrice += basketItemVM.Price * basketItemVM.Quantity;
 
             }
 
-            return Json(new { totalPrice = TotalPrice, Price });
+            return Json(new { totalPrice = TotalPrice, Price, quantity });
         }
         public IActionResult GetPartial()
         {
@@ -122,6 +124,9 @@ namespace FinalProjectMedimall.Controllers
             basket.Quantity++;
             _context.SaveChanges();
             decimal TotalPrice = 0;
+            int quantity = 0;
+
+            quantity = basket.Quantity;
             decimal Price = basket.Quantity * basket.Medicine.DiscountId == 2 ? (basket.Price * basket.Medicine.Discount.Percentage) / 100 : basket.Price;
             List<BasketItem> basketItems = _context.BasketItems.Include(m => m.AppUser).Include(m => m.Medicine).Where(m => m.AppUserId == user.Id).ToList();
             foreach (BasketItem item in basketItems)
@@ -139,7 +144,7 @@ namespace FinalProjectMedimall.Controllers
 
             }
 
-            return Json(new { totalPrice = TotalPrice, Price });
+            return Json(new { totalPrice = TotalPrice, Price, quantity });
         }
         public async Task<IActionResult> AddBasket(int id)
         {
@@ -331,31 +336,23 @@ namespace FinalProjectMedimall.Controllers
             _context.SaveChanges();
             return PartialView("_WishlistPartialView");
         }
-        public async Task<IActionResult> DeleteAllWishList(int id)
+
+        [HttpGet]
+        public async Task<IActionResult> AddRate(int id,int point)
         {
-            if (User.Identity.IsAuthenticated)
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            Rate Rate = new Rate
             {
-                AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
-                List<WishListItem> wishlistItems = _context.WishListItems.Where(m => m.AppUserId == user.Id).ToList();
-                foreach (var item in wishlistItems)
-                {
-                    _context.WishListItems.Remove(item);
-                }
-            }
-            else
-            {
-                string basket = HttpContext.Request.Cookies["Wishlist"];
-
-                List<WishListCookieItemVM> wishlistCookieItems = JsonConvert.DeserializeObject<List<WishListCookieItemVM>>(basket);
-
-                wishlistCookieItems.Clear();
-
-                string wishlistStr = JsonConvert.SerializeObject(wishlistCookieItems);
-                HttpContext.Response.Cookies.Append("Wishlist", wishlistStr);
-
-            }
+                Date= DateTime.Now,
+              AppUser =user,
+              MedicineId=id,
+              Point=point
+            };
+            _context.Rates.Add(Rate);
             _context.SaveChanges();
-            return PartialView("_WishlistPartialView");
+            return Json("ok");
         }
+       
     }
 }

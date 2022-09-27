@@ -31,10 +31,17 @@ namespace FinalProjectMedimall.Areas.Medimalladmin.Controllers
             Discount discounts = _context.Discounts.FirstOrDefault(d=>d.Id==id);
             return View(discounts);
         }
+        public IActionResult Archive(int? id)
+        {
+            if (id is null) return NotFound();
+            Discount discounts = _context.Discounts.FirstOrDefault(d => d.Id == id);
+            return View(discounts);
+        }
         public IActionResult edit(int? id)
         {
             if (id is null) return NotFound();
             Discount discounts = _context.Discounts.FirstOrDefault(d => d.Id == id);
+            if (discounts is null) return NotFound();
             return View(discounts);
         }
         [HttpPost]

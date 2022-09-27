@@ -11,5 +11,6 @@ namespace FinalProjectMedimall.ViewModels
         public List<Medicine> Medicines { get; set; }
         public List<Order> Orders { get; set; }
         public Discount Discount { get; set; }
+        public List<Rate> Rates { get; set; }
     }
 }

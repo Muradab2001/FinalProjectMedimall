@@ -23,6 +23,7 @@ namespace FinalProjectMedimall.Controllers
                 Sliders = _context.Sliders.ToList(),
                 Categories = _context.Categories.Include(c => c.Medicines).ToList(),
                 Medicines = _context.Medicines.ToList(),
+                Rates = _context.Rates.ToList(),
                 Discount=  _context.Discounts.FirstOrDefault(d=>d.Id==2)
             };
             return View(homeVM);
