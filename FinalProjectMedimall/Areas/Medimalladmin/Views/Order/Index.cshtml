@@ -8,7 +8,7 @@
         }
     }
     <div style="text-align: right;">
-        <a style="width:5rem;" class="btn btn-success" asp-area="Medimalladmin" asp-controller="Discount" asp-action="Archive">
+        <a style="width:5rem;" class="btn btn-success" asp-area="Medimalladmin" asp-controller="Order" asp-action="Archive">
             <img  style="width:100%" src="~/admin/images/archive.png"/>
         </a>
     </div>
@@ -37,84 +37,113 @@
             <tbody>
                 @foreach (Order order in Model.OrderByDescending(o=>o.Status==false))
                 {
-                   if(order.Status!=true){
-                        <tr style="background:#fa2c2c4f ;" class="">
-                            <td>
-                                @order.AppUser.FirstName
-                                @order.AppUser.LastName
+                  @if (order.Archive==false)
+                    {
+                        if (order.Status != true)
+                        {
+                            <tr style="background:#fa2c2c4f ;" class="">
+                                <td>
+                                    @order.AppUser.FirstName
+                                    @order.AppUser.LastName
 
-                            </td>
-                            <td>
-                                @order.Date
-                            </td>
+                                </td>
+                                <td>
+                                    @order.Date
+                                </td>
 
-                            <td>
-                                @order.Country,
-                                @order.City,
-                                @order.Address
+                                <td>
+                                    @order.Country,
+                                    @order.City,
+                                    @order.Address
 
-                            </td>
+                                </td>
 
-                            <td>
-                                @order.TotalPrice
-                            </td>
+                                <td>
+                                    @order.TotalPrice
+                                </td>
 
-                            <td class="d-flex align-items-center" style="height:160px; width:100%; justify-content: center; gap: 5px">
-                                <div>
-                                    <a asp-area="Medimalladmin" asp-controller="Contact" asp-action="Delete" asp-route-id="@order.Id"
+                                <td class="d-flex align-items-center" style="height:160px; width:100%; justify-content: center; gap: 5px">
+                                    <div>
+                                        <a asp-area="Medimalladmin" asp-controller="Order" asp-action="Delete" asp-route-id="@order.Id"
                                class="btn btn-danger"><i class="mdi mdi-delete"></i></a>
-                                </div>
-                                <div>
-                                    <a asp-area="Medimalladmin" asp-controller="Order" asp-action="Success" asp-route-id="@order.Id"
+                                    </div>
+                                    <div>
+                                        <a asp-area="Medimalladmin" asp-controller="Order" asp-action="Success" asp-route-id="@order.Id"
                                class="btn btn-success"><i class="fa-solid fa-check"></i></a>
-                                </div>
-                                <div>
-                                    <a asp-area="Medimalladmin" asp-controller="Order" asp-action="Detail" asp-route-id="@order.Id"
+                                    </div>
+                                    <div>
+                                        <a asp-area="Medimalladmin" asp-controller="Order" asp-action="Detail" asp-route-id="@order.Id"
                                class="btn btn-warning"><i class="mdi mdi-information"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                   }
-                   else{
-                        <tr style="background: #00800061;" class="">
-                            <td>
-                                @order.AppUser.FirstName
-                                @order.AppUser.LastName
+                                    </div>
+                            
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr style="background: #00800061;" class="">
+                                <td>
+                                    @order.AppUser.FirstName
+                                    @order.AppUser.LastName
 
-                            </td>
-                            <td>
-                                @order.Date
-                            </td>
+                                </td>
+                                <td>
+                                    @order.Date
+                                </td>
 
-                            <td>
-                                @order.Country,
-                                @order.City,
-                                @order.Address
+                                <td>
+                                    @order.Country,
+                                    @order.City,
+                                    @order.Address
 
-                            </td>
+                                </td>
 
-                            <td>
-                                @order.TotalPrice
-                            </td>
+                                <td>
+                                    @order.TotalPrice
+                                </td>
 
-                            <td class="d-flex align-items-center" style="height:160px; width:100%; justify-content: center; gap: 5px">
-                                <div>
-                                    <a asp-area="Medimalladmin" asp-controller="Contact" asp-action="Delete" asp-route-id="@order.Id"
+                                <td class="d-flex align-items-center" style="height:160px; width:100%; justify-content: center; gap: 5px">
+                                    <div>
+                                        <a asp-area="Medimalladmin" asp-controller="Order" asp-action="Delete" asp-route-id="@order.Id"
                                class="btn btn-danger"><i class="mdi mdi-delete"></i></a>
-                                </div>
-                                <div>
-                                    <a asp-area="Medimalladmin" asp-controller="Order" asp-action="Success" asp-route-id="@order.Id"
+                                    </div>
+                                    <div>
+                                        <a asp-area="Medimalladmin" asp-controller="Order" asp-action="Success" asp-route-id="@order.Id"
                                class="btn btn-success"><i class="fa-solid fa-check"></i></a>
-                                </div>
-                                <div>
-                                    <a asp-area="Medimalladmin" asp-controller="Order" asp-action="Detail" asp-route-id="@order.Id"
+                                    </div>
+                                    <div>
+                                        <a asp-area="Medimalladmin" asp-controller="Order" asp-action="Detail" asp-route-id="@order.Id"
                                class="btn btn-warning"><i class="mdi mdi-information"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                   }
+                                    </div>
+                                    <div>
+                                        <a asp-area="Medimalladmin" asp-controller="Order" asp-action="archive" asp-route-id="@order.Id"
+                               class="btn btn-warning"><i class="fa-sharp fa-solid fa-folder-open"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
                 }
             </tbody>
         </table>
+    </div>
+    <div class="row justify-content-center mt-4">
+        <nav aria-label="...">
+            <ul class="pagination" style="justify-content:center">
+
+                <li class="page-item @(ViewBag.Currentpage == 1 ? "disabled" : "")">
+                    <a class="page-link" asp-controller="Order" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
+                </li>
+
+                @for (int i = 1; i <= ViewBag.TotalPage; i++)
+                {
+                    <li class="page-item  @(ViewBag.CurrentPage == i ? "active" : "")" style="pointer-events: @(ViewBag.CurrentPage == i ? "none" : "")"><a class="page-link" asp-controller="Order" asp-action="index" asp-route-page="@i">@i</a></li>
+                }
+
+                <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPage ? "disabled" : "")">
+                    <a class="page-link" asp-controller="Order" asp-action="index" asp-route-page="@(ViewBag.CurrentPage +1)">Next</a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </div>

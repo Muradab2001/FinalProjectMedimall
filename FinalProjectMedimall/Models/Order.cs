@@ -11,6 +11,7 @@ namespace FinalProjectMedimall.Models
         public string Address { get; set; }
         public string Country { get; set; }
         public string Phone { get; set; }
+        public bool Archive { get; set; } = false;
         public string City { get; set; }
         public bool? Status { get; set; }
         public List<OrderItem> OrderItems { get; set; }

@@ -27,6 +27,9 @@ namespace FinalProjectMedimall.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<bool?>("Admin")
+                        .HasColumnType("bit");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -140,6 +143,34 @@ namespace FinalProjectMedimall.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("FinalProjectMedimall.Models.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("MedicineId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("MedicineId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("FinalProjectMedimall.Models.Contact", b =>
                 {
                     b.Property<int>("Id")
@@ -152,6 +183,9 @@ namespace FinalProjectMedimall.Migrations
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Look")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -271,6 +305,9 @@ namespace FinalProjectMedimall.Migrations
 
                     b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("Archive")
+                        .HasColumnType("bit");
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
@@ -577,6 +614,19 @@ namespace FinalProjectMedimall.Migrations
 
                     b.HasOne("FinalProjectMedimall.Models.Medicine", "Medicine")
                         .WithMany()
+                        .HasForeignKey("MedicineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FinalProjectMedimall.Models.Comment", b =>
+                {
+                    b.HasOne("FinalProjectMedimall.Models.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId");
+
+                    b.HasOne("FinalProjectMedimall.Models.Medicine", "Medicine")
+                        .WithMany("Comments")
                         .HasForeignKey("MedicineId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

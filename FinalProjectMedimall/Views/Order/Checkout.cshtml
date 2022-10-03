@@ -18,6 +18,7 @@
             <div>
                 <div style="align-items: baseline;justify-content: space-between;" class="row">
                     <div class="col-lg-6">
+                        <div class="alert alert-danger" asp-validation-summary="ModelOnly"></div>
                         <div class="billing-details">
                             <h3>Billing details</h3>
                             <form method="post" enctype="multipart/form-data">
@@ -29,7 +30,7 @@
                                             <abbr class="required" title="required">*</abbr>
                                         </label>
                                         <span class="input-wrapper">
-                                            <input asp-for="Country" type="text" class="input-text">
+                                            <input required asp-for="Country" type="text" class="input-text">
                                         </span>
                                     </p>
                                     <p class="form-row address-field validate-required form-row-wide" id="billing_city_field"
@@ -40,7 +41,7 @@
                                             <abbr class="required" title="required">*</abbr>
                                         </label>
                                         <span class="input-wrapper">
-                                            <input asp-for="City" type="text" class="input-text">
+                                            <input required asp-for="City" type="text" class="input-text">
                                         </span>
                                     </p>
                                     <p class="form-row address-field validate-required form-row-wide" id="billing_city_field"
@@ -51,7 +52,7 @@
                                             <abbr class="required" title="required">*</abbr>
                                         </label>
                                         <span class="input-wrapper">
-                                            <input asp-for="Address" type="text" class="input-text">
+                                            <input required asp-for="Address" type="text" class="input-text">
                                         </span>
                                     </p>
                                     <p class="form-row form-row-wide validate-required validate-phone" id="billing_phone_field"
@@ -61,7 +62,7 @@
                                             <abbr class="required" title="required">*</abbr>
                                         </label>
                                         <span class="input-wrapper">
-                                            <input asp-for="Phone" type="text" class="input-text">
+                                            <input required asp-for="Phone" type="text" class="input-text">
                                         </span>
                                     </p>
                                     <p class="form-row form-row-wide validate-required validate-email" id="billing_email_field"
@@ -94,7 +95,7 @@
                             
                                    @foreach (var item in Model.BasketItems)
                                     {
-                                    <span style="display:none">@(total += item.Medicine.Price * item.Quantity)</span>
+                                    <span style="display:none">@(total += item.Price * item.Quantity)</span>
                                     <tbody>
                                          <tr class="cart_item">
                                         <td class="product-name">
@@ -103,7 +104,7 @@
                                         </td>
                                         <td class="product-total">
                                             <span class="amount">
-                                             @(item.Price*item.Quantity)
+                                            $ @((item.Price*item.Quantity).ToString("f0"))
                                                 <span>
                                         </td>
                                     </tr>
@@ -115,7 +116,7 @@
                                         <th>Total</th>
                                         <td>
                                             <span class="amount">
-                                                @total
+                                               $ @total.ToString("f0")
                                             </span>
                                         </td>
                                     </tr>

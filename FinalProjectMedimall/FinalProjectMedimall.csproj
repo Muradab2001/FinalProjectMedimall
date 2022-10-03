@@ -33,6 +33,8 @@
     <Compile Remove="Migrations\20220925144247_CreateDiscountTable.Designer.cs" />
     <Compile Remove="Migrations\20220925171705_CreateDisco.cs" />
     <Compile Remove="Migrations\20220925171705_CreateDisco.Designer.cs" />
+    <Compile Remove="Migrations\20220927203441_comment.cs" />
+    <Compile Remove="Migrations\20220927203441_comment.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,6 +48,10 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Medimalladmin\ViewModels\" />
   </ItemGroup>
 
 </Project>

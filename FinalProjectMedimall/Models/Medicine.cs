@@ -21,7 +21,7 @@ namespace FinalProjectMedimall.Models
         public int DiscountId { get; set; }
         public Discount Discount { get; set; }
 
-
+        public List<Comment> Comments { get; set; }
         public List<Rate> Rates { get; set; }
 
         public int CategoryId { get; set; }

@@ -10,11 +10,14 @@ using FinalProjectMedimall.Models;
 using System.Linq;
 using FinalProjectMedimall.Utilities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace FinalProjectMedimall.Areas.Medimalladmin.Controllers
 {
 
     [Area("Medimalladmin")]
+    [Authorize(Roles = "Admin")]
     public class MedicineController : Controller
     {
             private readonly ApplicationDbContext _context;
@@ -25,15 +28,24 @@ namespace FinalProjectMedimall.Areas.Medimalladmin.Controllers
                 _context = context;
                 _env = env;
             }
-            public async Task<IActionResult> Index()
+            public async Task<IActionResult> Index(int page = 1)
             {
-                List<Medicine> model = await _context.Medicines
-                .Include(c => c.Category)
-                .Include(c => c.MedicineImages).ToListAsync();
+            ViewBag.TotalPage = Math.Ceiling((decimal)_context.Medicines.Count() / 5);
+            ViewBag.CurrentPage = page;
+            List<Medicine> model = await _context.Medicines.Include(c => c.Category).Include(c => c.MedicineImages).Skip((page - 1) * 5).Take(5).ToListAsync();
                 return View(model);
             }
 
-            public IActionResult Create()
+        //public async Task<IActionResult> OrderCount(int page = 1)
+        //{
+        //    ViewBag.TotalPage = Math.Ceiling((decimal)_context.Medicines.Count() / 5);
+        //    ViewBag.CurrentPage = page;
+        //    List<Medicine> model = await _context.Medicines.Include(c => c.Category).Include(c => c.MedicineImages).Skip((page - 1) * 5).Take(5).ToListAsync();
+
+        //    return View(model);
+        //}
+
+        public IActionResult Create()
             {
                 ViewBag.Categories = _context.Categories.ToList();
                 ViewBag.discounts = _context.Discounts.ToList();
@@ -230,7 +242,9 @@ namespace FinalProjectMedimall.Areas.Medimalladmin.Controllers
         public async Task<IActionResult> Detail(int? id)
             {
                 if (id == null || id == 0) return NotFound();
-                Medicine medicine = await _context.Medicines.FirstOrDefaultAsync(c => c.Id == id);
+                Medicine medicine = await _context.Medicines.Include(m=>m.Category).FirstOrDefaultAsync(c => c.Id == id);
+
+              ViewBag.orderitem = _context.OrderItems.Where(o => o.MedicineId == id).ToList();
                 if (medicine == null) return NotFound();
                 return View(medicine);
             }

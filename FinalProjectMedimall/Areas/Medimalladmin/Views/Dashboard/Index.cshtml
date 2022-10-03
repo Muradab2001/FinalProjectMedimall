@@ -3,6 +3,7 @@
 @{
     int categorycount = 0;
     int productcount = 0;
+    int usercount = 0;
     decimal Ordercount = 0;
 
     foreach (Category item in Model.Categories)
@@ -17,6 +18,9 @@
             Ordercount+=item.TotalPrice;
         }
     }
+}@foreach (AppUser user in ViewBag.users)
+{
+    usercount++;
 }
 
 <!-- partial -->
@@ -85,10 +89,10 @@
                                         </div>
                                     </div>
                                     <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                        <i class="mdi mdi-flag me-3 icon-lg text-danger"></i>
+                                        <img style="width: 3rem;margin-right:10px;" src="~/admin/images/user.png" />
                                         <div class="d-flex flex-column justify-content-around">
-                                            <small class="mb-1 text-muted">Flagged</small>
-                                            <h5 class="me-2 mb-0">3497843</h5>
+                                            <small class="mb-1 text-muted">Users</small>
+                                            <h5 class="me-2 mb-0">@usercount</h5>
                                         </div>
                                     </div>
                                 </div>

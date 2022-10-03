@@ -17,7 +17,7 @@
     }
 
     <div class="table-responsive pt-3">
-        <table class="table table-bordered" style="text-align: center">
+        <table class="table table table-bordered table-hover" style="text-align: center">
             <thead class="table table-info" style="text-align: center">
                 <tr>
                     <th>
@@ -65,20 +65,41 @@
                         <td class="d-flex align-items-center" style="height:160px; justify-content: center; gap: 5px">
                             <div>
                                 <a asp-area="Medimalladmin" asp-controller="Medicine" asp-action="Edit" asp-route-id="@medicine.Id"
-                               class="btn btn-success"><i class="mdi mdi-border-color"></i></a>
+                               class="btn btn-light"><img style="border-radius:0"width="2rem" src="~/admin/images/edit.png"/></a>
                             </div>
                             <div>
                                 <a asp-area="Medimalladmin" asp-controller="Medicine" asp-action="Delete" asp-route-id="@medicine.Id"
-                               class="btn btn-danger"><i class="mdi mdi-delete"></i></a>
+                               class="btn btn-danger"><img style="border-radius:0" width="2rem" src="~/admin/images/delete.png" /></a>
                             </div>
                             <div>
                                 <a asp-area="Medimalladmin" asp-controller="Medicine" asp-action="Detail" asp-route-id="@medicine.Id"
-                               class="btn btn-warning"><i class="mdi mdi-information"></i></a>
+                               class="btn btn-warning"><img style="border-radius:0" width="2rem" src="~/admin/images/info.png" /></a>
                             </div>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
+
+    </div>
+    <div class="row justify-content-center mt-4">
+        <nav aria-label="...">
+            <ul class="pagination" style="justify-content:center">
+
+                <li class="page-item @(ViewBag.Currentpage == 1 ? "disabled" : "")">
+                    <a class="page-link" asp-controller="Medicine" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
+                </li>
+
+                @for (int i = 1; i <= ViewBag.TotalPage; i++)
+                {
+                    <li class="page-item  @(ViewBag.CurrentPage == i ? "active" : "")" style="pointer-events: @(ViewBag.CurrentPage == i ? "none" : "")"><a class="page-link" asp-controller="Medicine" asp-action="index" asp-route-page="@i">@i</a></li>
+                }
+
+                <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPage ? "disabled" : "")">
+                    <a class="page-link" asp-controller="Medicine" asp-action="index" asp-route-page="@(ViewBag.CurrentPage +1)">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
     </div>
 </div>

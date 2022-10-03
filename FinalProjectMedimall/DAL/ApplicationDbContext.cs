@@ -28,6 +28,8 @@ namespace FinalProjectMedimall.DAL
 
         public DbSet<Discount> Discounts { get; set; }
 
+        public DbSet<Comment> Comments { get; set; }
+
 
 
 

@@ -9,5 +9,7 @@ namespace FinalProjectMedimall.Models
         public string LastName { get; set; }
         public List<BasketItem> BasketItems { get; set; }
         public List<Order> Orders { get; set; }
+
+        public bool? Admin { get; set; }
     }
 }

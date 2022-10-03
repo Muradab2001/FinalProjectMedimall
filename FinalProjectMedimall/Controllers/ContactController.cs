@@ -28,6 +28,7 @@ namespace FinalProjectMedimall.Controllers
             Contact contact = new Contact
             {
                 Id = message.Id,
+                Look=false,
                 Subject = message.Subject,
                 Email = message.Email,
                 Name = message.Name,

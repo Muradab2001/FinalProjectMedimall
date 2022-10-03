@@ -1,8 +1,11 @@
 ﻿@model Medicine
 
-
+@{
+    Discount discount = ViewBag.discount;
+}
 @{
     int ratingcount = 0;
+    int countpoint = 0;
     string productcategory = "";
     int num = 0;
     bool result = false;
@@ -18,6 +21,7 @@
 @foreach (var item in Model.Rates)
 {
     ratingcount++;
+    countpoint += item.Point;
 }
 
 @foreach (Category category in ViewBag.category)
@@ -27,7 +31,14 @@
         productcategory = category.Name;
     }
 }
+@{
+    int avg = 0;
+    if (Model.Rates.Count>0)
+    {
+       avg= countpoint / ratingcount;
+    }
 
+}
 
 <div class="headertext">
     <div class="container pt-4">
@@ -69,21 +80,36 @@
                                         <h3>@Model.Name</h3>
                                         <div class="review mb-3">
                                             <div class="starrating">
-                                                <i class="fa-solid fa-star staron"></i>
-                                                <i class="fa-solid fa-star staron"></i>
-                                                <i class="fa-solid fa-star staron"></i>
-                                                <i class="fa-solid fa-star staron"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <span>(1)</span>
+                                              @for (int i = 0; i < avg; i++)
+                                                {
+                                                    <i class="fa-solid fa-star staron"></i>
+                                                }
+                                                <span>(@ratingcount)</span>
                                             </div>
                                         </div>
                                         <div class="price mb-3">
-                                            <span>$@Model.Price</span>
+                                         @if (Model.DiscountId==2)
+                                            {
+                                                <span>
+                                                    <del> $ @Model.Price</del>
+                                                </span>
+                                                <h5>
+                                                    @{
+                                                        decimal price = (Model.Price * discount.Percentage) / 100;
+                                                    }
+                                                    $ @price.ToString("f0")
+                                                </h5>
+                                            }
+                                            else{
+                                                <span>
+                                                   $ @Model.Price
+                                                </span>
+                                            }
                                         </div>
                                         <p>
                                             @Model.Article
                                         </p>
-                                        <div class="quantity mb-2 d-flex">
+                                        <div class="quantity m-0 d-flex">
 
                                             @if (Model.Stock == true)
                                             {
@@ -108,11 +134,11 @@
                                             @{
                                                 if (Model.Stock == true)
                                                 {
-                                                    <span>In Stock</span>
+                                                                                <span>In Stock</span>
                                                 }
                                                 else
                                                 {
-                                                    <span style="color:red">No Stock</span>
+                                                                                <span style="color:red">No Stock</span>
                                                 }
                                             }
                                         </div>
@@ -164,32 +190,50 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <h4 class="mb-4">@ratingcount review for Equipment Product</h4>
-                                            <div style="display:none" class="media d-flexjustic mb-4">
-                                                <div class="avatar">
-                                                    <img src="./image/cat_4.png" alt="">
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
-                                                    <div class="starrating">
-                                                        <i class="fa-solid fa-star staron"></i>
-                                                        <i class="fa-solid fa-star staron"></i>
-                                                        <i class="fa-solid fa-star staron"></i>
-                                                        <i class="fa-solid fa-star staron"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                    </div>
-                                                    <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.</p>
-                                                </div>
-                                               
-                                            </div>
+
                                             @foreach (Rate rate in Model.Rates)
                                             {
                                                 <div style="margin:2rem" class="media-body">
                                                     <h6>@rate.AppUser.FirstName<small> - <i>@rate.Date</i></small></h6>
-                                                    @for (int i = 0; i < rate.Point; i++)
+                                                    @{
+                                                        int sartcount = 5 - rate.Point;
+                                                    }
+                                                    @for (int i = 0; i <rate.Point; i++)
                                                     {
-                                                        <i class="fa-solid fa-star staron"></i>
+                                                      <i class="fa-solid fa-star staron"></i>
+                                                    }
+                                                    @for (int i = 0; i < sartcount; i++)
+                                                    {
+                                                        <i class="fa-solid fa-star"></i>
+                                                    }
+                                                    @if (User.Identity.Name == rate.AppUser.UserName || User.IsInRole("Admin"))
+                                                    {
+
+                                                        <a asp-controller="medicine" asp-action="DeleteRate" asp-route-id="@rate.Id" class="removebutton"><i class="far fa-times-circle" style="font-size:15px; margin-left:2rem;"></i></a>
                                                     }
                                                 </div>
+                                             
+                                            }
+                                            @if (Model.Comments != null)
+                                            {
+                                                @foreach (Comment comment in Model.Comments)
+                                                {
+                                                    <div style="margin:2rem ;display:flex;" class="media-body">
+                                                        <div>
+                                                            <h6>@comment.AppUser.FirstName<small> - <i>@comment.Date</i></small></h6>
+                                                             <div>
+                                                   <p>@comment.Message</p>    
+                                                   </div>
+                                                        </div>
+
+
+                                                        @if (User.Identity.Name == comment.AppUser.UserName || User.IsInRole("Admin"))
+                                                        {
+                                                     
+                                                            <a asp-controller="medicine" asp-action="deletecomment" asp-route-id="@comment.Id" class="removebutton"><i class="far fa-times-circle" style="font-size:15px; margin-left:2rem;"></i></a>
+                                                        }
+                                                    </div>
+                                                }
                                             }
                                         </div>
 
@@ -204,45 +248,52 @@
                                         <div class="d-flex my-3">
                                             <p class="mb-0 mr-2">Your Rating * :</p>
                                             <div class='rating-stars text-center'>
-                                                <ul style="display:flex" id='stars'>
+                                                <ul style="display:flex;" id='stars'>
                                                     <a class="rate-point" data-id="1" asp-controller="medicine" asp-action="AddRate">
                                                     <li class='star' title='WOW!!!' data-value='5'>
-                                                        <i class='fa fa-star fa-fw'></i>
+                                                        <i style="color: #f3a952;" class='fa fa-star fa-fw'></i>
                                                     </li>
                                                     </a>
                                                     <a class="rate-point" data-id="2" asp-controller="medicine" asp-action="AddRate">
                                                     <li class='star' title='WOW!!!' data-value='5'>
-                                                        <i class='fa fa-star fa-fw'></i>
+                                                        <i style="color: #f3a952;" class='fa fa-star fa-fw'></i>
                                                     </li>
                                                     </a>
                                                     <a class="rate-point" data-id="3" asp-controller="medicine" asp-action="AddRate">
                                                     <li class='star' title='WOW!!!' data-value='5'>
-                                                        <i class='fa fa-star fa-fw'></i>
+                                                        <i style="color: #f3a952;" class='fa fa-star fa-fw'></i>
                                                     </li>
                                                     </a>
                                                     <a class="rate-point" data-id="4" asp-controller="medicine" asp-action="AddRate">
                                                     <li class='star' title='WOW!!!' data-value='5'>
-                                                        <i class='fa fa-star fa-fw'></i>
+                                                        <i style="color: #f3a952;" class='fa fa-star fa-fw'></i>
                                                     </li>
                                                     </a>
                                                     <a class="rate-point" data-id="5" asp-controller="medicine" asp-action="AddRate">
                                                             <li class='star' title='WOW!!!' data-value='5'>
-                                                    <i class='fa fa-star fa-fw'></i>
+                                                        <i style="color: #f3a952;" class='fa fa-star fa-fw'></i>
                                                         </li>
                                                    </a>
                                                 </ul>
                                             </div>
                                         </div>
                                     }
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="message">Your Review *</label>
-                                            <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
-                                        </div>
-                                        <div class="form-group mb-0">
-                                            <button type="submit" class="gelir">Submit</button>
-                                        </div>
-                                    </form>
+                                     @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <form method="post" asp-controller="Medicine" asp-action="AddComment">
+                                            <div class="input">
+
+                                                <p>Your review *</p>
+                                                <textarea required class="form-control" id="exampleFormControlTextarea1" rows="3" name="Message" style="font-size:15px;"></textarea>
+                                                <input required type="hidden" name="MedicineId" value="@Model.Id" />
+                                            </div>
+
+                                            <button type="submit" class="btn">Submit</button>
+                                        </form>
+                                    }
+                                    else{
+                                        <a class="view" asp-controller="account" asp-action="login">Add Comment login</a>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -258,7 +309,6 @@
 <script>
 
     var btns = document.querySelectorAll(".rate-point")
-
     btns.forEach(btn=>{
         btn.addEventListener("click",function (e){
 
@@ -272,7 +322,6 @@
             var prodid=id;
             var url=btn.getAttribute("href");
             var params2 = `id=${id}&point=${rate}`
-             console.log(params2)
             $.ajax({
                 url: url,
                 data: {
@@ -282,8 +331,8 @@
                 type: "get",
                 datatype: "json",
                 success: function (data) {
-                   console.log(data)
-                   location.reload(true)
+                    btn.parentElement.style.display = "none";
+               
                 }
             })
         })  

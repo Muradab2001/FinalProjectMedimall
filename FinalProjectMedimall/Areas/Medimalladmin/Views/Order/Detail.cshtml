@@ -45,6 +45,63 @@
             @Html.DisplayFor(model => model.TotalPrice)
         </dd>
     </dl>
+    <div>
+        <div class="table-responsive pt-3">
+            <table class="table table-bordered" style="text-align: center">
+                <thead class="table table-info" style="text-align: center">
+                    <tr>
+                        <th>
+                            Image
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            SKU
+                        </th>
+                        <th>
+                            Price
+                        </th>
+                        <th>
+                            Weight
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+        @foreach (OrderItem item in ViewBag.basketitem)
+        {
+            if (item.OrderId == Model.Id)
+            {
+       
+                                <tr class="table-warning">
+                                    <td>
+                                        <img style="width:110px; height:110px"
+                                 src="~/assets/image/@item.Medicine.Image" />
+                                    </td>
+                                    <td>
+                                        @item.Medicine.Name
+                                    </td>
+                                    <td>
+                                        @item.Medicine.SKU
+                                    </td>
+
+                                    <td>
+                                        @item.Price
+                                    </td>
+
+                                    <td>
+                                        @item.Medicine.Weight
+                                    </td>
+                                   
+                                </tr>
+                            
+            }
+        }
+                        </tbody>
+                    </table>
+                </div>
+    </div>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |

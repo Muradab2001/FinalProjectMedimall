@@ -22,6 +22,11 @@ namespace FinalProjectMedimall.Areas.Medimalladmin.Controllers
         public async Task<IActionResult> Index()
         {
             List<Contact> contact = await _context.Contacts.ToListAsync();
+            foreach (var item in contact)
+            {
+                item.Look = true;
+            }
+            _context.SaveChanges();
             return View(contact);
         }
 

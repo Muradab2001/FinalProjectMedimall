@@ -1,10 +1,15 @@
 ﻿@model Medicine
 @{
     ViewData["Title"] = "Detail";
+    int count =0;
+}
+@foreach (var item in ViewBag.orderitem)
+{
+    count++;
 }
 <div class="col-lg-9">
     <div class="btn-da">
-        <h4 style="text-align:center; background-color:chartreuse; padding: 0.3rem;">Furniture</h4>
+        <h4 style="text-align:center; background-color:chartreuse; padding: 0.3rem;">Medicine</h4>
     </div>
     <hr />
     <dl class="row table table-warning">
@@ -48,10 +53,19 @@
             @Html.DisplayNameFor(model => model.Category)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CategoryId)
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+         <dt class="col-sm-2">
+            <span>Sell count</span>
+        </dt>
+        <dd class="col-sm-10">
+            @count
         </dd>
     </dl>
 </div>
+
+
+
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>

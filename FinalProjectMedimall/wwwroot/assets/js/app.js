@@ -1,17 +1,3 @@
-window.onscroll = function() {scrollFunction()};
-var btn=document.getElementById("button");
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-btn.className="show";
-  } else {
-    btn.className="";
-  }
-}
-btn.onclick=function(){
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}
-
 function openNav() {
     document.getElementById("mySidenav").style.left = "0"
   }
@@ -77,16 +63,6 @@ btnshow.addEventListener("click",function(e) {
 }) 
 
 
-
-window.onscroll = function() {scrollFunction()};
-
-function scrollFunction() {
-  if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 500) {
-    document.getElementById("nav-2").style.top="0";
-  } else {
-    document.getElementById("nav-2").style.top="-120px";
-  }
-}
 
 
 

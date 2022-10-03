@@ -16,6 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="~/assets/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="~/assets/slick/slick-theme.css"/>
 </head>
@@ -45,7 +46,7 @@
                         <div id="courses_id" class="courses">
                             @foreach (var item in layoutservice.GetCategories())
                             {
-                                <li><a><i class="fa-solid fa-chevron-right"></i>@item.Name</a></li>
+                                <li><a asp-controller="Shop" asp-action="index" asp-route-id="@item.Id"><i class="fa-solid fa-chevron-right"></i>@item.Name</a></li>
                             }
                         </div>
                     </div>
@@ -58,9 +59,17 @@
                 </button>
             </div>
             <div class="col-lg-2 headericons">
-                <a href="~/assets">
-                    <i class="fa-solid fa-user"></i>
-                </a>
+                 @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-controller="User" asp-action="index">
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+                }
+                else{
+                    <a asp-controller="account" asp-action="login">
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+                }
                 <a asp-controller="WishList" asp-action="Index">
                     <i class="fas fa-heart">
                         <span id="countWishlist" class="count">@layoutservice.GetWishlist().Result.WishListItemVMs.Count</span>
@@ -81,7 +90,7 @@
                         }
                     </i>
                 </a>
-                <span>$0.00</span>
+    
 
             </div>
         </section>
@@ -91,7 +100,7 @@
                     <ul><a asp-controller="Home" asp-action="Index">HOME</a></ul>
                     <ul><a asp-controller="Shop" asp-action="Index">SHOP</a></ul>
                  <ul><a asp-controller="contact" asp-action="Index" >CONTACT</a></ul>
-                    <ul><a href="~/assets">ABOUT</a></ul>
+                    <ul><a asp-controller="about" asp-action="Index">ABOUT</a></ul>
                 </div>
                 <div class="col-lg-2 d-flex phone">
                     <div class="navicon">
@@ -119,7 +128,7 @@
                         <ul><a asp-controller="Home" asp-action="Index">HOME</a></ul>
                         <ul><a asp-controller="Shop" asp-action="Index">SHOP</a></ul>
                         <ul><a asp-controller="contact" asp-action="Index">CONTACT</a></ul>
-                        <ul><a href="~/assets">ABOUT</a></ul>
+                        <ul><a asp-controller="about" asp-action="Index">ABOUT</a></ul>
                     </div>
                 </div>
                 <div class="col-lg-2 headericons">
@@ -177,10 +186,10 @@
             </div>
             <div class="nav-content">
                 <ul>
-                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-controller="Home" asp-action="Index">About</a></li>
-                    <li><a asp-controller="Home" asp-action="Index">Contact</a></li>
-                    <li><a asp-controller="Home" asp-action="Index">Shop</a></li>
+                    <ul><a asp-controller="Home" asp-action="Index">HOME</a></ul>
+                    <ul><a asp-controller="Shop" asp-action="Index">SHOP</a></ul>
+                    <ul><a asp-controller="contact" asp-action="Index">CONTACT</a></ul>
+                    <ul><a asp-controller="about" asp-action="Index">ABOUT</a></ul>
                 </ul>
             </div>
         </div>
@@ -191,8 +200,8 @@
     <!-- footer start -->
     <footer>
         <div class="d-flexjustic footer-response">
-            <div class="col-lg-5 col-12 footerleft">
-                <div class="container">
+            <div  class="col-lg-5 col-12 footerleft">
+                <div data-aos="fade-right" class="container">
                     <img src="~/assets/image/@layoutservice.GetSettings().FirstOrDefault(x=>x.Key.Trim().ToLower()=="logofooter")?.Value" alt="">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil ut odit provident voluptas recusandae quod fugit non inventore molestiae repellendus.</p>
                     <p>Our Help Line:</p>
@@ -203,9 +212,9 @@
             </div>
             <div class="col-lg-7 col-12 footerright">
                 <div class="container d-flexjustic footer-response">
-                    <div class="navmenu col-lg-3">
-                        <h3>Information</h3>
-                        <ul>
+                    <div  class="navmenu col-lg-3">
+                        <h3 data-aos="zoom-in">Information</h3>
+                        <ul data-aos="fade-up">
                             <li>About</li>
                             <li>Delivery</li>
                             <li>Contact</li>
@@ -213,15 +222,15 @@
                         </ul>
                     </div>
                     <div class="navmenu col-lg-4">
-                        <h3>Custom Links</h3>
-                        <ul>
+                        <h3 data-aos="zoom-in">Custom Links</h3>
+                        <ul data-aos="fade-up">
                             <li>About</li>
                             <li>Delivery</li>
                             <li>Contact</li>
                             <li>Shop</li>
                         </ul>
                     </div>
-                    <div class="navmenu col-lg-5">
+                    <div data-aos="zoom-in" class="navmenu col-lg-5">
                         <h3>Newsletter</h3>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, non.</p>
                     </div>
@@ -382,6 +391,10 @@
 
         })
     })
+</script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
 </script>
 <script src="~/assets/slick/slick.js"></script>
 <script src="~/assets/js/app.js"></script>

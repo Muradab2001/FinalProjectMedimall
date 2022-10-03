@@ -8,7 +8,10 @@
 
     foreach (Contact contact in layoutService.GetContacts())
     {
-        count++;
+     if (contact.Look==false)
+     {
+            count++;
+        }
     }
     foreach (Order order in layoutService.GetOrders())
     {
@@ -71,7 +74,7 @@
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
                             <img src="~/admin/images/faces/face5.jpg" alt="profile" />
-                            <span class="nav-profile-name">Leo Messi</span>
+                            <span class="nav-profile-name">Murad Abdullayev</span>
                         </a>
                         <div style=""  class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                        
@@ -112,6 +115,7 @@
                                 <li class="nav-item"> <a  class="nav-link" asp-controller="category" asp-action="index">Category</a></li>
                                 <li class="nav-item"> <a class="nav-link" asp-controller="Medicine" asp-action="index">Medicine</a></li>
                                 <li class="nav-item"> <a class="nav-link" asp-controller="Discount" asp-action="index">Discount</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="User" asp-action="index">User</a></li>
                             </ul>
                         </div>
                     </li>

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fu5wJBsMR7gq0J9HApIFVQADTSM5iU1mA2VGXyBN7bk9Im59i127+sNmr2KPQga4j+SZch+YnW43oCAI/48yxQ==",
+  "dgSpecHash": "A/coQ6Csq433fHqWeu9VTTJVvnehuyoQD7Vk7GHRq2bZKQKZnmkX0Q+n0/NOCNVWRJuJlr1BJdgS1CX9u3q/0A==",
   "success": true,
   "projectFilePath": "C:\\Users\\Murad\\source\\repos\\FinalProjectMedimall\\FinalProjectMedimall\\FinalProjectMedimall.csproj",
   "expectedPackageFiles": [
@@ -170,8 +170,7 @@
     "C:\\Users\\Murad\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\Murad\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "C:\\Users\\Murad\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.29\\microsoft.netcore.app.host.win-x64.3.1.29.nupkg.sha512"
+    "C:\\Users\\Murad\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

@@ -23,6 +23,7 @@ namespace FinalProjectMedimall.Areas.Medimalladmin.Controllers
         }
         public IActionResult Index()
         {
+            ViewBag.users = _context.Users.ToList();
             HomeVM homeVM = new HomeVM
             {
                 Sliders = _context.Sliders.ToList(),

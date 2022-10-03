@@ -8,7 +8,7 @@
         <h1>Cart</h1>
         <span><a href="./index.html">Home</a></span>
         <span>></span>
-        <a href="./cart.html">Cart</a>
+        <a asp-controller="Order" asp-action="Viewcart">Cart</a>
     </div>
 </div>
 <div class="container col-12">
@@ -19,7 +19,6 @@
                 <th>Product</th>
                 <th>Price</th>
                 <th>Quantity</th>
-                <th>Subtotal</th>
             </tr>
         </thead>
         <tbody>
@@ -40,24 +39,17 @@
                         </span>
                     </th>
                     <th class="itemprice">
-                        <h5>$@item.Price</h5>
+                        <h5>$@item.Price.ToString("f0")</h5>
                     </th>
                     <th class="quantity">
                         <div class="inp-num">
                             <a data-id="@item.Medicine.Id" class="down" id="downbtn"><i class="fas fa-chevron-left"></i></a>
-                            <span class="inp-value">@item.Quantity</span>
+                            <span class="inp-value" id="@item.Medicine.Id">@item.Quantity</span>
                             <a data-id="@item.Medicine.Id" class="up" id="upbtn"><i class="fas fa-chevron-right"></i></a>
                         </div>
 
                     </th>
-                    <th class="itemprice totalPrice">
-                        <span style="font-size: 1.25rem;
-    font-weight: 500;">
-                            $
-                            <span style="font-size: 1.25rem;
-    font-weight: 500;"> <span data-id="@item.Medicine.Id" class="money-t"> @((item.Quantity * item.Price).ToString("f0"))</span></span>
-                        </span>
-                    </th>
+       
                 </tr>
             }
         </tbody>
@@ -102,7 +94,16 @@
             </span>
           
         </div>
-        <a class="checkout">Proceed to checkout</a>
+        @if (User.Identity.IsAuthenticated)
+        {
+
+            <a class="checkout" asp-controller="order" asp-action="checkout">Proceed to checkout</a>
+        }
+        else
+        {
+            <a class="checkout">Proceed to checkout</a>
+        } 
+        
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -115,7 +116,8 @@
             var id = $(this).attr("data-id")
             var total = document.querySelector(".total_price")
             var money = document.querySelectorAll(".money-t")
-            var quantity = document.querySelector(".inp-value")
+            var quantity = document.getElementById(id)
+            console.log(id)
      
             $.ajax({
                 url: "/Medicine/decrease",
@@ -142,9 +144,8 @@
         $(document).on("click", ".up", function (e) {
             e.preventDefault();
             var id = $(this).attr("data-id")
-
             var total = document.querySelector(".total_price")
-            var quantity = document.querySelector(".inp-value")
+            var quantity = document.getElementById(id)
             var money = document.querySelectorAll(".money-t")
             console.log(id)
             $.ajax({

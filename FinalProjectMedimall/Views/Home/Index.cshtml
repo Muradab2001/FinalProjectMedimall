@@ -10,7 +10,7 @@
         {
             @if (slider.Order == 1)
             {
-                <div class="leftslider d-flex">
+                <div data-aos="fade-right" class="leftslider d-flex">
                     <div class="slidertext">
                     <h1>SURGICAL MASK</h1>
                     <p>3 Layer Protection</p>
@@ -31,12 +31,12 @@
       }
          
      </div>
-     <div class="col-lg-5 col-12 rightslider">
-        <div class="topslider d-flex">
+    <div class="col-lg-5 col-12 rightslider">
+        <div  class="topslider d-flex">
         @foreach (Slider slider1 in Model.Sliders)
         {
              @if(slider1.Order==2){
-                    <div class="topslidertext">
+                    <div data-aos="fade-right" class="topslidertext">
                         <h3>EKTA NEBULIZER</h3>
                         <p>COMPRESSOR</p>
                         <div class="imagebutton">
@@ -61,7 +61,7 @@
                     <div>
                         <img src="assets/image/@slider2.Image" alt="">
                     </div>
-                    <div class="bottomslidertext">
+                    <div data-aos="fade-right" class="bottomslidertext">
                         <h3>@slider2.Desc</h3>
                         <p>@slider2.Title</p>
                         <div class="imagebutton">
@@ -86,14 +86,19 @@
     <div class="categorys col-lg-12 d-flexjustic container">
        @foreach (Category category in Model.Categories.Take(8))
       {
-            <div class="categorybox col-lg-1 col-5">
-                <div class="topcategory">
-                    <img src="assets/image/@category.Image" alt="">
+           if (category.Medicines.Count>0)
+           {
+                <div data-aos="fade-up" class="categorybox col-lg-1 col-5">
+                    <div class="topcategory">
+                        <img src="assets/image/@category.Image" alt="">
+                    </div>
+                    <div class="bottomcategory">
+                        <a asp-controller="Shop" asp-action="Index" asp-route-id="@category.Id">
+                            @category.Name
+                        </a>
+                    </div>
                 </div>
-                <div class="bottomcategory">
-                    <a href="">@category.Name</a>
-                </div>
-            </div>
+            }
         }
 
     </div>
@@ -105,11 +110,29 @@
         <h2>Our Latest Products</h2>
     </div>
     <div class="products gap-5">
+
+       
         @foreach (Medicine medicine in Model.Medicines.Take(10))
        {
+            int ratingcount = 0;
+            int countpoint = 0;
+            int avg = 0;
+        
            if (medicine.DiscountId==3)
            {
-                <div class="col-lg-2 col-10 productbox">
+                if (medicine.Rates.Count > 0)
+               {
+                @foreach (var item in medicine.Rates)
+                {
+                    ratingcount++;
+                    countpoint += item.Point;
+                }
+             
+                   avg = countpoint / ratingcount;
+               }
+
+                <div data-aos="fade-up"
+             data-aos-duration="500" class="col-lg-2 col-10 productbox">
                     <div class="productimg">
                         <div class="imgicon">
                             <a asp-controller="Medicine" asp-action="AddWishlist" class="wishlistFetch" asp-route-id="@medicine.Id">
@@ -121,13 +144,13 @@
                     <div class="productinfo">
                         <a asp-controller="Medicine" asp-action="Detail" asp-route-id="@medicine.Id">@medicine.Name</a>
                         <div class="starrating">
+                            @for (int i = 0; i < avg; i++)
+                        {
                             <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star staron"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <span>(1)</span>
+                        }
+                        <span>(@ratingcount)</span>
                         </div>
+                       
                         <div class="productprice">
                             <h5>
                                 @medicine.Price
@@ -150,57 +173,70 @@
 <!--minisilder start-->
 <section class="container">
     <div class="silders">
-        <div class="minislider col-12 d-flex rounded-3">
-            <div class="minislidertext">
-                <h4>100% Pure <br>Hand Sanitizer</h4>
-                <div class="imagebutton">
-                    <button class="learn-more">
-                        <span class="circle" aria-hidden="true">
-                            <span class="icon arrow"></span>
-                        </span>
-                        <span class="button-text">SHOP NOW</span>
-                    </button>
-                </div>
-            </div>
-            <div class="rounded">
-                <img src="assets/image/product_27.png" alt="">
-            </div>
+ @foreach (var slider in Model.Sliders)
+        {
+            if (slider.Order==4)
+            {
+                <div class="minislider col-12 d-flex rounded-3">
+                    <div class="minislidertext">
+                        <h4>@slider.Title</h4>
+                        <div class="imagebutton">
+                            <button class="learn-more">
+                                <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">SHOP NOW</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="rounded">
+                        <img src="assets/image/@slider.Image" alt="">
+                    </div>
 
-        </div>
-        <div class="minislider d-flex rounded-3">
-            <div class="minislidertext">
-                <h4>100% Pure <br>Hand Sanitizer</h4>
-                <div class="imagebutton">
-                    <button class="learn-more">
-                        <span class="circle" aria-hidden="true">
-                            <span class="icon arrow"></span>
-                        </span>
-                        <span class="button-text">SHOP NOW</span>
-                    </button>
                 </div>
-            </div>
-            <div class="rounded">
-                <img src="assets/image/product_27.png" alt="">
-            </div>
+            }
+            if (slider.Order == 5)
+            {
+                <div class="minislider col-12 d-flex rounded-3">
+                    <div class="minislidertext">
+                        <h4>@slider.Title</h4>
+                        <div class="imagebutton">
+                            <button class="learn-more">
+                                <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">SHOP NOW</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="rounded">
+                        <img src="assets/image/@slider.Image" alt="">
+                    </div>
 
-        </div>
-        <div class="minislider  d-flex rounded-3">
-            <div class="minislidertext">
-                <h4>100% Pure <br>Hand Sanitizer</h4>
-                <div class="imagebutton">
-                    <button class="learn-more">
-                        <span class="circle" aria-hidden="true">
-                            <span class="icon arrow"></span>
-                        </span>
-                        <span class="button-text">SHOP NOW</span>
-                    </button>
                 </div>
-            </div>
-            <div class="rounded">
-                <img src="assets/image/product_27.png" alt="">
-            </div>
+            }
+            if (slider.Order == 6)
+            {
+                <div class="minislider col-12 d-flex rounded-3">
+                    <div class="minislidertext">
+                        <h4>@slider.Title</h4>
+                        <div class="imagebutton">
+                            <button class="learn-more">
+                                <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">SHOP NOW</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="rounded">
+                        <img style="width:9.5rem;" src="assets/image/@slider.Image" alt="">
+                    </div>
 
-        </div>
+                </div>
+            }
+        }
+
     </div>
 </section>
 <!--minisilder end-->
@@ -224,12 +260,29 @@ height:2rem;
         </div>
         <div class="container">
             <div class="row">
-                <div class="slider">
+                <div  class="slider">
+                
+                
                     @foreach (Medicine medicine in Model.Medicines.Take(10))
                     {
+
+                        int ratingcount = 0;
+                        int countpoint = 0;
+                        int avg = 0;
                         if (medicine.DiscountId == 2)
                         {
-                            <div class="col-lg-2 col-10 productbox">
+                           @if (medicine.Rates.Count>0)
+                            {
+                                @foreach (var item in medicine.Rates)
+                                {
+                                    ratingcount++;
+                                    countpoint += item.Point;
+                                }
+                  
+                                    avg = countpoint / ratingcount;
+                       
+                            }
+                            <div data-aos="zoom-in" class="col-lg-2 col-10 productbox">
                                 <div class="productimg">
                                     <div class="imgicon">
                                         <a asp-controller="Medicine" asp-action="AddWishlist" class="wishlistFetch" asp-route-id="@medicine.Id">
@@ -241,12 +294,11 @@ height:2rem;
                                 <div class="productinfo">
                                     <a asp-controller="Medicine" asp-action="Detail" asp-route-id="@medicine.Id">@medicine.Name</a>
                                     <div class="starrating">
-                                        <i class="fa-solid fa-star staron"></i>
-                                        <i class="fa-solid fa-star staron"></i>
-                                        <i class="fa-solid fa-star staron"></i>
-                                        <i class="fa-solid fa-star staron"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <span>(1)</span>
+                                        @for (int i = 0; i < avg; i++)
+                                        {
+                                            <i class="fa-solid fa-star staron"></i>
+                                        }
+                                        <span>(@ratingcount)</span>
                                     </div>
                                     <div class="productprice">
                                         <span>
@@ -465,36 +517,31 @@ height:2rem;
     </div>
 
 
+<div class="back-top">
+    <a id="button">
+        <i class="fas fa-angle-double-up"></i>
+    </a>
+</div>
 </section>
-@*<script>
-    // Set the date we're counting down to
-    var countDownDate = document.getElementById("time").getAttribute("value")
-
-    console.log(document.getElementById("time").getAttribute("value"))
-    // Update the count down every 1 second
-    var x = setInterval(function () {
-
-        // Get today's date and time
-        var now = new Date().getTime();
-        console.log(now)
-
-        // Find the distance between now and the count down date
-        var distance = countDownDate - now;
-
-        // Time calculations for days, hours, minutes and seconds
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        // Output the result in an element with id="demo"
-        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-            + minutes + "m " + seconds + "s ";
-
-        // If the count down is over, write some text
-        if (distance < 0) {
-            clearInterval(x);
-            document.getElementById("demo").innerHTML = "EXPIRED";
+<script>
+    window.onscroll = function () { scrollFunction() };
+    var btn = document.getElementById("button");
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            btn.className = "show";
+        } else {
+            btn.className = "";
         }
-    }, 1000);
-</script>*@
+        if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 500) {
+            document.getElementById("nav-2").style.top = "0";
+        } else {
+            document.getElementById("nav-2").style.top = "-120px";
+        }
+    }
+
+    btn.onclick = function () {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+

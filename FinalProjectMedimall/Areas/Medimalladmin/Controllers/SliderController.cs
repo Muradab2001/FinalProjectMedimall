@@ -46,10 +46,10 @@ namespace FinalProjectMedimall.Areas.Medimalladmin.Controllers
                 int count = 0;
                 foreach (var item in _context.Sliders)
                 {
-                    if (item.Id != null)
+                if (item.Id != null)
                         count++;
                 }
-                if (count == 3)
+                if (count == 6)
                 {
                     ModelState.AddModelError("Order", "You have exceeded the image limit");
                     return View();

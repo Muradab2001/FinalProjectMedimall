@@ -16,7 +16,12 @@
         <label>Password</label>
         <input asp-for="Password" type="password">
         <span>Remember me</span>
-            <input asp-for="Remember" style="width: 1%;" type="checkbox">
-        <button class="btn" type="submit">LOGIN</button>
+        <input asp-for="Remember" style="width:1rem;" class="checkbox" type="checkbox">
+        <div class="check-remember">
+      
+          
+            <a asp-action="forgotpassword" asp-controller="Account" class="forget">Forgot Password?</a>
+        </div>
+        <button class="btn mt-2" type="submit">LOGIN</button>
     </form>
 </section>

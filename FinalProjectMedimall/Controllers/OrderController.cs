@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FinalProjectMedimall.Controllers
 {
-    [Authorize(Roles = "Member")]
+    //[Authorize(Roles = "Member")]
     public class OrderController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -40,6 +40,7 @@ namespace FinalProjectMedimall.Controllers
                 BasketItems = _context.BasketItems.Include(m => m.Medicine).Where(m => m.AppUserId == user.Id).ToList(),
 
             };
+           
             return View(model);
 
         }
@@ -55,7 +56,7 @@ namespace FinalProjectMedimall.Controllers
                 BasketItems = _context.BasketItems.Include(m => m.Medicine).Where(m => m.AppUserId == user.Id).ToList()
 
             };
-
+           
             return View(model);
         }
 
@@ -63,6 +64,7 @@ namespace FinalProjectMedimall.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Checkout(OrderVM orderVM)
         {
+            if (!ModelState.IsValid) return View();
             AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
             OrderVM model = new OrderVM
             {
@@ -82,6 +84,7 @@ namespace FinalProjectMedimall.Controllers
                 Country = orderVM.Country,
                 Address = orderVM.Address,
                 Status=false,
+                Archive=false,
                 City = orderVM.City,
                 Phone =orderVM.Phone,
                 TotalPrice = 0,

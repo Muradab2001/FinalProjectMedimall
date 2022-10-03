@@ -47,7 +47,7 @@ else{
     <div class="Subtotal container">
         <div class="Subtotalprice d-flexjustic">
             <h3>Subtotal:</h3>
-            <h4>$@basket.TotalPrice.ToString("f2")</h4>
+            <h4>$@basket.TotalPrice.ToString("f0")</h4>
         </div>
         <div class="subtotalbuttons">
             @if (User.Identity.IsAuthenticated)

@@ -12,104 +12,96 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="wrapper">
-                    <div class="single-main">
+                    <div data-aos="fade-right" class="single-main">
                         <div class="single-title">
                             <h3>Categories</h3>
                         </div>
-                        <div class="single-body">
+                        <div  class="single-body">
                            @foreach (var item in Model.Categories)
                             {
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            @item.Name <span>></span>
-                                        </a>
-                                    </li>
-                                </ul>
+                                if (item.Medicines.Count>0)
+                                {
+                                    <ul>
+                                        <li>
+                                            <a asp-controller="Shop" asp-action="Index" asp-route-id="@item.Id">
+                                                @item.Name <span>></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                }
                             }
                         </div>
                     </div>
-                    <div class="single-main">
+                    <div data-aos="fade-right" class="single-main">
                         <div class="single-title">
                             <h3>filter by price</h3>
                         </div>
                         <div class="single-body">
                             <div class="d-flex">
                                 <div class="wrapper">
-                                    <div class="price-input">
-                                        <div class="field">
-                                            <span>Min</span>
-                                            <input type="number" class="input-min" value="2500">
+                                  <form method="post" asp-controller="Shop" asp-action="index">
+                                        <div class="price-input">
+                                            <div class="field">
+                                                <span>Min</span>
+                                                <input type="number" name="min" class="input-min" value="100">
+                                            </div>
+                                            <div class="separator">-</div>
+                                            <div class="field">
+                                                <span>Max</span>
+                                                <input type="number" name="max" class="input-max" value="500">
+                                            </div>
                                         </div>
-                                        <div class="separator">-</div>
-                                        <div class="field">
-                                            <span>Max</span>
-                                            <input type="number" class="input-max" value="7500">
-                                        </div>
-                                    </div>
+                           
                                     <div class="slider">
                                         <div class="progress" style="left: 25%; right: 35%; background:none"></div>
                                     </div>
                                     <div class="range-input">
-                                        <input type="range" class="range-min" min="0" max="10000" value="2500" step="100">
+                                        <input type="range" asp-controller="Shop"  class="range-min" min="0" max="10000" value="2500" step="100">
                                         <input type="range" class="range-max" min="0" max="10000" value="7500" step="100">
                                     </div>
                                     <button>FILTER</button>
+                                   </form>
                                 </div>
+
                             </div>
                         </div>
                     </div>
-                    <div class="single-main">
+                    <div data-aos="fade-right" class="single-main">
                         <div class="single-title">
                             <h3>By rating</h3>
                         </div>
                         <div class="single-body">
                             <ul>
                                 <li>
-                                    <a href="#">
+                                    <a asp-controller="shop" asp-action="index" asp-route-point="5">
                                         <div class="starrating">
                                             <i class="fa-solid fa-star staron"></i>
                                             <i class="fa-solid fa-star staron"></i>
                                             <i class="fa-solid fa-star staron"></i>
                                             <i class="fa-solid fa-star staron"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>(1)</span>
+                                            <i class="fa-solid fa-star staron"></i>
                                         </div>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a asp-controller="shop" asp-action="index" asp-route-point="4">
                                         <div class="starrating">
                                             <i class="fa-solid fa-star staron"></i>
                                             <i class="fa-solid fa-star staron"></i>
                                             <i class="fa-solid fa-star staron"></i>
                                             <i class="fa-solid fa-star staron"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>(1)</span>
+                                            <i class="fa-solid fa-star staron"></i>
                                         </div>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        <div class="starrating">
-                                            <i class="fa-solid fa-star staron"></i>
-                                            <i class="fa-solid fa-star staron"></i>
-                                            <i class="fa-solid fa-star "></i>
-                                            <i class="fa-solid fa-star "></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>(1)</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
+                                    <a asp-controller="shop" asp-action="index" asp-route-point="1">
                                         <div class="starrating">
                                             <i class="fa-solid fa-star staron"></i>
                                             <i class="fa-solid fa-star staron"></i>
                                             <i class="fa-solid fa-star staron"></i>
                                             <i class="fa-solid fa-star staron"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <span>(1)</span>
+                                            <i class="fa-solid fa-star staron"></i>
                                         </div>
                                     </a>
                                 </li>
@@ -133,88 +125,97 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="bar-right">
-                                <div class="short-title">
-                                    <p>Sort By : </p>
-                                    <select name="sort">
-                                        <option>Relevance</option>
-                                        <option>Name (A - Z)</option>
-                                        <option>Name (Z - A)</option>
-                                        <option>Name (A - Z)</option>
-                                        <option>Name (Z - A)</option>
-                                    </select>
+                                <div class="media-body before-shop-loop">
+                                    <form class="form-order" method="get">
+                                        <p class="sorting">Sort by</p>
+                                        @* <select name="orderby" class="orderby" aria-label="Shop order">*@
+                                        <div class="orderby">
+                                            <a id="latest" style="display:block; text-decoration: none;" asp-controller="shop" asp-action="index" asp-route-sortingOrder="@TempData["NameSortParm"]">Latest</a>
+                                            <a id="a-z" style="display:block; text-decoration: none;" asp-controller="shop" asp-action="index" asp-route-sortingOrder="@TempData["DateSortParm"]"> A-Z</a>
+                                            <a id="z-a" style="display:block; text-decoration: none;" asp-controller="shop" asp-action="index" asp-route-sortingOrder="@("Z-A")"> Z-A</a>
+                                            <a id="z-a" style="display:block; text-decoration: none;" asp-controller="shop" asp-action="index" asp-route-sortingOrder="@("Price by ascending")"> Price by ascending</a>
+                                            <a id="z-a" style="display:block; text-decoration: none;" asp-controller="shop" asp-action="index" asp-route-sortingOrder="@("Price by descending")">Price by descending</a>
+                                        </div>
+                                        @*   </select>*@
+                                        <input type="hidden" name="paged" value="1">
+                                    </form>
                                 </div>
+
 
                             </div>
                         </div>
                         <div class="row products d-flexjustic">
                            @foreach (var item in Model.Medicines)
                             {
-                                <div class="col-lg-5">
-                                    <div class="productbox">
-                                        <div class="productimg">
-                                            <div class="imgicon">
-                                                <a asp-controller="Medicine" asp-action="AddWishlist" class="wishlistFetch" asp-route-id="@item.Id">
-                                                    <i class="fa-solid fa-heart-circle-xmark"></i>
-                                                </a>
+                                int ratingcount = 0;
+                                int countpoint = 0;
+                                int avg = 0;
+
+                               
+                                    if (item.Rates.Count > 0)
+                                    {
+                                        @foreach (var rate in item.Rates)
+                                        {
+                                            ratingcount++;
+                                        countpoint += rate.Point;
+                                        }
+
+                                        avg = countpoint / ratingcount;
+                                    }
+
+                             if (item.DiscountId==3)
+                                {
+                                    <div class="col-lg-5">
+                                        <div class="productbox">
+                                            <div class="productimg">
+                                                <div class="imgicon">
+                                                    <a asp-controller="Medicine" asp-action="AddWishlist" class="wishlistFetch" asp-route-id="@item.Id">
+                                                        <i class="fa-solid fa-heart-circle-xmark"></i>
+                                                    </a>
+                                                </div>
+                                                <img style="object-fit: contain;" src="~/assets/image/@item.Image" alt="">
                                             </div>
-                                            <img style="object-fit: contain;" src="~/assets/image/@item.Image" alt="">
-                                        </div>
-                                        <div class="productinfo">
-                                            <a asp-controller="Medicine" asp-action="Detail" asp-route-id="@item.Id">@item.Name</a>
-                                            <div class="starrating">
-                                                <i class="fa-solid fa-star staron"></i>
-                                                <i class="fa-solid fa-star staron"></i>
-                                                <i class="fa-solid fa-star staron"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <span>(1)</span>
-                                            </div>
-                                            <div class="productprice">
-                                                <h5>
-                                                @item.Price
-                                                </h5>
-                                            </div>
-                                            <div class="basketicon">
-                                                <a href="">
-                                                    <i class="fa-solid fa-basket-shopping"></i>
-                                                </a>
+                                            <div class="productinfo">
+                                                <a asp-controller="Medicine" asp-action="Detail" asp-route-id="@item.Id">@item.Name</a>
+                                                <div class="starrating">
+                                                    @for (int i = 0; i < avg; i++)
+                                                    {
+                                                        <i class="fa-solid fa-star staron"></i>
+                                                    }
+                                                    <span>(@ratingcount)</span>
+                                                </div>
+                                                <div class="productprice">
+                                                    <h5>
+                                                        @item.Price
+                                                    </h5>
+                                                </div>
+                                                <div class="basketicon">
+                                                    <a href="">
+                                                        <i class="fa-solid fa-basket-shopping"></i>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                }
                             }
                             <div id="1" style="display: block;" class="shop_content">
-                                <div class="row is-grid-active">
-                                    <nav class="pagination">
-                                        <ul id="myDIV" class="page-numbers">
-                                        
-                                            @if (ViewBag.CurentPage > 1)
-                                            {
-                                                <li class="page-item " style="width: 55px;">
-                                                    <a class="page-link page-numbers current btnn" asp-controller="shop" asp-action="index" asp-route-page="ViewBag.CurentPage-1">Prev</a>
-                                                </li>
-                                            }
+                                <div class="row justify-content-center mt-4">
+                                    <nav aria-label="...">
+                                        <ul class="pagination" style="justify-content:center">
+
+                                            <li class="page-item @(ViewBag.Currentpage == 1 ? "disabled" : "")">
+                                                <a class="page-link" asp-controller="Shop" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
+                                            </li>
+
                                             @for (int i = 1; i <= ViewBag.TotalPage; i++)
                                             {
-                                                <li class="page-item">
-                                                    @if (i != ViewBag.CurentPage)
-                                                    {
-                                                        <a id="myPage" class="page-link page-numbers btnn " asp-controller="shop" asp-action="index" asp-route-page="@i">@i</a>
-                                                    }
-                                                    else
-                                                    {
-                                                        <a style="background-color:blue;color:wheat" id="myPage" class="page-link page-numbers btnn " asp-controller="shop" asp-action="index" asp-route-page="@i">@i</a>
-                                                    }
-                                                </li>
-                                            }
-                                            @if (ViewBag.CurentPage < ViewBag.TotalPage)
-                                            {
-                                                <li class="page-item" style="width: 55px;">
-                                                    <a class="page-link page-numbers btnn" asp-controller="shop" asp-action="index" asp-route-page="">Next</a>
-
-                                                </li>
+                                                <li class="page-item  @(ViewBag.CurrentPage == i ? "active" : "")" style="pointer-events: @(ViewBag.CurrentPage == i ? "none" : "")"><a class="page-link" asp-controller="Shop" asp-action="index" asp-route-page="@i">@i</a></li>
                                             }
 
+                                            <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPage ? "disabled" : "")">
+                                                <a class="page-link" asp-controller="Shop" asp-action="index" asp-route-page="@(ViewBag.CurrentPage +1)">Next</a>
+                                            </li>
                                         </ul>
                                     </nav>
                                 </div>

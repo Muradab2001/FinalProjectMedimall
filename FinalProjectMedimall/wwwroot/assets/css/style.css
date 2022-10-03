@@ -1532,9 +1532,6 @@ table tbody .cartitem .itemname span {
   margin-left: 1rem;
 }
 
-table tbody .cartitem .quantity {
-  margin-left: 2rem;
-}
 
 table tbody .cartitem .quantity .qty-input {
   color: #000;
@@ -3348,6 +3345,15 @@ table tbody .cartitem .quantity .qty-input {
             background-color: #f2f2f2;
             border-radius: 4px;
         }
+.product-details-information .productinformation .review .media .removebutton {
+    border: 1px solid #a3a3a3;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+    .product-details-information .productinformation .review .media .removebutton:hover {
+        background-color: #064acb;
+    }
 
 .order .billing-details .bill-wrapper .form-row-wide {
     padding: 3px;
@@ -3527,4 +3533,282 @@ table tbody .cartitem .quantity .qty-input {
                         -webkit-transition: 0.3s linear;
                         transition: 0.3s linear;
                     }
+.about {
+    background-color: #fafafa;
+    margin-top: 20px;
+    height: 85px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+    .about .about-title {
+        margin-left: -25px !important;
+        margin: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 1.2px;
+        text-transform: capitalize;
+    }
+
+        .about .about-title span {
+            margin: 10px;
+        }
+
+            .about .about-title span a {
+                margin: 10px;
+                text-decoration: none;
+                color: #777;
+            }
+
+@media screen and (max-width: 950px) and (min-width: 350px) {
+    .about {
+        width: 100%;
+        height: auto;
+    }
+
+        .about .about-title {
+            margin-left: 0 !important;
+            margin: 0;
+            max-width: 100%;
+            height: auto;
+        }
+}
+
+.history {
+    margin-top: 60px;
+    margin-bottom: 0;
+    padding: 60px 0 70px 0;
+}
+
+    .history .elementor-about .about-content {
+        z-index: 1;
+        position: relative;
+    }
+
+        .history .elementor-about .about-content .heading-sub {
+            font-size: 1px;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: #0063d1;
+            margin-left: 10px;
+        }
+
+        .history .elementor-about .about-content .heading-title {
+            text-align: left;
+            margin-bottom: 25px;
+            font-size: 3em;
+            font-weight: 700;
+            line-height: 1.23em;
+            letter-spacing: -.2px;
+        }
+
+        .history .elementor-about .about-content .lead {
+            margin-bottom: 55px;
+            font-size: 1.14286em;
+            font-weight: 400;
+        }
+
+        .history .elementor-about .about-content .mark-text {
+            position: absolute;
+            top: -22%;
+            left: 0;
+            bottom: inherit;
+            line-height: 1;
+            z-index: -1;
+            color: #f5f5f5;
+            font-size: 7.3em;
+            font-weight: 600;
+        }
+
+@media screen and (max-width: 950px) {
+    .history .elementor-about .about-content .mark-text {
+        position: absolute;
+        top: -22%;
+        left: -50px;
+        bottom: inherit;
+        line-height: 1;
+        z-index: -1;
+        color: #f5f5f5;
+        font-size: 3.3em;
+        font-weight: 600;
+    }
+}
+
+.history .statis {
+    display: block;
+}
+
+    .history .statis .heading-sub {
+        text-align: left;
+        font-size: 3em;
+        margin-bottom: 0;
+        color: #0063d1;
+    }
+
+    .history .statis .heading-title {
+        text-align: left;
+        color: #555;
+        font-size: 1em;
+        font-weight: 400;
+    }
+
+.history .element-image {
+    padding: 10px;
+    width: 100%;
+}
+
+    .history .element-image img {
+        max-width: 100%;
+        height: auto;
+    }
+
+.vision {
+    background-color: #f9f9f9;
+    padding: 70px 0 70px 0;
+}
+
+    .vision .our-img img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .vision .abouticon {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+        .vision .abouticon h6 {
+            margin-left: 1rem;
+        }
+
+        .vision .abouticon .right {
+            margin-left: 5rem;
+        }
+
+    .vision .our-vision {
+        z-index: 1;
+        position: relative;
+        padding: 40px 10px 10px 10px;
+    }
+
+        .vision .our-vision .heading-sub {
+            font-size: 14px;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: #0063d1;
+            margin-left: 10px;
+            z-index: 99;
+        }
+
+        .vision .our-vision .heading-title {
+            text-align: left;
+            margin-bottom: 25px;
+            font-size: 3em;
+            font-weight: 700;
+            line-height: 1.23em;
+            letter-spacing: -.2px;
+        }
+
+        .vision .our-vision .lead {
+            margin-bottom: 55px;
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        .vision .our-vision .ourmark-text {
+            position: absolute;
+            top: -8%;
+            left: 0;
+            bottom: inherit;
+            line-height: 0.9;
+            z-index: -1;
+            color: #f5f5f5;
+            font-size: 8.5em;
+            font-weight: 600;
+        }
+
+@media screen and (max-width: 950px) {
+    .vision .our-vision .ourmark-text {
+        position: absolute;
+        top: 0;
+        left: -60px;
+        bottom: inherit;
+        line-height: 0.9;
+        z-index: -1;
+        color: #f5f5f5;
+        font-size: 5.5em;
+        font-weight: 600;
+    }
+}
+
+.vision .elementor-widget {
+    padding: 40px 10px 10px 10px;
+}
+
+    .vision .elementor-widget .list-items {
+        list-style-type: none;
+        margin-top: -20px;
+    }
+
+        .vision .elementor-widget .list-items .elementor-list-item {
+            padding-bottom: calc(12px/1);
+        }
+
+            .vision .elementor-widget .list-items .elementor-list-item .elementor-text {
+                color: #222;
+                -ms-flex-item-align: center;
+                -ms-grid-row-align: center;
+                align-self: center;
+                padding-left: 5px;
+                line-height: 25px;
+            }
+
+.update {
+    background-color: #f9f9f9 !important;
+    margin-top: 55px;
+    padding: 85px 0;
+    width: 100%;
+    text-align: center;
+}
+
+    .update .text {
+        width: 70%;
+        margin: auto;
+    }
+
+    .update .left {
+        background-color: white;
+        border-radius: 10px;
+        width: 48%;
+        background-color: white;
+        padding: 60px;
+    }
+
+        .update .left h3, .update .left p {
+            text-align: left;
+        }
+
+        .update .left .img-icon {
+            margin-right: 1rem;
+            display: -webkit-inline-box;
+            display: -ms-inline-flexbox;
+            display: inline-flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #FFFAF5;
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 120px;
+            flex: 0 0 120px;
+        }
 /*# sourceMappingURL=style.css.map */

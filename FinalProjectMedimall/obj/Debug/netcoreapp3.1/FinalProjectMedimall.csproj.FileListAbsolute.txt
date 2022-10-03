@@ -185,3 +185,9 @@ C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\
 C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\FinalProjectMedimall.Views.pdb
 C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\FinalProjectMedimall.csproj.CopyComplete
 C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\FinalProjectMedimall.genruntimeconfig.cache
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Areas\Medimalladmin\Views\Order\Archive.cshtml.g.cs
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Areas\Medimalladmin\Views\User\Index.cshtml.g.cs
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Views\Account\ResetPassword.cshtml.g.cs
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Views\Account\ForgotPassword.cshtml.g.cs
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Views\About\Index.cshtml.g.cs
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Views\User\Index.cshtml.g.cs

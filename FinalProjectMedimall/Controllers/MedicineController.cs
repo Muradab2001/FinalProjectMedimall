@@ -25,7 +25,8 @@ namespace FinalProjectMedimall.Controllers
         public IActionResult Detail(int? id)
         {
             ViewBag.Category = _context.Categories.ToList();
-            Medicine medicine = _context.Medicines.Include(m => m.Category).Include(m => m.MedicineImages).Include(x=>x.Rates).ThenInclude(x=>x.AppUser).FirstOrDefault(m => m.Id == id);
+            ViewBag.discount = _context.Discounts.FirstOrDefault(d => d.Id == 2);
+            Medicine medicine = _context.Medicines.Include(m => m.Category).Include(m => m.MedicineImages).Include(m=>m.Comments).ThenInclude(x => x.AppUser).Include(x=>x.Rates).ThenInclude(x=>x.AppUser).FirstOrDefault(m => m.Id == id);
             return View(medicine);
         }
         public async Task<IActionResult> DeleteBasketitem(int id)
@@ -82,6 +83,8 @@ namespace FinalProjectMedimall.Controllers
         {
             AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
             BasketItem basket = _context.BasketItems.Include(m=> m.Medicine).ThenInclude(m => m.Discount).FirstOrDefault(m => m.MedicineId == Id && m.AppUserId == user.Id);
+            int quantity = 0;
+           
             if (basket.Quantity == 1)
             {
                 basket.Quantity = 1;
@@ -91,11 +94,10 @@ namespace FinalProjectMedimall.Controllers
                 basket.Quantity--;
             }
             _context.SaveChanges();
-            int quantity = 0;
-            quantity=basket.Quantity;
             decimal TotalPrice = 0;
             decimal Price = basket.Quantity * basket.Medicine.DiscountId == 2 ? (basket.Price * basket.Medicine.Discount.Percentage) / 100 : basket.Price;
             List<BasketItem> basketItems = _context.BasketItems.Include(m => m.AppUser).Include(m=> m.Medicine).Where(b => b.AppUserId == user.Id).ToList();
+            quantity = basket.Quantity;
             foreach (BasketItem item in basketItems)
             {
                 Medicine medicine = _context.Medicines.Include(m => m.Discount).FirstOrDefault(m => m.Id == item.MedicineId);
@@ -121,25 +123,25 @@ namespace FinalProjectMedimall.Controllers
         {
             AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
             BasketItem basket = _context.BasketItems.Include(m=> m.Medicine).ThenInclude(m=>m.Discount).FirstOrDefault(m => m.MedicineId == Id && m.AppUserId == user.Id);
-            basket.Quantity++;
-            _context.SaveChanges();
-            decimal TotalPrice = 0;
             int quantity = 0;
-
-            quantity = basket.Quantity;
+            basket.Quantity++;
+     
+            decimal TotalPrice = 0;
             decimal Price = basket.Quantity * basket.Medicine.DiscountId == 2 ? (basket.Price * basket.Medicine.Discount.Percentage) / 100 : basket.Price;
-            List<BasketItem> basketItems = _context.BasketItems.Include(m => m.AppUser).Include(m => m.Medicine).Where(m => m.AppUserId == user.Id).ToList();
+            List<BasketItem> basketItems = _context.BasketItems.Include(m => m.AppUser).Include(m => m.Medicine).ThenInclude(m=>m.Discount).Where(m => m.AppUserId == user.Id).ToList();
+            quantity = basket.Quantity;
+            _context.SaveChanges();
             foreach (BasketItem item in basketItems)
             {
-                Medicine medicine = _context.Medicines.Include(m => m.Category).FirstOrDefault(m=> m.Id == item.MedicineId);
+                Medicine medicine = _context.Medicines.Include(m => m.Category).Include(m=>m.Discount).FirstOrDefault(m=> m.Id == item.MedicineId);
 
                 BasketItemVM basketItemVM = new BasketItemVM
                 {
                     Medicine = medicine,
-                    Quantity = item.Quantity
-                };
-                basketItemVM.Price = medicine.DiscountId == 2 ? ((medicine.Price * medicine.Discount.Percentage) / 100)*basketItemVM.Quantity : medicine.Price;
-
+                    Quantity = item.Quantity,
+                   
+                 };
+                basketItemVM.Price = medicine.DiscountId == 2 ? (medicine.Price * medicine.Discount.Percentage) / 100 : medicine.Price;
                 TotalPrice += basketItemVM.Price * basketItemVM.Quantity;
 
             }
@@ -151,7 +153,7 @@ namespace FinalProjectMedimall.Controllers
             Medicine medicine = _context.Medicines.Include(m => m.MedicineImages).Include(m=>m.Discount).Include(m => m.Category).FirstOrDefault(m => m.Id == id);
             if(medicine == null)return View("Error");
 
-            if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+            if (User.Identity.IsAuthenticated)
             {
                 AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
 
@@ -341,7 +343,7 @@ namespace FinalProjectMedimall.Controllers
         public async Task<IActionResult> AddRate(int id,int point)
         {
             AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
-
+            if (user == null) return RedirectToAction("Login", "Contact");
             Rate Rate = new Rate
             {
                 Date= DateTime.Now,
@@ -353,6 +355,61 @@ namespace FinalProjectMedimall.Controllers
             _context.SaveChanges();
             return Json("ok");
         }
-       
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> AddComment(Comment comment)
+        {
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            if (user == null) return RedirectToAction("Login", "Contact");
+            if (comment.Message is null) return RedirectToAction("Detail", "Medicine", new { id = comment.MedicineId });
+            if (!ModelState.IsValid) return RedirectToAction("Detail", "Medicine", new { id = comment.MedicineId });
+            if (!_context.Medicines.Any(f => f.Id == comment.MedicineId)) return NotFound();
+            Comment cmnt = new Comment
+            {
+                Message = comment.Message,
+                MedicineId = comment.MedicineId,
+                Date = DateTime.Now,
+                AppUserId = user.Id,
+            };
+            _context.Comments.Add(cmnt);
+            _context.SaveChanges();
+            return RedirectToAction("Detail", "Medicine", new { id = comment.MedicineId });
+        }
+
+        public async Task<IActionResult> DeleteComment(int id)
+        {
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            if (!ModelState.IsValid) return RedirectToAction("Detail", "Book");
+            if (User.IsInRole("Admin"))
+            {
+                Comment commentadmin = _context.Comments.FirstOrDefault(c => c.Id == id);
+                _context.Comments.Remove(commentadmin);
+                _context.SaveChanges();
+                return RedirectToAction("Detail", "Medicine", new { id = commentadmin.MedicineId });
+            }
+            if (!_context.Comments.Any(c => c.Id == id && c.AppUserId == user.Id)) return NotFound();
+            Comment comment = _context.Comments.FirstOrDefault(c => c.Id == id && c.AppUserId == user.Id);
+            _context.Comments.Remove(comment);
+            _context.SaveChanges();
+            return RedirectToAction("Detail", "Medicine", new { id = comment.MedicineId });
+        }
+        public async Task<IActionResult> DeleteRate(int id)
+        {
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            if (!ModelState.IsValid) return RedirectToAction("Detail", "Book");
+            if (User.IsInRole("Admin"))
+            {
+                Rate rateadmin = _context.Rates.FirstOrDefault(c => c.Id == id);
+                _context.Rates.Remove(rateadmin);
+                _context.SaveChanges();
+                return RedirectToAction("Detail", "Medicine", new { id = rateadmin.MedicineId });
+            }
+            else if (!_context.Rates.Any(c => c.Id == id && c.AppUserId == user.Id)) return NotFound();
+            Rate rate = _context.Rates.FirstOrDefault(c => c.Id == id && c.AppUserId == user.Id);
+            _context.Rates.Remove(rate);
+            _context.SaveChanges();
+            return RedirectToAction("Detail", "Medicine", new { id = rate.MedicineId });
+        }
+
     }
 }

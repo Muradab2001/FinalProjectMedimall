@@ -9,6 +9,7 @@ using FinalProjectMedimall.DAL;
 using System.Linq;
 using FinalProjectMedimall.Utilities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace FinalProjectMedimall.Areas.Medimalladmin.Controllers
 {
@@ -24,9 +25,11 @@ namespace FinalProjectMedimall.Areas.Medimalladmin.Controllers
             _context = context;
             _env = env;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            List<Category> model = _context.Categories.OrderByDescending(m => m.Id).ToList();
+            ViewBag.TotalPage = Math.Ceiling((decimal)_context.Categories.Count() / 5);
+            ViewBag.CurrentPage = page;
+            List<Category> model = await _context.Categories.Skip((page - 1) * 5).Take(5).ToListAsync();
             return View(model);
         }
 
