@@ -4,12 +4,12 @@
     @{
         if (TempData["FileName"] != null)
         {
-                <div class="alert alert-danger">@TempData["FileName"]</div>
+                    <div class="alert alert-danger">@TempData["FileName"]</div>
         }
     }
     <div style="text-align: right;">
-        <a style="width:5rem;" class="btn btn-success" asp-area="Medimalladmin" asp-controller="Order" asp-action="Archive">
-            <img  style="width:100%" src="~/admin/images/archive.png"/>
+        <a style="width:5rem; border:1px solid #666;" class="btn" asp-area="Medimalladmin" asp-controller="Order" asp-action="Archive">
+            <img  style="width:100%" src="~/admin/images/file.png"/>
         </a>
     </div>
 

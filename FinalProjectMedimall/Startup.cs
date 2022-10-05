@@ -40,7 +40,7 @@ namespace FinalProjectMedimall
             services.AddIdentity<AppUser, IdentityRole>(opt =>
             {
                 opt.User.RequireUniqueEmail = true;
-                opt.SignIn.RequireConfirmedEmail = false;
+                opt.SignIn.RequireConfirmedEmail = true;
                 opt.User.AllowedUserNameCharacters = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm0123456789";
                 opt.Password.RequiredUniqueChars = 3;
                 opt.Password.RequiredLength = 8;

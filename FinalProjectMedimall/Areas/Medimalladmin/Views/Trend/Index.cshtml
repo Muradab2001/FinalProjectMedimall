@@ -12,9 +12,10 @@
     }
 
     <div class="table-responsive pt-3">
-        <table class="table table table-bordered table-hover" style="text-align: center">
-            <thead class="table table-info" style="text-align: center">
-                <tr>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr class="table-primary text-center">
                     <th>
                         Image
                     </th>
@@ -35,7 +36,7 @@
             <tbody>
                 @foreach (Medicine medicine in Model)
                 {
-                    <tr class="table-warning">
+                    <tr style="background-color:#DFF8FF;" class="table-secondary text-center">
                         <td>
                             <img style="width:110px; height:110px"
                              src="~/assets/image/@medicine.Image" />
@@ -51,26 +52,32 @@
                             @medicine.Price
                         </td>
 
+
+
                         <td class="d-flex align-items-center" style="height:160px; justify-content: center; gap: 5px">
-                            @if (medicine.Trend==false)
+                            @if (medicine.Trend == false)
                             {
                                 <div>
                                     <a asp-area="Medimalladmin" asp-controller="Trend" asp-action="Trend" asp-route-id="@medicine.Id"
                                class="btn btn-light"><img style="border-radius:0" width="2rem" src="~/admin/images/trending-topic.png" /></a>
                                 </div>
                             }
-                            else{
+                            else
+                            {
                                 <div>
                                     <a asp-area="Medimalladmin" asp-controller="Trend" asp-action="Trend" asp-route-id="@medicine.Id"
-                               class="btn btn-light"><img style="border-radius:0" width="2rem" src="~/admin/images/trending.png" /></a>
+                               class="btn btn-light"><img style="border-radius:0" width="2rem" src="~/admin/images/fire-joypixels.gif" /></a>
                                 </div>
                             }
-                      
+
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
+
+
+      
 
     </div>
     <div class="row justify-content-center mt-4">

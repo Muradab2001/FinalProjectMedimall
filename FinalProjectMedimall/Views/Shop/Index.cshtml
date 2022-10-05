@@ -139,14 +139,7 @@
                 <div class="shop-bar">
                     <div class="row">
                         <div class="col-lg-6">
-                            <div class="bar-left">
-                                <a class="active" href="#">
-                                    <i class="fa-solid fa-table-cells"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fa-solid fa-list"></i>
-                                </a>
-                            </div>
+                           
                         </div>
                         <div class="col-lg-6">
                             <div class="bar-right">
@@ -158,8 +151,8 @@
                                             <button class="dropbtn">Sort by</button>
                                             <div class="dropdown-content">
                                                 <a class="dropdown-item" asp-route-key="2" asp-controller="Shop" asp-route-max="@ViewBag.Max" asp-route-min="@ViewBag.Min" asp-action="Index" asp-route-page="@ViewBag.CurrentPage" asp-route-point="@ViewBag.Point" asp-route-id="@(ViewBag.CurrentCategory==null?null:ViewBag.CurrentCategory)">Name</a>
-                                                <a class="dropdown-item" asp-route-key="3" asp-controller="Shop" asp-route-max="@ViewBag.Max" asp-route-min="@ViewBag.Min" asp-action="Index" asp-route-page="@ViewBag.CurrentPage" asp-route-point="@ViewBag.Point" asp-route-id="@(ViewBag.CurrentCategory==null?null:ViewBag.CurrentCategory)">Price</a>
-                                                <a class="dropdown-item" asp-route-key="4" asp-controller="Shop" asp-route-max="@ViewBag.Max" asp-route-min="@ViewBag.Min" asp-action="Index" asp-route-page="@ViewBag.CurrentPage" asp-route-point="@ViewBag.Point" asp-route-id="@(ViewBag.CurrentCategory==null?null:ViewBag.CurrentCategory)"></a>
+                                                <a class="dropdown-item" asp-route-key="3" asp-controller="Shop" asp-route-max="@ViewBag.Max" asp-route-min="@ViewBag.Min" asp-action="Index" asp-route-page="@ViewBag.CurrentPage" asp-route-point="@ViewBag.Point" asp-route-id="@(ViewBag.CurrentCategory==null?null:ViewBag.CurrentCategory)">price by ascending</a>
+                                                <a class="dropdown-item" asp-route-key="4" asp-controller="Shop" asp-route-max="@ViewBag.Max" asp-route-min="@ViewBag.Min" asp-action="Index" asp-route-page="@ViewBag.CurrentPage" asp-route-point="@ViewBag.Point" asp-route-id="@(ViewBag.CurrentCategory==null?null:ViewBag.CurrentCategory)">price by descending</a>
                                             </div>
                                         </div>
                                         @*   </select>*@
@@ -230,9 +223,22 @@
                                                 }
                                             </div>
                                             <div class="basketicon">
-                                                <a href="">
-                                                    <i class="fa-solid fa-basket-shopping"></i>
-                                                </a>
+                                                <div class="basketicon">
+                                                    @if (item.Stock == true)
+                                                    {
+                                                        <a class="addToCart" asp-controller="Medicine" asp-action="Addbasket" asp-route-id="@item.Id">
+
+                                                            <i class="fa-solid fa-basket-shopping"></i>
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a>
+
+                                                            <i class="fa-solid fa-square-xmark"></i>
+                                                        </a>
+                                                    }
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

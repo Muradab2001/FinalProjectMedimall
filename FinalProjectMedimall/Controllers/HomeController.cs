@@ -21,8 +21,9 @@ namespace FinalProjectMedimall.Controllers
             _context = context;
     
         }
-        public IActionResult Index()
+        public IActionResult Index(string str)
         {
+           
             HomeVM homeVM = new HomeVM
             {
                 Sliders = _context.Sliders.ToList(),
@@ -31,6 +32,10 @@ namespace FinalProjectMedimall.Controllers
                 Rates = _context.Rates.ToList(),
                 Discount=  _context.Discounts.FirstOrDefault(d=>d.Id==2)
             };
+            if (!string.IsNullOrEmpty(str))
+            {
+                homeVM.Medicines.Where(m => m.Name.Trim().ToLower().Contains(str)).ToList();
+            }
             return View(homeVM);
         }
         public IActionResult Error()

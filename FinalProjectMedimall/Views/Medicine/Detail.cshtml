@@ -142,11 +142,11 @@
                                             @{
                                                 if (Model.Stock == true)
                                                 {
-                                                                                <span>In Stock</span>
+                                                                                    <span>In Stock</span>
                                                 }
                                                 else
                                                 {
-                                                                                <span style="color:red">No Stock</span>
+                                                                                    <span style="color:red">No Stock</span>
                                                 }
                                             }
                                         </div>
@@ -339,7 +339,7 @@
                 type: "get",
                 datatype: "json",
                 success: function (data) {
-                    btn.parentElement.style.display = "none";
+                    location.reload(true);
                
                 }
             })

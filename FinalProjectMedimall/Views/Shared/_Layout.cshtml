@@ -46,13 +46,17 @@
                         <div id="courses_id" class="courses">
                             @foreach (var item in layoutservice.GetCategories())
                             {
-                                <li><a asp-controller="Shop" asp-action="index" asp-route-id="@item.Id"><i class="fa-solid fa-chevron-right"></i>@item.Name</a></li>
+                             @if (item.Medicines.Count>0)
+                                {
+                                    <li><a asp-controller="Shop" asp-action="index" asp-route-id="@item.Id"><i class="fa-solid fa-chevron-right"></i>@item.Name</a></li>
+                                }
                             }
                         </div>
                     </div>
                 </div>
                 <div class="search">
-                    <input type="text" placeholder="Search For Products ...">
+
+                    <input name="str" type="text" placeholder="Search For Products ...">
                 </div>
                 <button class="searchicon">
                     <span><i class="fas fa-search"></i></span>
@@ -205,9 +209,7 @@
                     <img src="~/assets/image/@layoutservice.GetSettings().FirstOrDefault(x=>x.Key.Trim().ToLower()=="logofooter")?.Value" alt="">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil ut odit provident voluptas recusandae quod fugit non inventore molestiae repellendus.</p>
                     <p>Our Help Line:</p>
-                    <a type="tel:0516447585">0020 500 -98- 000</a>
-                    <h6>Monday - Friday: 9:00 - 20:00</h6>
-                    <h6>Saturday: 11:00 - 15:00</h6>
+                    <a href=tel:"@layoutservice.GetSettings().FirstOrDefault(x=>x.Key.Trim().ToLower()=="number")?.Value">@layoutservice.GetSettings().FirstOrDefault(x=>x.Key.Trim().ToLower()=="number")?.Value</a>
                 </div>
             </div>
             <div class="col-lg-7 col-12 footerright">

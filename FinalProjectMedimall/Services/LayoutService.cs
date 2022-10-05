@@ -32,7 +32,7 @@ namespace FinalProjectMedimall.Services
         }
         public List<Category> GetCategories()
         {
-           List<Category> categories = _context.Categories.ToList();
+           List<Category> categories = _context.Categories.Include(c=>c.Medicines).ToList();
             return categories;
         }
         public List<Order> GetOrders()

@@ -12,7 +12,7 @@
     }
 }
 <div class="main-panel">
-    <div class="table-responsive pt-3">
+  @*  <div class="table-responsive pt-3">
         <table class="table table-bordered" style="text-align: center">
             <thead class="table table-info" style="text-align: center">
                 <tr>
@@ -28,6 +28,45 @@
                     <th>
                         Settings
                     </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Discount discount in Model.Take(1))
+                {
+                    <tr class="table-warning">
+                        <td>
+                            @discount.Title
+                        </td>
+                        <td>
+                            @discount.Percentage.ToString("f0") %
+                        </td>
+                        <td>
+                            @count
+                        </td>
+                        <td class="d-flex align-items-center" style="height:160px; justify-content: center; gap: 5px">
+                            <div>
+                                <a asp-area="Medimalladmin" asp-controller="Discount" asp-action="edit" asp-route-id="@discount.Id"
+                               class="btn btn-success"><i class="mdi mdi-border-color"></i></a>
+                            </div>
+                            <div>
+                                <a asp-area="Medimalladmin" asp-controller="Discount" asp-action="GetMedicine" asp-route-id="@discount.Id"
+                               class="btn btn-warning"><i class="fa-solid fa-box-open"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>*@
+
+    <div class="table-responsive pt-0">
+        <table class="table table-bordered">
+            <thead>
+                <tr class="table-primary text-center">
+                    <th> Image </th>
+                    <th> Title </th>
+                    <th> Desc </th>
+                    <th> Setting </th>
                 </tr>
             </thead>
             <tbody>
