@@ -17,6 +17,10 @@ namespace FinalProjectMedimall.Models
   
         public string Article { get; set; }
         public string Desc { get; set; }
+
+        public int RateAvg { get; set; }
+        public int Sellcount { get; set; }
+        public bool Trend { get; set; } = false;
         public bool Stock { get; set; }
         public int DiscountId { get; set; }
         public Discount Discount { get; set; }

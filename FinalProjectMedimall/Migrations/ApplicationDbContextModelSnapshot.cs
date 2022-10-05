@@ -19,6 +19,33 @@ namespace FinalProjectMedimall.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("FinalProjectMedimall.Models.About", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Desc")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("Order")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("SubTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Abouts");
+                });
+
             modelBuilder.Entity("FinalProjectMedimall.Models.AppUser", b =>
                 {
                     b.Property<string>("Id")
@@ -249,10 +276,19 @@ namespace FinalProjectMedimall.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(6,2)");
 
+                    b.Property<int>("RateAvg")
+                        .HasColumnType("int");
+
                     b.Property<string>("SKU")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Sellcount")
+                        .HasColumnType("int");
+
                     b.Property<bool>("Stock")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Trend")
                         .HasColumnType("bit");
 
                     b.Property<decimal>("Weight")

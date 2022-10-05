@@ -36,14 +36,6 @@ namespace FinalProjectMedimall.Areas.Medimalladmin.Controllers
                 return View(model);
             }
 
-        //public async Task<IActionResult> OrderCount(int page = 1)
-        //{
-        //    ViewBag.TotalPage = Math.Ceiling((decimal)_context.Medicines.Count() / 5);
-        //    ViewBag.CurrentPage = page;
-        //    List<Medicine> model = await _context.Medicines.Include(c => c.Category).Include(c => c.MedicineImages).Skip((page - 1) * 5).Take(5).ToListAsync();
-
-        //    return View(model);
-        //}
 
         public IActionResult Create()
             {
@@ -56,6 +48,7 @@ namespace FinalProjectMedimall.Areas.Medimalladmin.Controllers
             [AutoValidateAntiforgeryToken]
             public async Task<IActionResult> Create(Medicine medicine)
             {
+            medicine.RateAvg = 0;
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.discounts = _context.Discounts.ToList();
             if (!ModelState.IsValid) return View();
@@ -254,8 +247,8 @@ namespace FinalProjectMedimall.Areas.Medimalladmin.Controllers
                 if (id == null || id == 0) return NotFound();
                 Medicine medicine = await _context.Medicines.FindAsync(id);
             if (medicine == null) return NotFound();
-            OrderItem order = await _context.OrderItems.FirstAsync(o => o.MedicineId == medicine.Id);
-            if (order == null)
+            OrderItem orderItem = await _context.OrderItems.Include(o=>o.Order).FirstOrDefaultAsync(o => o.MedicineId == medicine.Id);
+            if (orderItem == null)
             {
                 List<MedicineImage> medicineImages = await _context.MedicineImages.ToListAsync();
                 foreach (MedicineImage item in medicineImages)
@@ -269,16 +262,12 @@ namespace FinalProjectMedimall.Areas.Medimalladmin.Controllers
             }
             else
             {
-                _context.OrderItems.Remove(order);
-                List<MedicineImage> medicineImages = await _context.MedicineImages.ToListAsync();
-                foreach (MedicineImage item in medicineImages)
-                {
-                    if (medicine.Id == item.MedicineId)
-                    {
-                        var alternativpath = Path.Combine(_env.WebRootPath, "assets/image", item.Name);
-                        System.IO.File.Delete(alternativpath);
-                    }
-                }
+
+                TempData["orderitem"] = "won't delete what's in the order";
+                    return RedirectToAction(nameof(Index));
+               
+                //Order order = _context.Orders.FirstOrDefault(o => o.Id == orderItem.OrderId);
+              
             }
 
 

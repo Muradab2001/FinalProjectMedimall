@@ -31,14 +31,14 @@
         productcategory = category.Name;
     }
 }
-@{
+@*@{
     int avg = 0;
     if (Model.Rates.Count>0)
     {
        avg= countpoint / ratingcount;
     }
 
-}
+}*@
 
 <div class="headertext">
     <div class="container pt-4">
@@ -80,9 +80,17 @@
                                         <h3>@Model.Name</h3>
                                         <div class="review mb-3">
                                             <div class="starrating">
-                                              @for (int i = 0; i < avg; i++)
+                                                @{
+                                                    int star = 5-Model.RateAvg;
+                                                    
+                                                }
+                                              @for (int i = 0; i < Model.RateAvg; i++)
                                                 {
                                                     <i class="fa-solid fa-star staron"></i>
+                                                }
+                                                @for (int i = 0; i < star; i++)
+                                                {
+                                                    <i class="fa-solid fa-star"></i>
                                                 }
                                                 <span>(@ratingcount)</span>
                                             </div>
@@ -209,7 +217,7 @@
                                                     @if (User.Identity.Name == rate.AppUser.UserName || User.IsInRole("Admin"))
                                                     {
 
-                                                        <a asp-controller="medicine" asp-action="DeleteRate" asp-route-id="@rate.Id" class="removebutton"><i class="far fa-times-circle" style="font-size:15px; margin-left:2rem;"></i></a>
+                                                        <a asp-controller="medicine" asp-action="DeleteRate" asp-route-id="@rate.Id" asp-route-medid="@Model.Id" class="removebutton"><i class="far fa-times-circle" style="font-size:15px; margin-left:2rem;"></i></a>
                                                     }
                                                 </div>
                                              

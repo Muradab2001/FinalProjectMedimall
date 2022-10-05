@@ -1,4 +1,5 @@
 using FinalProjectMedimall.DAL;
+using FinalProjectMedimall.Middlewares;
 using FinalProjectMedimall.Models;
 using FinalProjectMedimall.Services;
 using Microsoft.AspNetCore.Builder;
@@ -68,6 +69,7 @@ namespace FinalProjectMedimall
             }
             app.UseHttpsRedirection();
             app.UseRouting();
+            //app.UseMiddleware<ExceptionCustomHandlerMiddleware>();
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseAuthorization();

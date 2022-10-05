@@ -64,6 +64,7 @@ namespace FinalProjectMedimall.Controllers
                 LastName = register.LastName,
                 UserName = register.UserName,
                 Email = register.Email,
+                Admin=true,
 
             };
             if (!register.Terms)
@@ -84,7 +85,7 @@ namespace FinalProjectMedimall.Controllers
 
 
 
-            await _userManager.AddToRoleAsync(user, "Member");
+                  await _userManager.AddToRoleAsync(user, "Member");
 
 
             string token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -110,7 +111,7 @@ namespace FinalProjectMedimall.Controllers
             smtp.Port = 587;
             smtp.EnableSsl = true;
 
-            smtp.Credentials = new NetworkCredential("muradama@code.edu.az", "Muradmurad14");
+            smtp.Credentials = new NetworkCredential("muradama@code.edu.az", "Muradmurad18");
             smtp.Send(mail);
             TempData["Verify"] = true;
 
@@ -179,7 +180,7 @@ namespace FinalProjectMedimall.Controllers
             smtp.Port = 587;
             smtp.EnableSsl = true;
 
-            smtp.Credentials = new NetworkCredential("muradama@code.edu.az", "Muradmurad14");
+            smtp.Credentials = new NetworkCredential("muradama@code.edu.az", "Muradmurad18");
             smtp.Send(mail);
             return RedirectToAction("index", "home");
         }

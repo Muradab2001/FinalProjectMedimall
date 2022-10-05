@@ -32,20 +32,22 @@
                         <td>
                             @slider.Desc
                         </td>
-                        <td class="d-flex text-center" style="height:155px; gap: 5px;align-items: center; justify-content: center;">
+         
+                        <td class="d-flex align-items-center" style="height:160px; justify-content: center; gap: 5px">
                             <div>
-                                <a style="border-radius: 5px;" asp-area="Medimalladmin" asp-controller="Slider" asp-action="Edit" asp-route-id="@slider.Id"
-                               class="btn btn-success"><i class="mdi mdi-border-color"></i></a>
+                                <a asp-area="Medimalladmin" asp-controller="Slider" asp-action="Edit" asp-route-id="@slider.Id"
+                               class="btn "><img style="border-radius:0;" width="2rem" src="~/admin/images/edit (1).png" /></a>
                             </div>
                             <div>
-                                <a style="border-radius: 5px" asp-area="Medimalladmin" asp-controller="Slider" asp-action="Delete" asp-route-id="@slider.Id"
-                               class="btn btn-danger"><i class="mdi mdi-delete"></i></a>
+                                <a asp-area="Medimalladmin" asp-controller="Slider" asp-action="Delete" asp-route-id="@slider.Id"
+                               class="btn "><img style="border-radius:0" width="2rem" src="~/admin/images/delete (1).png" /></a>
                             </div>
                             <div>
-                                <a style="border-radius: 5px" asp-area="Medimalladmin" asp-controller="Slider" asp-action="Detail" asp-route-id="@slider.Id"
-                               class="btn btn-warning"><i class="mdi mdi-information"></i></a>
+                                <a asp-area="Medimalladmin" asp-controller="Slider" asp-action="Detail" asp-route-id="@slider.Id"
+                               class="btn "><img style="border-radius:0" width="2rem" src="~/admin/images/info (1).png" /></a>
                             </div>
                         </td>
+       
                     </tr>
                 }
             </tbody>

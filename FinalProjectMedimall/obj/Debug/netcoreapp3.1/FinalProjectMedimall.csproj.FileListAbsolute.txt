@@ -191,3 +191,10 @@ C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\
 C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Views\Account\ForgotPassword.cshtml.g.cs
 C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Views\About\Index.cshtml.g.cs
 C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Views\User\Index.cshtml.g.cs
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Areas\Medimalladmin\Views\Trend\Index.cshtml.g.cs
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Areas\Medimalladmin\Views\About\Index.cshtml.g.cs
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\bin\Debug\netcoreapp3.1\PagedList.dll
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\bin\Debug\netcoreapp3.1\PagedList.Mvc.dll
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_shopPartial.cshtml.g.cs
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Views\Home\Error.cshtml.g.cs
+C:\Users\Murad\source\repos\FinalProjectMedimall\FinalProjectMedimall\obj\Debug\netcoreapp3.1\Razor\Areas\Medimalladmin\Views\About\Edit.cshtml.g.cs

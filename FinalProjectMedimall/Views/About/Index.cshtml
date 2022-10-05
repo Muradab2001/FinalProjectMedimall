@@ -1,4 +1,5 @@
 ﻿    <!-- Main start -->
+@model About
 <main>
     <div class="headertext">
         <div class="container col-12 pt-4">
@@ -13,14 +14,14 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="our-img">
-                        <img src="~/assets/image/about-img_1.jpg" class="img-fluid" alt="">
+                        <img src="~/assets/image/@Model.Image" class="img-fluid" alt="">
                     </div>
                 </div>
                 <div class="col-lg-5">
                     <div class="our-vision">
                         <h2 style="color: #666;" class="heading-sub">What We Are Doing For Our Business</h2>
                         <h5 style="font-size: 2rem;" class="heading-title">
-                            Medshop Create Unique High-quality Product From The Finest Development Since 2001.
+                         @Model.SubTitle
                         </h5>
 
 
@@ -42,7 +43,7 @@
                         </div>
                     </div>
                     <div class="elementor-widget">
-                        <p>Mestibulum libero nisl, porta vel, scelerisque eget, malesuada at neque. wivamus eget nibhm cursleo vel metus. Nulla facilisi. Aenean nec eros. Vestibulum ante ipsum prieymis in faucibusestibuluro nisl, porta scelerisque eget, malesuada</p>
+                        <p>@Model.Title</p>
                     </div>
                     <div class="imagebutton">
                         <button class="learn-more">
@@ -62,7 +63,7 @@
             <div class="text">
                 <span>How We Over Come</span>
                 <h2>Medishop Company History</h2>
-                <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centu ries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <p>@Model.Desc</p>
             </div>
             <div class="pharmacy p-5 d-flexjustic">
 

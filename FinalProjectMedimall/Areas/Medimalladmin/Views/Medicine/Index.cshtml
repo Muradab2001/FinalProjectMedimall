@@ -1,25 +1,19 @@
 ﻿@model List<Medicine>
 @{
     ViewData["Title"] = "Index";
+   
 }
 
-<div class="main-panel">
-    <div style="text-align: center">
-        <a class="btn btn-success" asp-area="Medimalladmin" asp-controller="Medicine" asp-action="create">
+<div  class="main-panel">
+    <div class="text-center btn-dark">
+        <a class="btn btn-primary text-center " asp-area="Medimalladmin" asp-controller="Medicine" asp-action="create">
             Create New Medicine
         </a>
     </div>
-    @{
-        if (TempData["FileName"] != null)
-        {
-            <div class="alert alert-danger">@TempData["FileName"]</div>
-        }
-    }
-
-    <div class="table-responsive pt-3">
-        <table class="table table table-bordered table-hover" style="text-align: center">
-            <thead class="table table-info" style="text-align: center">
-                <tr>
+    <div class="pt-0">
+        <table class="table table-bordered">
+            <thead>
+                <tr class="table-primary text-center">
                     <th>
                         Image
                     </th>
@@ -43,7 +37,7 @@
             <tbody>
                 @foreach (Medicine medicine in Model)
                 {
-                    <tr class="table-warning">
+                    <tr style="background-color:#DFF8FF;" class="table-secondary text-center">
                         <td>
                             <img style="width:110px; height:110px"
                              src="~/assets/image/@medicine.Image" />
@@ -54,52 +48,52 @@
                         <td>
                             @medicine.SKU
                         </td>
-                     
+
                         <td>
                             @medicine.Price
                         </td>
-                  
+
                         <td>
                             @medicine.Weight
                         </td>
                         <td class="d-flex align-items-center" style="height:160px; justify-content: center; gap: 5px">
                             <div>
                                 <a asp-area="Medimalladmin" asp-controller="Medicine" asp-action="Edit" asp-route-id="@medicine.Id"
-                               class="btn btn-light"><img style="border-radius:0"width="2rem" src="~/admin/images/edit.png"/></a>
+                               class="btn "><img style="border-radius:0;" width="2rem" src="~/admin/images/edit (1).png" /></a>
                             </div>
                             <div>
                                 <a asp-area="Medimalladmin" asp-controller="Medicine" asp-action="Delete" asp-route-id="@medicine.Id"
-                               class="btn btn-danger"><img style="border-radius:0" width="2rem" src="~/admin/images/delete.png" /></a>
+                               class="btn "><img style="border-radius:0" width="2rem" src="~/admin/images/delete (1).png" /></a>
                             </div>
                             <div>
                                 <a asp-area="Medimalladmin" asp-controller="Medicine" asp-action="Detail" asp-route-id="@medicine.Id"
-                               class="btn btn-warning"><img style="border-radius:0" width="2rem" src="~/admin/images/info.png" /></a>
+                               class="btn "><img style="border-radius:0" width="2rem" src="~/admin/images/info (1).png" /></a>
                             </div>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
+        <div class="row justify-content-center mt-4">
+            <nav aria-label="...">
+                <ul class="pagination" style="justify-content:center">
 
-    </div>
-    <div class="row justify-content-center mt-4">
-        <nav aria-label="...">
-            <ul class="pagination" style="justify-content:center">
+                    <li class="page-item @(ViewBag.Currentpage == 1 ? "disabled" : "")">
+                        <a class="page-link" asp-controller="Medicine" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
+                    </li>
 
-                <li class="page-item @(ViewBag.Currentpage == 1 ? "disabled" : "")">
-                    <a class="page-link" asp-controller="Medicine" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
-                </li>
+                    @for (int i = 1; i <= ViewBag.TotalPage; i++)
+                    {
+                        <li class="page-item  @(ViewBag.CurrentPage == i ? "active" : "")" style="pointer-events: @(ViewBag.CurrentPage == i ? "none" : "")"><a class="page-link" asp-controller="Medicine" asp-action="index" asp-route-page="@i">@i</a></li>
+                    }
 
-                @for (int i = 1; i <= ViewBag.TotalPage; i++)
-                {
-                    <li class="page-item  @(ViewBag.CurrentPage == i ? "active" : "")" style="pointer-events: @(ViewBag.CurrentPage == i ? "none" : "")"><a class="page-link" asp-controller="Medicine" asp-action="index" asp-route-page="@i">@i</a></li>
-                }
-
-                <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPage ? "disabled" : "")">
-                    <a class="page-link" asp-controller="Medicine" asp-action="index" asp-route-page="@(ViewBag.CurrentPage +1)">Next</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+                    <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPage ? "disabled" : "")">
+                        <a class="page-link" asp-controller="Medicine" asp-action="index" asp-route-page="@(ViewBag.CurrentPage +1)">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
 </div>
+
+

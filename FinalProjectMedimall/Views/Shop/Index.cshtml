@@ -1,4 +1,7 @@
 ﻿@model HomeVM
+@{
+    Discount discount = Model.Discount;
+}
 <div class="headertext">
     <div class="container pt-4">
         <h1>Shop</h1>
@@ -39,16 +42,16 @@
                         <div class="single-body">
                             <div class="d-flex">
                                 <div class="wrapper">
-                                  <form method="post" asp-controller="Shop" asp-action="index">
+                                    <form method="post" asp-controller="Shop" asp-route-max="@ViewBag.Max" asp-route-min="@ViewBag.Min"  asp-route-id="@(ViewBag.CurrentCategory==null?null:ViewBag.CurrentCategory)" asp-route-key="@ViewBag.CurrentKey" asp-route-point="@ViewBag.Point" asp-action="index">
                                         <div class="price-input">
                                             <div class="field">
                                                 <span>Min</span>
-                                                <input type="number" name="min" class="input-min" value="100">
+                                                <input style="height:1rem;" type="number" name="min" class="input-min" value="2500">
                                             </div>
-                                            <div class="separator">-</div>
+                                          
                                             <div class="field">
                                                 <span>Max</span>
-                                                <input type="number" name="max" class="input-max" value="500">
+                                                <input style="height:1rem;" type="number" name="max" class="input-max" value="7500">
                                             </div>
                                         </div>
                            
@@ -59,7 +62,7 @@
                                         <input type="range" asp-controller="Shop"  class="range-min" min="0" max="10000" value="2500" step="100">
                                         <input type="range" class="range-max" min="0" max="10000" value="7500" step="100">
                                     </div>
-                                    <button>FILTER</button>
+                                        <button style="line-height: 32px;">FILTER</button>
                                    </form>
                                 </div>
 
@@ -73,7 +76,7 @@
                         <div class="single-body">
                             <ul>
                                 <li>
-                                    <a asp-controller="shop" asp-action="index" asp-route-point="5">
+                                    <a asp-controller="shop" asp-action="index" asp-route-max="@ViewBag.Max" asp-route-min="@ViewBag.Min" asp-route-point="5" asp-route-key="@ViewBag.CurrentKey">
                                         <div class="starrating">
                                             <i class="fa-solid fa-star staron"></i>
                                             <i class="fa-solid fa-star staron"></i>
@@ -84,24 +87,46 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a asp-controller="shop" asp-action="index" asp-route-point="4">
+                                    <a asp-controller="shop" asp-action="index" asp-route-max="@ViewBag.Max" asp-route-min="@ViewBag.Min" asp-route-point="4" asp-route-key="@ViewBag.CurrentKey">
                                         <div class="starrating">
                                             <i class="fa-solid fa-star staron"></i>
                                             <i class="fa-solid fa-star staron"></i>
                                             <i class="fa-solid fa-star staron"></i>
                                             <i class="fa-solid fa-star staron"></i>
-                                            <i class="fa-solid fa-star staron"></i>
+                                            <i class="fa-solid fa-star"></i>
                                         </div>
                                     </a>
                                 </li>
                                 <li>
-                                    <a asp-controller="shop" asp-action="index" asp-route-point="1">
+                                    <a asp-controller="shop" asp-action="index" asp-route-max="@ViewBag.Max" asp-route-min="@ViewBag.Min" asp-route-point="3" asp-route-key="@ViewBag.CurrentKey">
                                         <div class="starrating">
                                             <i class="fa-solid fa-star staron"></i>
                                             <i class="fa-solid fa-star staron"></i>
                                             <i class="fa-solid fa-star staron"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                    </a>
+                                </li>
+                                     <li>
+                                    <a asp-controller="shop" asp-action="index" asp-route-max="@ViewBag.Max" asp-route-min="@ViewBag.Min" asp-route-point="2" asp-route-key="@ViewBag.CurrentKey">
+                                        <div class="starrating">
                                             <i class="fa-solid fa-star staron"></i>
                                             <i class="fa-solid fa-star staron"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-controller="shop" asp-action="index" asp-route-max="@ViewBag.Max" asp-route-min="@ViewBag.Min" asp-route-point="1" asp-route-key="@ViewBag.CurrentKey">
+                                        <div class="starrating">
+                                            <i class="fa-solid fa-star staron"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
                                         </div>
                                     </a>
                                 </li>
@@ -127,14 +152,15 @@
                             <div class="bar-right">
                                 <div class="media-body before-shop-loop">
                                     <form class="form-order" method="get">
-                                        <p class="sorting">Sort by</p>
-                                        @* <select name="orderby" class="orderby" aria-label="Shop order">*@
-                                        <div class="orderby">
-                                            <a id="latest" style="display:block; text-decoration: none;" asp-controller="shop" asp-action="index" asp-route-sortingOrder="@TempData["NameSortParm"]">Latest</a>
-                                            <a id="a-z" style="display:block; text-decoration: none;" asp-controller="shop" asp-action="index" asp-route-sortingOrder="@TempData["DateSortParm"]"> A-Z</a>
-                                            <a id="z-a" style="display:block; text-decoration: none;" asp-controller="shop" asp-action="index" asp-route-sortingOrder="@("Z-A")"> Z-A</a>
-                                            <a id="z-a" style="display:block; text-decoration: none;" asp-controller="shop" asp-action="index" asp-route-sortingOrder="@("Price by ascending")"> Price by ascending</a>
-                                            <a id="z-a" style="display:block; text-decoration: none;" asp-controller="shop" asp-action="index" asp-route-sortingOrder="@("Price by descending")">Price by descending</a>
+                    
+                                  
+                                        <div class="dropdown">
+                                            <button class="dropbtn">Sort by</button>
+                                            <div class="dropdown-content">
+                                                <a class="dropdown-item" asp-route-key="2" asp-controller="Shop" asp-route-max="@ViewBag.Max" asp-route-min="@ViewBag.Min" asp-action="Index" asp-route-page="@ViewBag.CurrentPage" asp-route-point="@ViewBag.Point" asp-route-id="@(ViewBag.CurrentCategory==null?null:ViewBag.CurrentCategory)">Name</a>
+                                                <a class="dropdown-item" asp-route-key="3" asp-controller="Shop" asp-route-max="@ViewBag.Max" asp-route-min="@ViewBag.Min" asp-action="Index" asp-route-page="@ViewBag.CurrentPage" asp-route-point="@ViewBag.Point" asp-route-id="@(ViewBag.CurrentCategory==null?null:ViewBag.CurrentCategory)">Price</a>
+                                                <a class="dropdown-item" asp-route-key="4" asp-controller="Shop" asp-route-max="@ViewBag.Max" asp-route-min="@ViewBag.Min" asp-action="Index" asp-route-page="@ViewBag.CurrentPage" asp-route-point="@ViewBag.Point" asp-route-id="@(ViewBag.CurrentCategory==null?null:ViewBag.CurrentCategory)"></a>
+                                            </div>
                                         </div>
                                         @*   </select>*@
                                         <input type="hidden" name="paged" value="1">
@@ -163,45 +189,58 @@
                                         avg = countpoint / ratingcount;
                                     }
 
-                             if (item.DiscountId==3)
-                                {
-                                    <div class="col-lg-5">
-                                        <div class="productbox">
-                                            <div class="productimg">
-                                                <div class="imgicon">
-                                                    <a asp-controller="Medicine" asp-action="AddWishlist" class="wishlistFetch" asp-route-id="@item.Id">
-                                                        <i class="fa-solid fa-heart-circle-xmark"></i>
-                                                    </a>
-                                                </div>
-                                                <img style="object-fit: contain;" src="~/assets/image/@item.Image" alt="">
+                                <div class="col-lg-5">
+                                    <div class="productbox">
+                                        <div class="productimg">
+                                            <div class="imgicon">
+                                                <a asp-controller="Medicine" asp-action="AddWishlist" class="wishlistFetch" asp-route-id="@item.Id">
+                                                    <i class="fa-solid fa-heart-circle-xmark"></i>
+                                                </a>
                                             </div>
-                                            <div class="productinfo">
-                                                <a asp-controller="Medicine" asp-action="Detail" asp-route-id="@item.Id">@item.Name</a>
-                                                <div class="starrating">
-                                                    @for (int i = 0; i < avg; i++)
-                                                    {
-                                                        <i class="fa-solid fa-star staron"></i>
-                                                    }
-                                                    <span>(@ratingcount)</span>
-                                                </div>
-                                                <div class="productprice">
+                                            <img style="object-fit: contain;" src="~/assets/image/@item.Image" alt="">
+                                        </div>
+                                        <div class="productinfo">
+                                            <a asp-controller="Medicine" asp-action="Detail" asp-route-id="@item.Id">@item.Name</a>
+                                            <div class="starrating">
+                                                @for (int i = 0; i < avg; i++)
+                                                {
+                                                    <i class="fa-solid fa-star staron"></i>
+                                                }
+                                                <span>(@ratingcount)</span>
+                                            </div>
+                                            <div class="productprice">
+                                                @if (item.DiscountId == 3)
+                                                {
                                                     <h5>
                                                         @item.Price
                                                     </h5>
-                                                </div>
-                                                <div class="basketicon">
-                                                    <a href="">
-                                                        <i class="fa-solid fa-basket-shopping"></i>
-                                                    </a>
-                                                </div>
+                                                }
+                                                else
+                                                {
+                                                    <span>
+                                                        <del> $ @item.Price</del>
+                                                    </span>
+                                                    <h5 style="margin-left:5px
+">
+                                                        @{
+                                                            decimal price = (item.Price * discount.Percentage) / 100;
+                                                        }
+                                                        $ @price.ToString("f0")
+                                                    </h5>
+                                                }
+                                            </div>
+                                            <div class="basketicon">
+                                                <a href="">
+                                                    <i class="fa-solid fa-basket-shopping"></i>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
-                                }
+                                </div>
                             }
                             <div id="1" style="display: block;" class="shop_content">
                                 <div class="row justify-content-center mt-4">
-                                    <nav aria-label="...">
+                           @*         <nav aria-label="...">
                                         <ul class="pagination" style="justify-content:center">
 
                                             <li class="page-item @(ViewBag.Currentpage == 1 ? "disabled" : "")">
@@ -217,7 +256,21 @@
                                                 <a class="page-link" asp-controller="Shop" asp-action="index" asp-route-page="@(ViewBag.CurrentPage +1)">Next</a>
                                             </li>
                                         </ul>
-                                    </nav>
+                                    </nav>*@
+                                    <ul class="pagination justify-content-center">
+                                        @if (ViewBag.CurrentPage > 1)
+                                        {
+                                            <li class="page-item"><a class="page-link" asp-controller="Shop" asp-route-max="@ViewBag.Max" asp-route-min="@ViewBag.Min" asp-action="Index" asp-route-page="@(ViewBag.CurrentPage-1)" asp-route-id="@(ViewBag.CurrentCategory==null?null:ViewBag.CurrentCategory)" asp-route-key="@ViewBag.CurrentKey" asp-route-point="@ViewBag.Point"><span>Previous</span></a></li>
+                                        }
+                                        @for (int i = 1; i <= ViewBag.TotalPage; i++)
+                                        {
+                                            <li class="page-item @(i==ViewBag.CurrentPage?"disabled":"")"><a class="page-link" asp-route-max="@ViewBag.Max" asp-route-min="@ViewBag.Min" asp-controller="Shop" asp-action="Index" asp-route-page="@i" asp-route-id="@(ViewBag.CurrentCategory==null?null:ViewBag.CurrentCategory)" asp-route-key="@ViewBag.CurrentKey" asp-route-point="@ViewBag.Point"><span>@i</span></a></li>
+                                        }
+                                        @if (ViewBag.CurrentPage < ViewBag.TotalPage)
+                                        {
+                                            <li class="page-item"><a class="page-link" asp-controller="Shop" asp-route-max="@ViewBag.Max" asp-route-min="@ViewBag.Min" asp-action="Index" asp-route-page="@(ViewBag.CurrentPage+1)" asp-route-id="@(ViewBag.CurrentCategory==null?null:ViewBag.CurrentCategory)" asp-route-key="@ViewBag.CurrentKey" asp-route-point="@ViewBag.Point"><span>Next</span></a></li>
+                                        }
+                                    </ul>
                                 </div>
                             </div>
 

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -104,6 +105,14 @@ namespace FinalProjectMedimall.Controllers
                     MedicineId = item.Medicine.Id,
                     Order = order
                 };
+                List<Medicine> medicines = _context.Medicines.ToList();
+                foreach (var medicine in medicines)
+                {
+                    if (item.MedicineId == medicine.Id)
+                    {
+                        medicine.Sellcount += item.Quantity;
+                    }
+                }
                 _context.OrderItems.Add(orderItem);
             }
             _context.BasketItems.RemoveRange(model.BasketItems);

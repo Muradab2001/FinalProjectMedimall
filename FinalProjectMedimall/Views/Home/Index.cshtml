@@ -115,21 +115,19 @@
         @foreach (Medicine medicine in Model.Medicines.Take(10))
        {
             int ratingcount = 0;
-            int countpoint = 0;
-            int avg = 0;
-        
-           if (medicine.DiscountId==3)
-           {
-                if (medicine.Rates.Count > 0)
-               {
+
+            @if (medicine.Rates.Count > 0)
+            {
                 @foreach (var item in medicine.Rates)
                 {
                     ratingcount++;
-                    countpoint += item.Point;
+                 
                 }
-             
-                   avg = countpoint / ratingcount;
-               }
+
+            }
+           if (medicine.DiscountId==3)
+           {
+            
 
                 <div data-aos="fade-up"
              data-aos-duration="500" class="col-lg-2 col-10 productbox">
@@ -144,11 +142,20 @@
                     <div class="productinfo">
                         <a asp-controller="Medicine" asp-action="Detail" asp-route-id="@medicine.Id">@medicine.Name</a>
                         <div class="starrating">
-                            @for (int i = 0; i < avg; i++)
-                        {
-                            <i class="fa-solid fa-star staron"></i>
-                        }
-                        <span>(@ratingcount)</span>
+                            @{
+                                int star = 5 - medicine.RateAvg;
+
+                            }
+                            @for (int i = 0; i < medicine.RateAvg; i++)
+                            {
+                                <i class="fa-solid fa-star staron"></i>
+                            }
+                            @for (int i = 0; i < star; i++)
+                            {
+                                <i class="fa-solid fa-star"></i>
+                            }
+                            <span>(@ratingcount)</span>
+            
                         </div>
                        
                         <div class="productprice">
@@ -265,23 +272,20 @@ height:2rem;
                 
                     @foreach (Medicine medicine in Model.Medicines.Take(10))
                     {
-
                         int ratingcount = 0;
-                        int countpoint = 0;
-                        int avg = 0;
+
+                        @if (medicine.Rates.Count > 0)
+                        {
+                            @foreach (var item in medicine.Rates)
+                            {
+                                ratingcount++;
+
+                            }
+
+                        }
                         if (medicine.DiscountId == 2)
                         {
-                           @if (medicine.Rates.Count>0)
-                            {
-                                @foreach (var item in medicine.Rates)
-                                {
-                                    ratingcount++;
-                                    countpoint += item.Point;
-                                }
-                  
-                                    avg = countpoint / ratingcount;
-                       
-                            }
+                           
                             <div data-aos="zoom-in" class="col-lg-2 col-10 productbox">
                                 <div class="productimg">
                                     <div class="imgicon">
@@ -294,9 +298,17 @@ height:2rem;
                                 <div class="productinfo">
                                     <a asp-controller="Medicine" asp-action="Detail" asp-route-id="@medicine.Id">@medicine.Name</a>
                                     <div class="starrating">
-                                        @for (int i = 0; i < avg; i++)
+                                        @{
+                                            int star = 5 - medicine.RateAvg;
+
+                                        }
+                                        @for (int i = 0; i < medicine.RateAvg; i++)
                                         {
                                             <i class="fa-solid fa-star staron"></i>
+                                        }
+                                        @for (int i = 0; i < star; i++)
+                                        {
+                                            <i class="fa-solid fa-star"></i>
                                         }
                                         <span>(@ratingcount)</span>
                                     </div>
@@ -336,132 +348,65 @@ height:2rem;
                     <h2>Top Selling Products</h2>
                 </div>
                 <div class="d-flexjustic flex-wrap">
-                    <div class="col-lg-5 d-flex productbox">
-                        <div class="productimg col-lg-6">
-                            <img src="assets/image/product_2-360x300.png" alt="">
-                        </div>
-                        <div class="productinfo col-lg-6">
-                            <a href="">New Liquid Soap</a>
-                            <div class="starrating">
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <span>(1)</span>
+            @foreach (var medicine in Model.Medicines.Where(m=>m.Trend==true).Take(6))
+                    {
+                        int ratingcount = 0;
+
+                        @if (medicine.Rates.Count > 0)
+                        {
+                            @foreach (var item in medicine.Rates)
+                            {
+                                ratingcount++;
+
+                            }
+
+                        }
+                        <div class="col-lg-5 d-flex productbox">
+                            <div class="productimg col-lg-6">
+                                <img src="~/assets/image/@medicine.Image" alt="">
                             </div>
-                            <div class="productprice">
-                                <h5>
-                                    $18.00
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-5 d-flex productbox">
-                        <div class="productimg col-lg-6">
-                            <img src="assets/image/product_2-360x300.png" alt="">
-                        </div>
-                        <div class="productinfo col-lg-6">
-                            <a href="">New Liquid Soap</a>
-                            <div class="starrating">
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <span>(1)</span>
-                            </div>
-                            <div class="productprice">
-                                <h5>
-                                    $18.00
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-5 d-flex productbox">
-                        <div class="productimg col-lg-6">
-                            <img src="assets/image/product_2-360x300.png" alt="">
-                        </div>
-                        <div class="productinfo col-lg-6">
-                            <a href="">New Liquid Soap</a>
-                            <div class="starrating">
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <span>(1)</span>
-                            </div>
-                            <div class="productprice">
-                                <h5>
-                                    $18.00
-                                </h5>
+                            <div class="productinfo col-lg-6">
+                                <a asp-controller="Medicine" asp-action="Detail" asp-route-id="@medicine.Id">@medicine.Name</a>
+                                <div class="starrating">
+                                    @{
+                                        int star = 5 - medicine.RateAvg;
+
+                                    }
+                                    @for (int i = 0; i < medicine.RateAvg; i++)
+                                    {
+                                        <i class="fa-solid fa-star staron"></i>
+                                    }
+                                    @for (int i = 0; i < star; i++)
+                                    {
+                                        <i class="fa-solid fa-star"></i>
+                                    }
+                                    <span>(@ratingcount)</span>
+                                </div>
+                                <div class="productprice d-flex">
+                                    @if (medicine.DiscountId == 3)
+                                    {
+                                        <h5>
+                                            @medicine.Price
+                                        </h5>
+                                    }
+                                    else
+                                    {
+                                        <span>
+                                            <del> $ @medicine.Price</del>
+                                        </span>
+                                        <h5 style="margin-left:5px
+">
+                                            @{
+                                                decimal price = (medicine.Price * discount.Percentage) / 100;
+                                            }
+                                            $ @price.ToString("f0")
+                                        </h5>
+                                    }
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-5 d-flex productbox">
-                        <div class="productimg col-lg-6">
-                            <img src="assets/image/product_2-360x300.png" alt="">
-                        </div>
-                        <div class="productinfo col-lg-6">
-                            <a href="">New Liquid Soap</a>
-                            <div class="starrating">
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <span>(1)</span>
-                            </div>
-                            <div class="productprice">
-                                <h5>
-                                    $18.00
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-5 d-flex productbox">
-                        <div class="productimg col-lg-6">
-                            <img src="assets/image/product_2-360x300.png" alt="">
-                        </div>
-                        <div class="productinfo col-lg-6">
-                            <a href="">New Liquid Soap</a>
-                            <div class="starrating">
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <span>(1)</span>
-                            </div>
-                            <div class="productprice">
-                                <h5>
-                                    $18.00
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-5 d-flex productbox">
-                        <div class="productimg col-lg-6">
-                            <img src="assets/image/product_2-360x300.png" alt="">
-                        </div>
-                        <div class="productinfo col-lg-6">
-                            <a href="">New Liquid Soap</a>
-                            <div class="starrating">
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <span>(1)</span>
-                            </div>
-                            <div class="productprice">
-                                <h5>
-                                    $18.00
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
+                    }
+      
                 </div>
             </div>
             <div class="col-lg-4 col-12">
@@ -469,48 +414,67 @@ height:2rem;
                     <h2>Top Products</h2>
                 </div>
                 <div class="d-flexjustic flex-wrap">
-                    <div class="d-flex col-lg-10 productbox">
-                        <div class="productimg col-lg-6">
-                            <img src="assets/image/product_2-360x300.png" alt="">
-                        </div>
-                        <div class="productinfo col-lg-6">
-                            <a href="">New Liquid Soap</a>
-                            <div class="starrating">
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <span>(1)</span>
+                 
+                  @foreach (var medicine in Model.Medicines.OrderByDescending(m=>m.Sellcount).Take(2))
+                    {
+                        int ratingcount = 0;
+
+                        @if (medicine.Rates.Count > 0)
+                        {
+                            @foreach (var item in medicine.Rates)
+                            {
+                                ratingcount++;
+
+                            }
+
+                        }
+
+                       
+                            <div class="d-flex col-lg-10 productbox">
+                                <div class="productimg col-lg-6">
+                                    <img src="~/assets/image/@medicine.Image" alt="">
+                                </div>
+                                <div class="productinfo col-lg-6">
+                                    <a asp-controller="Medicine" asp-action="Detail" asp-route-id="@medicine.Id">@medicine.Name</a>
+                                    <div class="starrating">
+                                        @{
+                                            int star = 5 - medicine.RateAvg;
+
+                                        }
+                                        @for (int i = 0; i < medicine.RateAvg; i++)
+                                        {
+                                            <i class="fa-solid fa-star staron"></i>
+                                        }
+                                        @for (int i = 0; i < star; i++)
+                                        {
+                                            <i class="fa-solid fa-star"></i>
+                                        }
+                                        <span>(@ratingcount)</span>
+                                    </div>
+                                    <div class="productprice">
+                                       @if (medicine.DiscountId==3)
+                                    {
+                                      <h5>
+                                            @medicine.Price
+                                      </h5>
+                                    }
+                                    else{
+                                        <span>
+                                            <del> $ @medicine.Price</del>
+                                        </span>
+                                        <h5>
+                                            @{
+                                                decimal price = (medicine.Price * discount.Percentage) / 100;
+                                            }
+                                            $ @price.ToString("f0")
+                                        </h5>
+                                    }
+                                    </div>
+                                </div>
                             </div>
-                            <div class="productprice">
-                                <h5>
-                                    $18.00
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex col-lg-10 productbox">
-                        <div class="productimg col-lg-6">
-                            <img src="assets/image/product_2-360x300.png" alt="">
-                        </div>
-                        <div class="productinfo col-lg-6">
-                            <a href="">New Liquid Soap</a>
-                            <div class="starrating">
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star staron"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <span>(1)</span>
-                            </div>
-                            <div class="productprice">
-                                <h5>
-                                    $18.00
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
+                        
+
+                    }
                 </div>
             </div>
         </div>

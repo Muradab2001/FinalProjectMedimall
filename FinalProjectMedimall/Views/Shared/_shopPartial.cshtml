@@ -1,0 +1,23 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<Medicine>
+
+<table>
+    <thead>
+        <tr>
+            <th>Şirket Adı</th>
+            <th>Müşteri Adı</th>
+            <th>Şehir</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Musteri in Model)
+        {
+            <tr>
+                <td>@Musteri.Name</td>
+                <td>@Musteri.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

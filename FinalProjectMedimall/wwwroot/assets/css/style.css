@@ -8,7 +8,51 @@
 a {
   text-decoration: none !important;
 }
+.dropbtn {
+    border: 1px solid #F9F9F9;
+    border-radius: 5px;
+    color: black;
+    padding: 16px;
+    transition: 0.4s;
+    font-size: 16px;
+    margin-bottom: 1rem;
+    border: none;
+    cursor: pointer;
+}
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 110px;
+    border-radius: 5px;
+    left: -12px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+      
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #064ACB;
+    color:white;
+}
 #button {
   font-size: 1rem;
   color: #fff;
@@ -2559,7 +2603,6 @@ table tbody .cartitem .quantity .qty-input {
 }
 
 .shop-main .wrapper .single-main .single-body ul li a:hover {
-  color: #064acb;
   -webkit-transform: translateX(5px);
           transform: translateX(5px);
 }
@@ -3811,4 +3854,108 @@ table tbody .cartitem .quantity .qty-input {
             -ms-flex: 0 0 120px;
             flex: 0 0 120px;
         }
+
+.products-header .filter-content {
+    align-items: center;
+    flex: 0 0 auto;
+    display: flex;
+}
+
+.products-header .filter-content .media-body {
+        margin-right: 20px;
+        position: relative;
+        display: inline-block;
+}
+
+.products-header .filter-content .media-body .sorting {
+            color: #000;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+
+}
+products-header .filter-content {
+    align-items: center;
+    flex: 0 0 auto;
+    display: flex;
+}
+
+.products-header .filter-content .media-body {
+    margin-right: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+    .products-header .filter-content .media-body .sorting {
+        color: #000;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .products-header .filter-content .media-body .orderby {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        overflow: auto;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px;
+        z-index: 1;
+    }
+
+        .products-header .filter-content .media-body .orderby > a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+            .products-header .filter-content .media-body .orderby > a:hover {
+                background-color: #f9f9f9;
+            }
+
+            .products-header .filter-content .media-body .orderby > a .show {
+                display: block;
+            }
+
+    .products-header .filter-content .media-body:hover .orderby {
+        display: block;
+        cursor: pointer;
+    }
+
+
+        .products-header .filter-content .media-body .orderby {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            overflow: auto;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px;
+            z-index: 1;
+        }
+
+            .products-header .filter-content .media-body .orderby > a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .products-header .filter-content .media-body .orderby > a:hover {
+                    background-color: #f9f9f9;
+                }
+
+                .products-header .filter-content .media-body .orderby > a .show {
+                    display: block;
+                }
+
+        .products-header .filter-content .media-body:hover .orderby {
+            display: block;
+            cursor: pointer;
+        }
+
 /*# sourceMappingURL=style.css.map */

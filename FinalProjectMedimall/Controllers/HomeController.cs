@@ -1,10 +1,13 @@
 ﻿using FinalProjectMedimall.DAL;
 using FinalProjectMedimall.Models;
 using FinalProjectMedimall.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 
 namespace FinalProjectMedimall.Controllers
 {
@@ -12,9 +15,11 @@ namespace FinalProjectMedimall.Controllers
     {
         private readonly ApplicationDbContext _context;
 
+
         public HomeController(ApplicationDbContext context)
         {
             _context = context;
+    
         }
         public IActionResult Index()
         {
@@ -27,6 +32,11 @@ namespace FinalProjectMedimall.Controllers
                 Discount=  _context.Discounts.FirstOrDefault(d=>d.Id==2)
             };
             return View(homeVM);
+        }
+        public IActionResult Error()
+        {
+          
+            return View();
         }
     }
 }

@@ -30,6 +30,8 @@ namespace FinalProjectMedimall.DAL
 
         public DbSet<Comment> Comments { get; set; }
 
+        public DbSet<About> Abouts { get; set; }
+
 
 
 

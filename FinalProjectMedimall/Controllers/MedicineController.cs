@@ -342,7 +342,7 @@ namespace FinalProjectMedimall.Controllers
         [HttpGet]
         public async Task<IActionResult> AddRate(int id,int point)
         {
-            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);       
             if (user == null) return RedirectToAction("Login", "Contact");
             Rate Rate = new Rate
             {
@@ -353,6 +353,21 @@ namespace FinalProjectMedimall.Controllers
             };
             _context.Rates.Add(Rate);
             _context.SaveChanges();
+
+            Medicine medicine = _context.Medicines.FirstOrDefault(c => c.Id == id);
+            List<Rate> rates = _context.Rates.Include(r => r.Medicine).Where(r => r.MedicineId == id).ToList();
+            int pointrate = 0;
+            foreach (var item in rates)
+            {
+                pointrate += item.Point;
+            }
+            if (rates.Count > 0)
+            {
+                medicine.RateAvg = pointrate / rates.Count;
+                _context.SaveChanges();
+            }
+
+
             return Json("ok");
         }
         [HttpPost]
@@ -379,7 +394,7 @@ namespace FinalProjectMedimall.Controllers
         public async Task<IActionResult> DeleteComment(int id)
         {
             AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
-            if (!ModelState.IsValid) return RedirectToAction("Detail", "Book");
+            if (!ModelState.IsValid) return RedirectToAction("Detail", "medicine");
             if (User.IsInRole("Admin"))
             {
                 Comment commentadmin = _context.Comments.FirstOrDefault(c => c.Id == id);
@@ -393,22 +408,54 @@ namespace FinalProjectMedimall.Controllers
             _context.SaveChanges();
             return RedirectToAction("Detail", "Medicine", new { id = comment.MedicineId });
         }
-        public async Task<IActionResult> DeleteRate(int id)
+        public async Task<IActionResult> DeleteRate(int id, int medid)
         {
             AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
-            if (!ModelState.IsValid) return RedirectToAction("Detail", "Book");
+            if (!ModelState.IsValid) return RedirectToAction("Detail", "Medicine");
+            Medicine medicine = _context.Medicines.FirstOrDefault(c => c.Id == medid);
             if (User.IsInRole("Admin"))
             {
                 Rate rateadmin = _context.Rates.FirstOrDefault(c => c.Id == id);
                 _context.Rates.Remove(rateadmin);
                 _context.SaveChanges();
-                return RedirectToAction("Detail", "Medicine", new { id = rateadmin.MedicineId });
+                List<Rate> ratesadmin = _context.Rates.Include(r => r.Medicine).Where(r => r.MedicineId == medid).ToList();
+                int pointrateadmin = 0;
+                if (ratesadmin.Count == 0)
+                {
+                    medicine.RateAvg = 0;
+                }
+                else
+                {
+                    foreach (var item in ratesadmin)
+                    {
+                        pointrateadmin += item.Point;
+                    }
+                    medicine.RateAvg = pointrateadmin / ratesadmin.Count;
+                }
+                _context.SaveChanges();
+                return RedirectToAction("Detail", "Medicine", new { id = medicine.Id });
             }
             else if (!_context.Rates.Any(c => c.Id == id && c.AppUserId == user.Id)) return NotFound();
             Rate rate = _context.Rates.FirstOrDefault(c => c.Id == id && c.AppUserId == user.Id);
             _context.Rates.Remove(rate);
             _context.SaveChanges();
-            return RedirectToAction("Detail", "Medicine", new { id = rate.MedicineId });
+            List<Rate> rates = _context.Rates.Include(r => r.Medicine).Where(r => r.MedicineId == medid).ToList();
+
+            int pointrate = 0;
+            if (rates.Count==0)
+            {
+                medicine.RateAvg = 0;
+            }
+            else
+            {
+                foreach (var item in rates)
+                {
+                    pointrate += item.Point;
+                }
+                medicine.RateAvg = pointrate / rates.Count;
+            }
+            _context.SaveChanges();
+            return RedirectToAction("Detail", "Medicine", new { id = medicine.Id });
         }
 
     }
